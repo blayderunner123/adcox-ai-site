@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Adcox.AI — Jonathan R. Adcox (Resume-ish)</title>
+
+  <!-- Bootstrap 5 (CSS) via public CDN -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
+
+  <style>
+    :root{
+      --bg: #0f1724; --card: #0b1220; --muted: #9aa7bf; --accent: #7dd3fc;
+    }
+    body{
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(125,211,252,.06), transparent 10%),
+                  linear-gradient(180deg, #071028 0%, var(--bg) 100%);
+      color: #e6eef8;
+    }
+    .hero-card{
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(4px);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .muted{ color: var(--muted); }
+
+    /* F5 banner */
+    .f5{
+      font-family: ui-monospace, Menlo, Consolas, "Liberation Mono", monospace;
+      background: linear-gradient(90deg,#071330,#0b2436);
+      color: var(--accent);
+      border-radius: .6rem;
+      padding: .9rem 1rem;
+      box-shadow: inset 0 0 0 1px rgba(125,211,252,0.25), 0 0 30px rgba(125,211,252,0.12);
+    }
+    .okdot{
+      display:inline-block; width:8px; height:8px; border-radius:50%;
+      background: radial-gradient(circle, #7dd3fc 0%, #3366cc 60%, #0a2742 100%);
+      margin-right:6px;
+    }
+    a.btn-hire{
+      font-weight: 700;
+    }
+    .link-pill{
+      display:inline-block; padding:.4rem .7rem; border-radius:50rem;
+      background: rgba(255,255,255,.06); color: var(--muted); text-decoration:none;
+      margin-right:.4rem; margin-bottom:.4rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark" style="background:rgba(0,0,0,.25)">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">ADCOX.AI</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#work">Adventures</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <header class="py-5">
+    <div class="container">
+      <div class="row g-4 align-items-stretch">
+        <div class="col-lg-5">
+          <div class="card hero-card h-100">
+            <div class="card-body">
+              <h1 class="h3 mb-2">Jonathan R. Adcox</h1>
+              <p class="muted mb-3">Enterprise Applications Wrangler, Automation Artisan, mild Viking energy</p>
+
+              <!-- Animated F5 Banner -->
+              <div class="f5" id="f5-banner" aria-live="polite" aria-label="F5 status banner">
+                <pre id="f5-frame" class="mb-0" style="white-space:pre-wrap"></pre>
+              </div>
+
+              <div class="mt-3">
+                <span class="link-pill">PowerShell</span>
+                <span class="link-pill">Logic Apps</span>
+                <span class="link-pill">Microsoft Graph</span>
+                <span class="link-pill">SharePoint</span>
+                <span class="link-pill">Power BI</span>
+              </div>
+
+              <div class="d-grid d-sm-inline-flex gap-2 mt-4">
+                <a class="btn btn-info btn-hire" href="https://soldierupdesign.com" target="_blank" rel="noopener">
+                  Hire Me
+                </a>
+                <a class="btn btn-outline-light" href="#work">See Work</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7">
+          <div class="card hero-card h-100">
+            <div class="card-body">
+              <p class="muted mb-2">Adcox.AI is a resume shaped landing page. It automates the punchlines, then the systems.</p>
+              <ul class="mb-0">
+                <li>Scripts that install their own modules, because kindness scales.</li>
+                <li>Logs for future archeology, caffeine included.</li>
+                <li>No phantom counts, only what the API returns, with receipts.</li>
+              </ul>
+              <hr class="border-secondary opacity-50">
+              <div class="row">
+                <div class="col-sm-6">
+                  <h2 id="about" class="h5">About</h2>
+                  <p class="muted mb-0">I make broken systems apologize, then behave. Most days that means Graph, Logic Apps, and PowerShell in a neat row.</p>
+                </div>
+                <div class="col-sm-6">
+                  <h2 id="contact" class="h5">Contact</h2>
+                  <p class="mb-1"><span class="muted">Email</span><br><a class="link-light" href="mailto:jon.adcox@centralhealth.net">jon.adcox@centralhealth.net</a></p>
+                  <p class="mb-0"><span class="muted">Site</span><br><a class="link-light" href="https://soldierupdesign.com" target="_blank" rel="noopener">soldierupdesign.com</a></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>        
+      </div>
+    </div>
+  </header>
+
+  <!-- Work / Adventures -->
+  <section class="pb-5" id="work">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="card hero-card h-100">
+            <div class="card-body">
+              <h3 class="h5">RightFax Sent Items Cleanup</h3>
+              <p class="muted mb-2">Pagination savvy cleanup, size math in MB, verbose logs, zero unnecessary casualties.</p>
+              <span class="badge text-bg-info">v17.6.4</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card hero-card h-100">
+            <div class="card-body">
+              <h3 class="h5">Concur to Multiview Integration</h3>
+              <p class="muted mb-0">Secure SFTP pipeline, Logic Apps orchestration, white paper that the lawyers eventually loved.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-4">
+    <div class="container text-center muted small">
+      © <strong>Jonathan R. Adcox</strong>, traces of humor included, commas preferred.
+    </div>
+  </footer>
+
+  <!-- Animated F5 Banner Script -->
+  <script>
+  (function(){
+    const el = document.getElementById('f5-frame');
+    const start = Date.now();
+    if(!el) return;
+
+    const runId = Math.random().toString(36).slice(2,8).toUpperCase();
+    const steps = ["Initializing","Loading modules","Validating environment","Connecting to Graph","Doing the thing","Tidying logs","Complete"];
+    let tick = 0, step = 0, bar = 0, typed = "";
+    const title = "ADCOX • F5-FRIENDLY EXECUTION";
+    const barWidth = 22;
+
+    function uptime(){
+      const t = Math.floor((Date.now()-start)/1000);
+      const h = String(Math.floor(t/3600)).padStart(2,"0");
+      const m = String(Math.floor((t%3600)/60)).padStart(2,"0");
+      const s = String(t%60).padStart(2,"0");
+      return `${h}:${m}:${s}`;
+    }
+    function barFrame(){
+      bar = (bar + 1) % (barWidth+1);
+      return `[${"█".repeat(bar)}${"░".repeat(barWidth-bar)}]`;
+    }
+    function spinner(){
+      return ["⠋","⠙","⠹","⠸","⠼","⠴","⠦","⠧","⠇","⠏"][tick % 10];
+    }
+
+    function render(){
+      if(typed.length < title.length){
+        typed = title.slice(0, typed.length + 1);
+        setTimeout(render, 24 + Math.floor(Math.random()*18));
+        el.textContent =
+`┌──────────────────────────────────────────┐
+│ ${typed.padEnd(42," ")} │
+└──────────────────────────────────────────┘`;
+        return;
+      }
+
+      tick++;
+      if(tick % 10 === 0){ step = Math.min(steps.length-1, step + (Math.random()<0.4?1:0)); }
+
+      const lineA = `Run: ${runId}   Uptime: ${uptime()}   ${spinner()} `;
+      const lineB = `Stage: ${steps[step]}   Progress ${barFrame()}`;
+      const hints = [
+        "Tip: scripts that install modules love you back.",
+        "Log everything. Future-you is an archaeologist with coffee.",
+        "Only delete what the API returns, nothing more.",
+        "Format sizes in MB, be kind to reports."
+      ];
+      const hint = hints[Math.floor(tick/30)%hints.length];
+
+      el.innerHTML =
+`<span class="okdot"></span> ${title}
+${lineA}
+${lineB}
+${hint}`;
+      setTimeout(render, 100);
+    }
+    render();
+  })();
+  </script>
+
+  <!-- Bootstrap 5 (JS) via public CDN -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous">
+  </script>
+</body>
+</html>
