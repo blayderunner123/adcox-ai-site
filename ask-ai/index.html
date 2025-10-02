@@ -4,6 +4,13 @@
   <meta charset="utf-8" />
   <title>Ask AI — Browser-Only</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- Bootstrap 5 (CSS) via public CDN -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous"
+  />
   <style>
     :root { font-family: system-ui, Arial, sans-serif; }
     body { margin: 0; padding: 24px; background:#0b1020; color:#e8eefc; }
@@ -22,6 +29,27 @@
   </style>
 </head>
 <body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md navbar-dark" style="background:rgba(0,0,0,.25)">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">ADCOX.AI</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+			<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+			<li class="nav-item"><a class="nav-link" href="#resume">Résumé</a></li>
+			<li class="nav-item"><a class="nav-link" href="#work">Adventures</a></li>
+			<li class="nav-item"><a class="nav-link" href="#weekly">Weekly</a></li>
+			<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+			<li class="nav-item ms-2">
+				<a class="btn btn-primary btn-sm" href="/ask-ai/">Ask AI</a>
+			</li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <div class="wrap">
     <h1>Ask AI</h1>
     <div class="small muted">Runs fully in your browser using a tiny open model. First load may take a bit while the model downloads and caches.</div>
@@ -41,81 +69,80 @@
   <!-- WebLLM via unpkg -->
   <script src="https://unpkg.com/@mlc-ai/web-llm/dist/webllm.min.js"></script>
   <script>
-    const statusEl = document.getElementById('status');
-    const answerEl = document.getElementById('answer');
-    const form = document.getElementById('ask-form');
-    const input = document.getElementById('q');
-    const submitBtn = document.getElementById('submit');
+	  const statusEl = document.getElementById('status');
+	  const answerEl = document.getElementById('answer');
+	  const form = document.getElementById('ask-form');
+	  const input = document.getElementById('q');
+	  const submitBtn = document.getElementById('submit');
 
-    // Choose a small instruct model that runs in-browser. 
-    // Good starters: "Llama-3.2-1B-Instruct-q4f16_1" or "Phi-2-q4f16_1".
-    const MODEL_NAME = "Llama-3.2-1B-Instruct-q4f16_1";
+	  // Your Cloudflare Worker endpoint
+	  const ENDPOINT = "https://ask-ai.adcox.workers.dev";
 
-    let engine;
-    let ready = false;
+	  form.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		const q = input.value.trim();
+		if (!q) return;
 
-    (async () => {
-      try {
-        statusEl.textContent = "Initializing WebGPU + model…";
-        engine = await webllm.CreateMLCEngine({
-          model: MODEL_NAME,
-          // You can tweak cache or low-ram configs here if needed:
-          // cache: "indexeddb",
-          // context_window_size: 2048,
-        }, {
-          initProgressCallback: (report) => {
-            const { progress, text } = report;
-            statusEl.textContent = `Model setup: ${text} ${progress ? Math.round(progress*100) + "%" : ""}`;
-          }
-        });
-        ready = true;
-        statusEl.textContent = `Ready: ${MODEL_NAME} loaded.`;
-      } catch (e) {
-        console.error(e);
-        statusEl.textContent = "Failed to initialize WebLLM. Try a modern desktop browser with WebGPU.";
-      }
-    })();
+		submitBtn.disabled = true;
+		input.disabled = true;
+		answerEl.textContent = "";
+		statusEl.innerHTML = `Thinking… <span class="spinner"></span>`;
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      if (!ready) return;
-      const q = input.value.trim();
-      if (!q) return;
+		try {
+		  const resp = await fetch(ENDPOINT, {
+			method: "POST",
+			headers: { "content-type": "application/json" },
+			body: JSON.stringify({ q })
+		  });
 
-      submitBtn.disabled = true;
-      input.disabled = true;
-      answerEl.textContent = "";
-      statusEl.innerHTML = `Thinking… <span class="spinner"></span>`;
+		  if (!resp.ok || !resp.body) {
+			statusEl.textContent = `Error: ${resp.status} ${resp.statusText}`;
+			submitBtn.disabled = false;
+			input.disabled = false;
+			return;
+		  }
 
-      // Simple system instruction to keep it concise and helpful
-      const messages = [
-        { role: "system", content: "You are a helpful, concise assistant." },
-        { role: "user", content: q }
-      ];
+		  // Stream Server-Sent Events from Worker
+		  const reader = resp.body.getReader();
+		  const decoder = new TextDecoder();
+		  let buffer = "";
 
-      try {
-        // Stream tokens into the page
-        const stream = await engine.chat.completions.create({
-          messages,
-          stream: true,
-          temperature: 0.7,
-          max_tokens: 512
-        });
+		  while (true) {
+			const { value, done } = await reader.read();
+			if (done) break;
+			buffer += decoder.decode(value, { stream: true });
 
-        for await (const chunk of stream) {
-          const delta = chunk.choices?.[0]?.delta?.content ?? "";
-          if (delta) answerEl.textContent += delta;
-        }
-        statusEl.textContent = "Done.";
-      } catch (err) {
-        console.error(err);
-        statusEl.textContent = "Error generating a response.";
-      } finally {
-        submitBtn.disabled = false;
-        input.disabled = false;
-        input.select();
-      }
-    });
-  </script>
+			// SSE frames are separated by \n\n
+			let idx;
+			while ((idx = buffer.indexOf("\n\n")) !== -1) {
+			  const frame = buffer.slice(0, idx).trim();
+			  buffer = buffer.slice(idx + 2);
+			  if (frame.startsWith("data:")) {
+				const payload = frame.slice(5).trim();
+				if (payload === "[DONE]") continue;
+
+				try {
+				  const json = JSON.parse(payload);
+				  const delta = json?.response ?? json?.choices?.[0]?.delta?.content ?? "";
+				  if (delta) answerEl.textContent += delta;
+				} catch {
+				  // If Worker streams plain text, append as-is
+				  answerEl.textContent += payload;
+				}
+			  }
+			}
+		  }
+
+		  statusEl.textContent = "Done.";
+		} catch (err) {
+		  console.error(err);
+		  statusEl.textContent = "Network error.";
+		} finally {
+		  submitBtn.disabled = false;
+		  input.disabled = false;
+		  input.select();
+		}
+	  });
+	</script>
 </body>
 </html>
