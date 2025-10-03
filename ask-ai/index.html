@@ -66,58 +66,52 @@
     <div class="card"><div class="answer" id="answer">Ask something to get started.</div></div>
   </div>
 
-  <!-- Appwrite Web SDK (ESM) -->
-  <script type="module">
-    import { Client, Functions } from "https://cdn.jsdelivr.net/npm/appwrite@13.0.0/dist/esm/index.js";
+	<!-- Appwrite Web SDK (ESM) -->
+	<script>
+	  const FN_URL = "https://68dfe975002e94119063.nyc.appwrite.run/";
 
-    // 🔧 Replace these two with real values
-    const PROJECT_ID  = "68dc4969001a1ce12c8a";
-    const FUNCTION_ID = "68dec41a003e14c02ae1";
+	  const statusEl  = document.getElementById('status');
+	  const answerEl  = document.getElementById('answer');
+	  const form      = document.getElementById('ask-form');
+	  const input     = document.getElementById('q');
+	  const submitBtn = document.getElementById('submit');
 
-    const client = new Client()
-      .setEndpoint("https://cloud.appwrite.io/v1")
-      .setProject(PROJECT_ID);
+	  async function askAI(q) {
+		const res = await fetch(FN_URL, {
+		  method: "POST",
+		  headers: { "Content-Type": "application/json" },
+		  body: JSON.stringify({ q })
+		});
 
-    const functions = new Functions(client);
+		if (!res.ok) {
+		  throw new Error(`HTTP ${res.status}: ${await res.text()}`);
+		}
 
-    const statusEl  = document.getElementById('status');
-    const answerEl  = document.getElementById('answer');
-    const form      = document.getElementById('ask-form');
-    const input     = document.getElementById('q');
-    const submitBtn = document.getElementById('submit');
+		// The template responds JSON: { answer: "..." }
+		const payload = await res.json();
+		return payload.answer || "(no response)";
+	  }
 
-    async function askAI(q) {
-      const exec = await functions.createExecution(
-        FUNCTION_ID,
-        JSON.stringify({ q }),
-        false, // wait for completion
-        "",
-        "POST",
-        { "Content-Type": "application/json" }
-      );
-      const payload = JSON.parse(exec.response || "{}");
-      return payload.answer || payload.error || "(no response)";
-    }
+	  form.addEventListener('submit', async (e) => {
+		e.preventDefault();
+		const q = input.value.trim();
+		if (!q) return;
+		submitBtn.disabled = true; input.disabled = true;
+		statusEl.innerHTML = `Thinking… <span class="spinner"></span>`;
+		answerEl.textContent = "";
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const q = input.value.trim();
-      if (!q) return;
-      submitBtn.disabled = true; input.disabled = true;
-      statusEl.innerHTML = `Thinking… <span class="spinner"></span>`;
-      answerEl.textContent = "";
-
-      try {
-        const a = await askAI(q);
-        answerEl.textContent = a;
-        statusEl.textContent = "Done.";
-      } catch (err) {
-        console.error(err);
-        statusEl.textContent = "Error talking to the function.";
-      } finally {
-        submitBtn.disabled = false; input.disabled = false; input.select();
-      }
-    });
-  </script>
+		try {
+		  const a = await askAI(q);
+		  answerEl.textContent = a;
+		  statusEl.textContent = "Done.";
+		} catch (err) {
+		  console.error(err);
+		  statusEl.textContent = "Error talking to the function.";
+		  answerEl.textContent = err.message;
+		} finally {
+		  submitBtn.disabled = false; input.disabled = false; input.select();
+		}
+	  });
+	</script>
 </body>
 </html>
