@@ -180,56 +180,63 @@
     crossorigin="anonymous">
   </script>
 
-  <!-- Ask AI script -->
-  <script>
-    const form = document.getElementById('ask-form');
-    const input = document.getElementById('q');
-    const answerEl = document.getElementById('answer');
-    const statusEl = document.getElementById('status');
-    const submitBtn = document.getElementById('submit');
+	<!-- Ask AI script -->
+	<script>
+	  const form = document.getElementById('ask-form');
+	  const input = document.getElementById('q');
+	  const answerEl = document.getElementById('answer');
+	  const statusEl = document.getElementById('status');
+	  const submitBtn = document.getElementById('submit');
 
-    const FN_URL = 'https://68dfe975002e94119063.nyc.appwrite.run/';
+	  // No trailing slash
+	  const FN_URL = 'https://68dfe975002e94119063.nyc.appwrite.run';
 
-    async function askAI(e){
-      e.preventDefault();
-      const q = (input.value || '').trim();
-      if(!q){
-        answerEl.textContent = 'Please enter a question.';
-        return;
-      }
+	  async function askAI(e) {
+		e.preventDefault();
 
-      submitBtn.disabled = true;
-      statusEl.textContent = 'Sending…';
-      answerEl.textContent = 'Thinking…';
+		const q = String((input?.value || '').trim());
+		if (!q) {
+		  answerEl.textContent = 'Please enter a question.';
+		  return;
+		}
 
-      try{
-        const res = await fetch(FN_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ q })
-        });
+		submitBtn.disabled = true;
+		statusEl.textContent = 'Sending...';
+		answerEl.textContent = 'Thinking...';
 
-        const data = await res.json().catch(() => ({}));
+		try {
+		  const res = await fetch(FN_URL, {
+			method: 'POST',
+			mode: 'cors',
+			headers: {
+			  'Content-Type': 'application/json',
+			  'Accept': 'application/json'
+			},
+			body: JSON.stringify({ q })
+		  });
 
-        if(!res.ok){
-          statusEl.textContent = `Error`;
-          answerEl.textContent = `Error: ${res.status} – ${data.error || 'Unknown'}`;
-          console.error('Server error details:', data);
-          return;
-        }
+		  let data = {};
+		  try { data = await res.json(); } catch {}
 
-        statusEl.textContent = 'Done.';
-        answerEl.textContent = data.answer ?? '(no answer returned)';
-      }catch(err){
-        statusEl.textContent = 'Network issue';
-        answerEl.textContent = 'Network error. Open DevTools for details.';
-        console.error(err);
-      }finally{
-        submitBtn.disabled = false;
-      }
-    }
+		  if (!res.ok) {
+			statusEl.textContent = 'Error';
+			answerEl.textContent = `Error ${res.status}: ${data.error || 'Unknown'}`;
+			console.error('Server error details:', data);
+			return;
+		  }
 
-    form.addEventListener('submit', askAI);
-  </script>
+		  statusEl.textContent = 'Done';
+		  answerEl.textContent = data.answer ?? '(no answer returned)';
+		} catch (err) {
+		  statusEl.textContent = 'Network issue';
+		  answerEl.textContent = 'Network error. Open DevTools for details.';
+		  console.error(err);
+		} finally {
+		  submitBtn.disabled = false;
+		}
+	  }
+
+	  form?.addEventListener('submit', askAI);
+	</script>
 </body>
 </html>
