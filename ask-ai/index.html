@@ -182,61 +182,51 @@
 
 	<!-- Ask AI script -->
 	<script>
+	  const ENDPOINT = "https://68dfe975002e94119063.nyc.appwrite.run/";
+
 	  const form = document.getElementById('ask-form');
 	  const input = document.getElementById('q');
-	  const answerEl = document.getElementById('answer');
-	  const statusEl = document.getElementById('status');
 	  const submitBtn = document.getElementById('submit');
+	  const statusEl = document.getElementById('status');
+	  const answerEl = document.getElementById('answer');
 
-	  // No trailing slash
-	  const FN_URL = 'https://68dfe975002e94119063.nyc.appwrite.run';
+	  function setStatus(msg) { if (statusEl) statusEl.textContent = msg; }
+	  function setAnswer(html) { if (answerEl) answerEl.innerHTML = html; }
 
-	  async function askAI(e) {
+	  form?.addEventListener('submit', async (e) => {
 		e.preventDefault();
+		const q = (input?.value || '').trim();
+		if (!q) { setStatus('Type a question first.'); return; }
 
-		const q = String((input?.value || '').trim());
-		if (!q) {
-		  answerEl.textContent = 'Please enter a question.';
-		  return;
-		}
-
-		submitBtn.disabled = true;
-		statusEl.textContent = 'Sending...';
-		answerEl.textContent = 'Thinking...';
+		submitBtn?.setAttribute('disabled', 'true');
+		setStatus('Thinking…');
+		setAnswer('');
 
 		try {
-		  const res = await fetch(FN_URL, {
+		  const res = await fetch(ENDPOINT, {
 			method: 'POST',
-			mode: 'cors',
-			headers: {
-			  'Content-Type': 'application/json',
-			  'Accept': 'application/json'
-			},
+			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify({ q })
 		  });
 
-		  let data = {};
-		  try { data = await res.json(); } catch {}
+		  const text = await res.text(); // handle non-JSON errors gracefully
+		  let data;
+		  try { data = JSON.parse(text); } catch { data = { error: text || 'Invalid response' }; }
 
-		  if (!res.ok) {
-			statusEl.textContent = 'Error';
-			answerEl.textContent = `Error ${res.status}: ${data.error || 'Unknown'}`;
-			console.error('Server error details:', data);
-			return;
+		  if (!res.ok || data.error) {
+			setStatus('Error');
+			setAnswer(`<pre class="text-danger" style="white-space:pre-wrap;">${(data.error || text)}</pre>`);
+		  } else {
+			setStatus('Done');
+			setAnswer(data.answer ? data.answer : '<em>(no answer)</em>');
 		  }
-
-		  statusEl.textContent = 'Done';
-		  answerEl.textContent = data.answer ?? '(no answer returned)';
 		} catch (err) {
-		  statusEl.textContent = 'Network issue';
-		  answerEl.textContent = 'Network error. Open DevTools for details.';
-		  console.error(err);
+		  setStatus('Network error');
+		  setAnswer(`<pre class="text-danger" style="white-space:pre-wrap;">${err}</pre>`);
 		} finally {
-		  submitBtn.disabled = false;
+		  submitBtn?.removeAttribute('disabled');
 		}
-	  }
-
-	  form?.addEventListener('submit', askAI);
+	  });
 	</script>
 </body>
 </html>
