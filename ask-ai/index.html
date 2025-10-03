@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Ask AI — Browser-Only</title>
+  <title>Ask AI — Appwrite</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <!-- Bootstrap 5 (CSS) via public CDN -->
   <link
@@ -29,120 +29,95 @@
   </style>
 </head>
 <body>
-  <!-- Navbar -->
+  <!-- Navbar (relative links from /ask-ai/) -->
   <nav class="navbar navbar-expand-md navbar-dark" style="background:rgba(0,0,0,.25)">
     <div class="container">
-      <a class="navbar-brand fw-bold" href="#">ADCOX.AI</a>
+      <a class="navbar-brand fw-bold" href="../">ADCOX.AI</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div id="nav" class="collapse navbar-collapse">
         <ul class="navbar-nav ms-auto">
-			<li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-			<li class="nav-item"><a class="nav-link" href="#resume">Résumé</a></li>
-			<li class="nav-item"><a class="nav-link" href="#work">Adventures</a></li>
-			<li class="nav-item"><a class="nav-link" href="#weekly">Weekly</a></li>
-			<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-			<li class="nav-item ms-2">
-				<a class="btn btn-primary btn-sm" href="/ask-ai/">Ask AI</a>
-			</li>
+          <li class="nav-item"><a class="nav-link" href="../">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="../#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="../#resume">Résumé</a></li>
+          <li class="nav-item"><a class="nav-link" href="../#work">Adventures</a></li>
+          <li class="nav-item"><a class="nav-link" href="../#weekly">Weekly</a></li>
+          <li class="nav-item"><a class="nav-link" href="../#contact">Contact</a></li>
+          <li class="nav-item ms-2">
+            <a class="nav-link active" aria-current="page" href="./">Ask AI</a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
+
   <div class="wrap">
     <h1>Ask AI</h1>
-    <div class="small muted">Runs fully in your browser using a tiny open model. First load may take a bit while the model downloads and caches.</div>
+    <div class="small muted">This page calls your Appwrite Function, which calls the model server-side. Your OpenAI key never touches the browser.</div>
 
     <form id="ask-form">
       <input id="q" type="text" placeholder="Ask a question…" autocomplete="off" />
       <button id="submit" type="submit">Ask</button>
     </form>
 
-    <div class="status" id="status">Loading model… <span class="spinner"></span></div>
+    <div class="status" id="status">Idle.</div>
 
-    <div class="card">
-      <div class="answer" id="answer">Ask something to get started.</div>
-    </div>
+    <div class="card"><div class="answer" id="answer">Ask something to get started.</div></div>
   </div>
 
-  <!-- WebLLM via unpkg -->
-  <script src="https://unpkg.com/@mlc-ai/web-llm/dist/webllm.min.js"></script>
-  <script>
-	  const statusEl = document.getElementById('status');
-	  const answerEl = document.getElementById('answer');
-	  const form = document.getElementById('ask-form');
-	  const input = document.getElementById('q');
-	  const submitBtn = document.getElementById('submit');
+  <!-- Appwrite Web SDK (ESM) -->
+  <script type="module">
+    import { Client, Functions } from "https://cdn.jsdelivr.net/npm/appwrite@13.0.0/dist/esm/index.js";
 
-	  // Your Cloudflare Worker endpoint
-	  const ENDPOINT = "https://ask-ai.adcox.workers.dev";
+    // 🔧 Replace these two with real values
+    const PROJECT_ID  = "68dc4969001a1ce12c8a";
+    const FUNCTION_ID = "68dec41a003e14c02ae1";
 
-	  form.addEventListener('submit', async (e) => {
-		e.preventDefault();
-		const q = input.value.trim();
-		if (!q) return;
+    const client = new Client()
+      .setEndpoint("https://cloud.appwrite.io/v1")
+      .setProject(PROJECT_ID);
 
-		submitBtn.disabled = true;
-		input.disabled = true;
-		answerEl.textContent = "";
-		statusEl.innerHTML = `Thinking… <span class="spinner"></span>`;
+    const functions = new Functions(client);
 
-		try {
-		  const resp = await fetch(ENDPOINT, {
-			method: "POST",
-			headers: { "content-type": "application/json" },
-			body: JSON.stringify({ q })
-		  });
+    const statusEl  = document.getElementById('status');
+    const answerEl  = document.getElementById('answer');
+    const form      = document.getElementById('ask-form');
+    const input     = document.getElementById('q');
+    const submitBtn = document.getElementById('submit');
 
-		  if (!resp.ok || !resp.body) {
-			statusEl.textContent = `Error: ${resp.status} ${resp.statusText}`;
-			submitBtn.disabled = false;
-			input.disabled = false;
-			return;
-		  }
+    async function askAI(q) {
+      const exec = await functions.createExecution(
+        FUNCTION_ID,
+        JSON.stringify({ q }),
+        false, // wait for completion
+        "",
+        "POST",
+        { "Content-Type": "application/json" }
+      );
+      const payload = JSON.parse(exec.response || "{}");
+      return payload.answer || payload.error || "(no response)";
+    }
 
-		  // Stream Server-Sent Events from Worker
-		  const reader = resp.body.getReader();
-		  const decoder = new TextDecoder();
-		  let buffer = "";
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const q = input.value.trim();
+      if (!q) return;
+      submitBtn.disabled = true; input.disabled = true;
+      statusEl.innerHTML = `Thinking… <span class="spinner"></span>`;
+      answerEl.textContent = "";
 
-		  while (true) {
-			const { value, done } = await reader.read();
-			if (done) break;
-			buffer += decoder.decode(value, { stream: true });
-
-			// SSE frames are separated by \n\n
-			let idx;
-			while ((idx = buffer.indexOf("\n\n")) !== -1) {
-			  const frame = buffer.slice(0, idx).trim();
-			  buffer = buffer.slice(idx + 2);
-			  if (frame.startsWith("data:")) {
-				const payload = frame.slice(5).trim();
-				if (payload === "[DONE]") continue;
-
-				try {
-				  const json = JSON.parse(payload);
-				  const delta = json?.response ?? json?.choices?.[0]?.delta?.content ?? "";
-				  if (delta) answerEl.textContent += delta;
-				} catch {
-				  // If Worker streams plain text, append as-is
-				  answerEl.textContent += payload;
-				}
-			  }
-			}
-		  }
-
-		  statusEl.textContent = "Done.";
-		} catch (err) {
-		  console.error(err);
-		  statusEl.textContent = "Network error.";
-		} finally {
-		  submitBtn.disabled = false;
-		  input.disabled = false;
-		  input.select();
-		}
-	  });
-	</script>
+      try {
+        const a = await askAI(q);
+        answerEl.textContent = a;
+        statusEl.textContent = "Done.";
+      } catch (err) {
+        console.error(err);
+        statusEl.textContent = "Error talking to the function.";
+      } finally {
+        submitBtn.disabled = false; input.disabled = false; input.select();
+      }
+    });
+  </script>
 </body>
 </html>
