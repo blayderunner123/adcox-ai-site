@@ -12,12 +12,11 @@
     integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
     crossorigin="anonymous"
   />
-  
+
   <!-- Prism.js syntax highlighting theme -->
   <link href="https://unpkg.com/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet"/>
 
-  <!-- Favicons (root-relative so they work from /ask-ai/) -->
-  <!-- Favicons (root-relative so they work from /ask-ai/) -->
+  <!-- Favicons -->
   <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico"/>
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/>
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/>
@@ -40,7 +39,7 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:image" content="https://www.adcox.ai/favicon/og-preview.png"/>
 
-  <!-- Structured Data: reuse Person + Website -->
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -86,7 +85,7 @@
   }
   </script>
 
-  <!-- Shared theme styles copied from main -->
+  <!-- Theme styles -->
   <style>
     :root{ --bg:#0f1724; --card:#0b1220; --muted:#9aa7bf; --accent:#7dd3fc; --teal:#14b8a6; }
     body{
@@ -105,8 +104,6 @@
     .badge.text-bg-info{ color:#0b1220; }
     .wrap{ max-width:840px; margin:2rem auto; }
     .answer{ white-space:pre-wrap; line-height:1.45; }
-  </style>
-  <style>
     #answer{
       margin-top:12px; padding:14px 16px;
       background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
@@ -116,7 +113,7 @@
   </style>
 </head>
 <body>
-  <!-- Navbar (root-relative links for consistency) -->
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-md navbar-dark" style="background:rgba(0,0,0,.25)">
     <div class="container">
       <a class="navbar-brand fw-bold" href="/">ADCOX.AI</a>
@@ -139,28 +136,33 @@
     </div>
   </nav>
 
-  <h1>Ask Adcox AI</h1>
-  <p class="tagline">Ask anything — your browser keeps your secrets.</p>
+  <main class="container py-4">
+    <h1>Ask Adcox AI</h1>
+    <p class="tagline">Ask anything — your browser keeps your secrets.</p>
 
-  <form id="ask-form" class="toolbar">
-    <input id="q" name="q" placeholder="Ask something..." style="width: 42ch;" />
-    <label for="version">Version</label>
-    <select id="version" name="version" title="Choose the backend version">
-      <option value="v1" data-endpoint="https://prompt-chatgpt.nyc.appwrite.run/">Stable (v1)</option>
-      <option value="v2" data-endpoint="https://prompt-chatgpt.nyc.appwrite.run/">Preview (v2)</option>
-      <option value="v3" data-endpoint="https://prompt-chatgpt.nyc.appwrite.run/" selected>Experimental (v3)</option>
-    </select>
-    <button id="submit" type="submit">Ask</button>
-  </form>
+    <form id="ask-form" class="toolbar d-flex gap-2 align-items-center flex-wrap">
+      <input id="q" name="q" class="form-control" placeholder="Ask something..." style="max-width: 42ch;" />
+      <label for="version" class="ms-2 me-1">Version</label>
+      <select id="version" name="version" class="form-select w-auto" title="Choose the backend version">
+        <option value="v1" data-endpoint="https://prompt-chatgpt.nyc.appwrite.run/">Stable (v1)</option>
+        <option value="v2" data-endpoint="https://prompt-chatgpt.nyc.appwrite.run/">Preview (v2)</option>
+        <option value="v3" data-endpoint="https://prompt-chatgpt.nyc.appwrite.run/" selected>Experimental (v3)</option>
+      </select>
+      <button id="submit" type="submit" class="btn btn-outline-light">Ask</button>
+    </form>
 
-  <div id="status" aria-live="polite"></div>
+    <div id="status" aria-live="polite"></div>
 
-  <div id="answer-wrap">
-    <div id="answer"></div>
-    <div class="text-end mt-3">
-      <span class="badge bg-secondary">Version 3</span>
+    <div id="answer-wrap" class="mt-2">
+      <div id="answer"></div>
+
+      <!-- Meta row: latency + model/version badge -->
+      <div id="meta" class="d-flex justify-content-between align-items-center mt-3" style="display:none;">
+        <small id="latency" class="text-secondary"></small>
+        <span id="model-badge" class="badge bg-info"></span>
+      </div>
     </div>
-  </div>
+  </main>
 
   <!-- DOMPurify, marked, Prism -->
   <script src="https://unpkg.com/dompurify@3.1.7/dist/purify.min.js"></script>
@@ -180,8 +182,14 @@
     const answerEl = document.getElementById('answer');
     const submitBtn = document.getElementById('submit');
     const versionEl = document.getElementById('version');
+    const metaWrap = document.getElementById('meta');
+    const latencyEl = document.getElementById('latency');
+    const modelBadge = document.getElementById('model-badge');
 
+    // Local default endpoint + version→model map (used if header missing)
     let API_URL = 'https://prompt-chatgpt.nyc.appwrite.run/';
+    const VERSION_TO_MODEL = { v1: 'gpt-4o-mini', v2: 'gpt-4o-mini', v3: 'gpt-4o-mini' };
+
     marked.setOptions({ breaks: true, gfm: true, headerIds: true });
 
     versionEl.addEventListener('change', () => {
@@ -199,28 +207,50 @@
 
       submitBtn.disabled = true;
       statusEl.textContent = 'Thinking…';
+      metaWrap.style.display = 'none';
+      modelBadge.textContent = '';
+      latencyEl.textContent = '';
       answerEl.innerHTML = '';
 
       try {
         const payload = { q, version: selectedVersion };
+
+        // latency timing
+        const start = performance.now();
         const res = await fetch(API_URL, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'text/markdown'
+          },
           body: JSON.stringify(payload)
         });
+        const end = performance.now();
+        const elapsed = ((end - start) / 1000).toFixed(2);
 
         if (!res.ok) {
           const txt = await res.text().catch(() => '');
           throw new Error(`HTTP ${res.status} — ${txt}`);
         }
 
+        // Try model header; fallback to local mapping
+        const headerModel = res.headers.get('x-model');
+        const model = headerModel || VERSION_TO_MODEL[selectedVersion] || 'gpt-4o-mini';
+
+        // Body is markdown per your current function behavior
         const markdown = await res.text();
         const rawHtml = marked.parse(markdown);
         const safeHtml = DOMPurify.sanitize(rawHtml, { USE_PROFILES: { html: true } });
         answerEl.innerHTML = safeHtml;
-        Prism.highlightAllUnder(answerEl);
+        if (window.Prism) Prism.highlightAllUnder(answerEl);
 
         statusEl.textContent = 'Done.';
+        latencyEl.textContent = `Done in ${elapsed}s.`;
+        modelBadge.textContent = `${selectedVersion} – ${model}`;
+        metaWrap.style.display = 'flex';
+
+        // Smooth auto-scroll to the answer
+        answerEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
       } catch (err) {
         console.error(err);
         statusEl.textContent = 'Error fetching answer.';
