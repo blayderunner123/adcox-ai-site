@@ -667,17 +667,16 @@ ${hint}`;
 })();
 </script>
 <script type="module">
-  const ENDPOINT = 'https://nyc.cloud.appwrite.io/v1';     // your region endpoint
-  const PROJECT  = '68dc4c96001a1ce12c8a';                 // your Project ID
+  import { Client, Locale } from 'https://esm.run/appwrite';
 
-  // A simple health check using REST (works in browser)
+  const client = new Client()
+    .setEndpoint('https://nyc.cloud.appwrite.io/v1')       // region endpoint
+    .setProject('68dc4c96001a1ce12c8a');                   // YOUR project id
+
   try {
-    const res = await fetch(`${ENDPOINT}/health/version`, {
-      headers: { 'X-Appwrite-Project': PROJECT }           // important for CORS/project routing
-    });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    const data = await res.json();
-    console.log('✅ Connected to Appwrite:', data);
+    const locale = new Locale(client);
+    const res = await locale.listCountries();              // simple, public, JSON response
+    console.log('✅ Appwrite connected (countries):', res.total);
   } catch (err) {
     console.error('❌ Appwrite connection failed:', err);
   }
