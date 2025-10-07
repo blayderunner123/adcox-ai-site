@@ -666,5 +666,19 @@ ${hint}`;
   }
 })();
 </script>
+<script type="module">
+  import { Client, Health } from 'https://esm.run/appwrite';
+  const client = new Client()
+    .setEndpoint('https://nyc.cloud.appwrite.io/v1')     // endpoint from your dashboard
+    .setProject('68dc4c96001a1ce12c8a');                 // your exact Project ID
+
+  try {
+    const health = new Health(client);
+    const res = await health.get();
+    console.log('✅ Connected to Appwrite:', res);
+  } catch (err) {
+    console.error('❌ Appwrite connection failed:', err);
+  }
+</script>
 </body>
 </html>
