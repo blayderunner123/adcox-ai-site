@@ -34,7 +34,7 @@
   <nav class="navbar navbar-expand-md navbar-dark" style="background:rgba(0,0,0,.25)">
     <div class="container">
       <a class="navbar-brand fw-bold" href="/">
-        <img src="/favicon/favicon-32x32.png" width="28" height="28" class="d-inline-block align-text-top" alt="">
+        <img src="/favicon/favicon-32x32.png" alt="" width="28" height="28" class="d-inline-block align-text-top">
         ADCOX.AI
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
@@ -55,7 +55,22 @@
       </div>
     </div>
   </nav>
-
+	<script>
+		(() => {
+		  const here = location.pathname.replace(/\/+$/, '') || '/';
+		  document.querySelectorAll('.navbar a.nav-link').forEach(a => {
+			const href = a.getAttribute('href').replace(/\/+$/, '') || '/';
+			// exact match or section anchor on the home page
+			if (href === here || (here === '/' && href.startsWith('/#'))) {
+			  a.classList.add('active');
+			  a.setAttribute('aria-current', 'page');
+			} else {
+			  a.classList.remove('active');
+			  a.removeAttribute('aria-current');
+			}
+		  });
+		})();
+	</script>
   <main class="container my-4" style="max-width:960px;">
     <header class="text-center mb-4">
       <div class="badge text-bg-info">Adcox.ai Utility</div>
