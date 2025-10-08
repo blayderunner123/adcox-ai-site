@@ -109,96 +109,139 @@
   </main>
 
   <!-- App code (after DOM + after QR library) -->
-  <script>
-    const qrText = document.getElementById('qrText');
-    const darkColor = document.getElementById('darkColor');
-    const logoFile = document.getElementById('logoFile');
-    const logoScale = document.getElementById('logoScale');
-    const logoScaleVal = document.getElementById('logoScaleVal');
-    const qrSize = document.getElementById('qrSize');
-    const qrSizeVal = document.getElementById('qrSizeVal');
-    const canvas = document.getElementById('previewCanvas');
-    const ctx = canvas.getContext('2d');
-    const genBtn = document.getElementById('generateBtn');
-    const dlBtn = document.getElementById('downloadBtn');
-
-    logoScale.addEventListener('input', () => logoScaleVal.textContent = logoScale.value);
-    qrSize.addEventListener('input', () => qrSizeVal.textContent = qrSize.value);
-
-    let logoImage = null;
-    logoFile.addEventListener('change', e => {
-      const f = e.target.files?.[0];
-      if (!f) { logoImage = null; return; }
-      const reader = new FileReader();
-      reader.onload = () => { const img = new Image(); img.onload = () => logoImage = img; img.src = reader.result; };
-      reader.readAsDataURL(f);
-    });
-
-    // Make renderQR global so other code could call it if needed
-    window.renderQR = async function renderQR() {
-      const text = (qrText.value.trim() || location.origin);
-      const size = parseInt(qrSize.value, 10);
-      const dark = darkColor.value;
-      if (!text) return alert('Please enter a URL or text.');
-
-      canvas.width = canvas.height = size;
-
-      await window.QRCode.toCanvas(canvas, text, {
-        errorCorrectionLevel: 'H',
-        margin: 4,
-        width: size,
-        color: { dark, light: '#FFFFFF' }
-      });
-
-      if (logoImage) {
-        const scale = Number(logoScale.value) / 100;
-        const w = Math.floor(size * scale);
-        const h = Math.floor(logoImage.height * (w / logoImage.width));
-        const x = Math.floor((size - w) / 2);
-        const y = Math.floor((size - h) / 2);
-        const pad = Math.ceil(w * 0.06);
-        ctx.fillStyle = '#FFFFFF';
-        ctx.fillRect(x - pad, y - pad, w + pad*2, h + pad*2);
-        ctx.drawImage(logoImage, x, y, w, h);
-      }
-
-      dlBtn.disabled = false;
-    };
-
-    function waitForLibThenRender()
-	{
-      if (window.QRCode && typeof window.QRCode.toCanvas === 'function')
-	  {
-        window.renderQR();
-      } else
-	  {
-        setTimeout(waitForLibThenRender, 50);
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', waitForLibThenRender);
-    genBtn.addEventListener('click', window.renderQR);
-
-    dlBtn.addEventListener('click', () => {
-      const link = document.createElement('a');
-      const base = (qrText.value || 'qr')
-        .replace(/^https?:\/\//,'')
-        .replace(/^www\./,'')
-        .replace(/[^\w\-]+/g,'-')
-        .replace(/-+/g,'-')
-        .replace(/^-|-$/g,'');
-      link.download = `${base || 'qr'}-${qrSize.value}.png`;
-      link.href = canvas.toDataURL('image/png');
-      link.click();
-    });
-  </script>
 	<script>
-	  // Ignore noisy extension promise errors
+	  // ---- ignore noisy extension errors so your console stays clean ----
 	  window.addEventListener('unhandledrejection', (e) => {
 		const msg = String(e.reason || '');
-		if (msg.includes('Could not establish connection') && msg.includes('Receiving end does not exist')) {
+		if (msg.includes('Could not establish connection') &&
+			msg.includes('Receiving end does not exist')) {
 		  e.preventDefault();
 		  console.debug('[note] Ignored extension error:', msg);
+		}
+	  });
+
+	  // ---- element refs ----
+	  const qrText      = document.getElementById('qrText');
+	  const darkColor   = document.getElementById('darkColor');
+	  const logoFile    = document.getElementById('logoFile');
+	  const logoScale   = document.getElementById('logoScale');
+	  const logoScaleVal= document.getElementById('logoScaleVal');
+	  const qrSize      = document.getElementById('qrSize');
+	  const qrSizeVal   = document.getElementById('qrSizeVal');
+	  const canvas      = document.getElementById('previewCanvas');
+	  const ctx         = canvas?.getContext('2d');
+	  const genBtn      = document.getElementById('generateBtn');
+	  const dlBtn       = document.getElementById('downloadBtn');
+
+	  // Guard: if something critical is missing, bail loudly
+	  if (!canvas || !ctx) console.error('Canvas context not available.');
+	  if (!qrText || !darkColor || !qrSize) console.error('Form controls missing.');
+
+	  // UI mirrors
+	  logoScale?.addEventListener('input', () => logoScaleVal.textContent = logoScale.value);
+	  qrSize?.addEventListener('input',   () => qrSizeVal.textContent    = qrSize.value);
+
+	  // ---- logo loader (robust) ----
+	  let logoImage = null;
+	  logoFile?.addEventListener('change', (e) => {
+		try {
+		  const f = e.target.files?.[0];
+		  if (!f) { logoImage = null; return; }
+
+		  const reader = new FileReader();
+		  reader.onerror = () => console.warn('Logo FileReader error:', reader.error);
+
+		  reader.onload = () => {
+			const img = new Image();
+			img.onload  = () => { logoImage = img; window.renderQR(); };
+			img.onerror = (err) => { logoImage = null; console.warn('Logo image failed to load:', err); };
+			img.src = reader.result; // data URL
+		  };
+
+		  reader.readAsDataURL(f);
+		} catch (err) {
+		  console.warn('Logo load failed:', err);
+		  logoImage = null;
+		}
+	  });
+
+	  // ---- QR renderer (hardened) ----
+	  window.renderQR = async function renderQR() {
+		dlBtn && (dlBtn.disabled = true);  // disable download until success
+
+		// Defensive reads with defaults
+		const text = (qrText?.value?.trim() || location.origin);
+		const size = Number.parseInt(qrSize?.value ?? '512', 10) || 512;
+		const dark = darkColor?.value || '#000000';
+
+		if (!text) { alert('Please enter a URL or text.'); return; }
+		if (!(window.QRCode && typeof window.QRCode.toCanvas === 'function')) {
+		  console.warn('QRCode library not ready yet.');
+		  return;
+		}
+		if (!ctx) { console.error('No 2D context.'); return; }
+
+		try {
+		  // Resize canvas before drawing
+		  canvas.width = canvas.height = size;
+
+		  // Draw QR
+		  await window.QRCode.toCanvas(canvas, text, {
+			errorCorrectionLevel: 'H',
+			margin: 4,                          // wider quiet zone
+			width: size,
+			color: { dark, light: '#FFFFFF' }
+		  });
+
+		  // Optional logo overlay
+		  if (logoImage) {
+			const scale = Number(logoScale?.value ?? '18') / 100;
+			const w = Math.floor(size * scale);
+			const h = Math.floor(logoImage.height * (w / logoImage.width));
+			const x = Math.floor((size - w) / 2);
+			const y = Math.floor((size - h) / 2);
+
+			// subtle white pad to keep modules scannable
+			const pad = Math.ceil(w * 0.06);
+			ctx.fillStyle = '#FFFFFF';
+			ctx.fillRect(x - pad, y - pad, w + pad * 2, h + pad * 2);
+			ctx.drawImage(logoImage, x, y, w, h);
+		  }
+
+		  dlBtn && (dlBtn.disabled = false);
+		} catch (err) {
+		  console.error('QR render failed:', err);
+		  // Leave download disabled on failure
+		}
+	  };
+
+	  // ---- library readiness gate ----
+	  function waitForLibThenRender() {
+		if (window.QRCode && typeof window.QRCode.toCanvas === 'function') {
+		  window.renderQR();
+		} else {
+		  setTimeout(waitForLibThenRender, 50);
+		}
+	  }
+
+	  document.addEventListener('DOMContentLoaded', waitForLibThenRender);
+	  genBtn?.addEventListener('click', window.renderQR);
+
+	  // ---- download handler (guarded) ----
+	  dlBtn?.addEventListener('click', () => {
+		try {
+		  const link = document.createElement('a');
+		  const base = (qrText?.value || 'qr')
+			.replace(/^https?:\/\//, '')
+			.replace(/^www\./, '')
+			.replace(/[^\w\-]+/g, '-')
+			.replace(/-+/g, '-')
+			.replace(/^-|-$/g, '');
+		  link.download = `${base || 'qr'}-${qrSize?.value || size}.png`;
+		  link.href = canvas.toDataURL('image/png');
+		  link.click();
+		} catch (err) {
+		  console.error('Download failed:', err);
 		}
 	  });
 	</script>
