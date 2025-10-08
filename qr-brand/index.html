@@ -165,10 +165,13 @@
       dlBtn.disabled = false;
     };
 
-    function waitForLibThenRender() {
-      if (window.QRCode && typeof window.QRCode.toCanvas === 'function') {
+    function waitForLibThenRender()
+	{
+      if (window.QRCode && typeof window.QRCode.toCanvas === 'function')
+	  {
         window.renderQR();
-      } else {
+      } else
+	  {
         setTimeout(waitForLibThenRender, 50);
       }
     }
