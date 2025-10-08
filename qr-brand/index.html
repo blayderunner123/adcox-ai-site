@@ -28,6 +28,12 @@
 
 	<!-- ✅ Load QRCode safely -->
 	<script src="https://unpkg.com/qrcode@1.5.1/build/qrcode.js"></script>
+	<script>
+	  (function waitForQR(){
+		if (window.QRCode && window.QRCode.toCanvas) { renderQR(); }
+		else { setTimeout(waitForQR, 50); }
+	  })();
+	</script>
 </head>
 
 <body>
