@@ -71,7 +71,22 @@
       </div>
     </div>
   </nav>
-
+	<script>
+		(() => {
+		  const here = location.pathname.replace(/\/+$/, '') || '/';
+		  document.querySelectorAll('.navbar a.nav-link').forEach(a => {
+			const href = a.getAttribute('href').replace(/\/+$/, '') || '/';
+			// exact match or section anchor on the home page
+			if (href === here || (here === '/' && href.startsWith('/#'))) {
+			  a.classList.add('active');
+			  a.setAttribute('aria-current', 'page');
+			} else {
+			  a.classList.remove('active');
+			  a.removeAttribute('aria-current');
+			}
+		  });
+		})();
+	</script>
   <!-- Page Body -->
   <main class="container py-4">
     <header class="text-center mb-4">
