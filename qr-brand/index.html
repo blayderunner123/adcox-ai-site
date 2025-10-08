@@ -13,34 +13,28 @@
   />
 
   <!-- Theme colors -->
-	<style>
-	  body {
-		background: radial-gradient(1200px 600px at 10% 10%, rgba(125,211,252,.06), transparent 10%),
-					linear-gradient(180deg, #071028 0%, #0f1724 100%);
-		color:#e6eef8;
-	  }
-	  .cardish {background: rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.18);border-radius:12px;}
-	  .form-label {color:#cfe0ff;}
-	  .navbar-dark .navbar-nav .nav-link {color:rgba(255,255,255,.55);}
-	  .navbar-dark .navbar-nav .nav-link:hover {color:rgba(255,255,255,.75);}
-	  .navbar-dark .navbar-nav .nav-link.active {color:#fff;}
-	</style>
+  <style>
+    body {
+      background: radial-gradient(1200px 600px at 10% 10%, rgba(125,211,252,.06), transparent 10%),
+                  linear-gradient(180deg, #071028 0%, #0f1724 100%);
+      color:#e6eef8;
+    }
+    .cardish {background: rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.18);border-radius:12px;}
+    .form-label {color:#cfe0ff;}
+    .navbar-dark .navbar-nav .nav-link {color:rgba(255,255,255,.55);}
+    .navbar-dark .navbar-nav .nav-link:hover {color:rgba(255,255,255,.75);}
+    .navbar-dark .navbar-nav .nav-link.active {color:#fff;}
+  </style>
 
-	<!-- ✅ Load QRCode safely -->
-	<script src="https://unpkg.com/qrcode@1.5.1/build/qrcode.js"></script>
-	<script>
-	  (function waitForQR(){
-		if (window.QRCode && window.QRCode.toCanvas) { renderQR(); }
-		else { setTimeout(waitForQR, 50); }
-	  })();
-	</script>
+  <!-- Load QRCode library (local copy) -->
+  <script src="qrcode.js" defer></script>
 </head>
 
 <body>
   <nav class="navbar navbar-expand-md navbar-dark" style="background:rgba(0,0,0,.25)">
     <div class="container">
       <a class="navbar-brand fw-bold" href="/">
-        <img src="/favicon/favicon-32x32.png" width="28" height="28" class="d-inline-block align-text-top">
+        <img src="/favicon/favicon-32x32.png" width="28" height="28" class="d-inline-block align-text-top" alt="">
         ADCOX.AI
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
@@ -114,6 +108,7 @@
     </div>
   </main>
 
+  <!-- App code (after DOM + after QR library) -->
   <script>
     const qrText = document.getElementById('qrText');
     const darkColor = document.getElementById('darkColor');
@@ -139,8 +134,9 @@
       reader.readAsDataURL(f);
     });
 
-    async function renderQR() {
-      const text = qrText.value.trim();
+    // Make renderQR global so other code could call it if needed
+    window.renderQR = async function renderQR() {
+      const text = (qrText.value.trim() || location.origin);
       const size = parseInt(qrSize.value, 10);
       const dark = darkColor.value;
       if (!text) return alert('Please enter a URL or text.');
@@ -167,9 +163,18 @@
       }
 
       dlBtn.disabled = false;
+    };
+
+    function waitForLibThenRender() {
+      if (window.QRCode && typeof window.QRCode.toCanvas === 'function') {
+        window.renderQR();
+      } else {
+        setTimeout(waitForLibThenRender, 50);
+      }
     }
 
-    genBtn.addEventListener('click', renderQR);
+    document.addEventListener('DOMContentLoaded', waitForLibThenRender);
+    genBtn.addEventListener('click', window.renderQR);
 
     dlBtn.addEventListener('click', () => {
       const link = document.createElement('a');
