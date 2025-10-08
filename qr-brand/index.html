@@ -13,7 +13,7 @@
     crossorigin="anonymous"
   />
 
-  <!-- Prism.js syntax highlighting theme -->
+  <!-- Prism theme (kept from site) -->
   <link href="https://unpkg.com/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet"/>
 
   <!-- Favicons -->
@@ -27,7 +27,7 @@
   <link rel="manifest" href="/favicon/manifest.json"/>
   <meta name="theme-color" content="#0a0a0a"/>
 
-  <!-- Open Graph / preview -->
+  <!-- Open Graph -->
   <meta property="og:title" content="Adcox.AI — Branded QR Generator"/>
   <meta property="og:site_name" content="Adcox.AI"/>
   <meta property="og:url" content="https://www.adcox.ai/qr-brand/"/>
@@ -39,7 +39,7 @@
   <meta name="twitter:card" content="summary_large_image"/>
   <meta name="twitter:image" content="https://www.adcox.ai/favicon/og-preview.png"/>
 
-  <!-- Structured Data (kept from site) -->
+  <!-- Structured Data -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -54,38 +54,16 @@
         "image": "https://www.adcox.ai/favicon/android-icon-192x192.png",
         "jobTitle": "Enterprise Applications Wrangler",
         "email": "mailto:jonathan.r.adcox@gmail.com",
-        "worksFor": {
-          "@type": "Organization",
-          "name": "Soldier-up Designs",
-          "url": "https://soldierupdesign.com"
-        },
-        "knowsAbout": [
-          "PowerShell","Azure Logic Apps","Microsoft Graph","SharePoint (2010/2013/Online)",
-          "Power BI","REST APIs","Process Automation","Systems Integration",
-          "C#","ASP.NET / WebForms","Entity Framework","SQL Server","T-SQL",
-          "HTML5","CSS3","JavaScript (ES5/ES6)","jQuery","Node.js","AngularJS",
-          "WordPress","Joomla","Drupal","SFTP","RightFax","Concur","Multiview",
-          "Lean Six Sigma","Knowledge Management"
-        ],
-        "sameAs": [
-          "https://github.com/blayderunner123",
-          "https://linkedin.com/in/blayderunner123",
-          "https://soldierupdesign.com"
-        ]
+        "worksFor": { "@type": "Organization", "name": "Soldier-up Designs", "url": "https://soldierupdesign.com" },
+        "knowsAbout": ["PowerShell","Azure Logic Apps","Microsoft Graph","SharePoint (2010/2013/Online)","Power BI","REST APIs","Process Automation","Systems Integration","C#","ASP.NET / WebForms","Entity Framework","SQL Server","T-SQL","HTML5","CSS3","JavaScript (ES5/ES6)","jQuery","Node.js","AngularJS","WordPress","Joomla","Drupal","SFTP","RightFax","Concur","Multiview","Lean Six Sigma","Knowledge Management"],
+        "sameAs": ["https://github.com/blayderunner123","https://linkedin.com/in/blayderunner123","https://soldierupdesign.com"]
       },
-      {
-        "@type": "WebSite",
-        "@id": "https://www.adcox.ai/#website",
-        "url": "https://www.adcox.ai",
-        "name": "Adcox.AI",
-        "inLanguage": "en",
-        "publisher": { "@id": "https://www.adcox.ai/#jr-adcox" }
-      }
+      { "@type": "WebSite", "@id": "https://www.adcox.ai/#website", "url": "https://www.adcox.ai", "name": "Adcox.AI", "inLanguage": "en", "publisher": { "@id": "https://www.adcox.ai/#jr-adcox" } }
     ]
   }
   </script>
 
-  <!-- Theme styles (kept from site) -->
+  <!-- Theme styles -->
   <style>
     :root{ --bg:#0f1724; --card:#0b1220; --muted:#9aa7bf; --accent:#7dd3fc; --teal:#14b8a6; }
     body{
@@ -108,62 +86,61 @@
     .form-label{ color:#cfe0ff; }
   </style>
   <style>
-/* Normalize navbar links to the muted palette site-wide */
-.navbar-dark .navbar-nav .nav-link {
-  color: rgba(255,255,255,.55);
-}
-.navbar-dark .navbar-nav .nav-link:hover,
-.navbar-dark .navbar-nav .nav-link:focus {
-  color: rgba(255,255,255,.75);
-}
-.navbar-dark .navbar-nav .nav-link.active,
-.navbar-dark .navbar-nav .show > .nav-link {
-  color: #fff;
-}
-</style>
+    /* Normalize navbar links to the muted palette site-wide */
+    .navbar-dark .navbar-nav .nav-link { color: rgba(255,255,255,.55); }
+    .navbar-dark .navbar-nav .nav-link:hover,
+    .navbar-dark .navbar-nav .nav-link:focus { color: rgba(255,255,255,.75); }
+    .navbar-dark .navbar-nav .nav-link.active,
+    .navbar-dark .navbar-nav .show>.nav-link { color: #fff; }
+  </style>
+
+  <!-- QRCode.js with CDN fallback -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"
+    onload="window.__qrReady=true"
+    onerror="(function(){var s=document.createElement('script');s.src='https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js';s.onload=function(){window.__qrReady=true};document.head.appendChild(s);}())">
+  </script>
 </head>
 <body>
-  <!-- Minimal navbar to match site -->
+  <!-- Navbar -->
   <nav class="navbar navbar-expand-md navbar-dark" style="background:rgba(0,0,0,.25)">
     <div class="container">
       <a class="navbar-brand fw-bold" href="/">
-		<img src="/favicon/favicon-32x32.png" alt="" width="28" height="28" class="d-inline-block align-text-top">
-		ADCOX.AI
-	  </a>
+        <img src="/favicon/favicon-32x32.png" alt="" width="28" height="28" class="d-inline-block align-text-top">
+        ADCOX.AI
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
         <span class="navbar-toggler-icon"></span>
       </button>
-	  <div id="nav" class="collapse navbar-collapse">
-		<ul class="navbar-nav ms-auto">
-		  <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-		  <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
-		  <li class="nav-item"><a class="nav-link" href="/#resume">Résumé</a></li>
-		  <li class="nav-item"><a class="nav-link" href="/#work">Adventures</a></li>
-		  <li class="nav-item"><a class="nav-link" href="/#weekly">Weekly</a></li>
-		  <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
-		  <li class="nav-item"><a class="nav-link" href="/ask-ai/">Ask AI</a></li>
-		  <li class="nav-item"><a class="nav-link active" aria-current="page" href="/qr-brand/">QR Maker</a></li>
-		  <li class="nav-item"><a class="nav-link" href="/metrics-api/">Metrics</a></li>
-		</ul>
-	  </div>
-	</div>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#resume">Résumé</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#work">Adventures</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#weekly">Weekly</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="/ask-ai/">Ask AI</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="/qr-brand/">QR Maker</a></li>
+          <li class="nav-item"><a class="nav-link" href="/metrics-api/">Metrics</a></li>
+        </ul>
+      </div>
+    </div>
   </nav>
-  	<script>
-		(() => {
-		  const here = location.pathname.replace(/\/+$/, '') || '/';
-		  document.querySelectorAll('.navbar a.nav-link').forEach(a => {
-			const href = a.getAttribute('href').replace(/\/+$/, '') || '/';
-			// exact match or section anchor on the home page
-			if (href === here || (here === '/' && href.startsWith('/#'))) {
-			  a.classList.add('active');
-			  a.setAttribute('aria-current', 'page');
-			} else {
-			  a.classList.remove('active');
-			  a.removeAttribute('aria-current');
-			}
-		  });
-		})();
-	</script>
+
+  <!-- Highlight active nav -->
+  <script>
+    (() => {
+      const here = location.pathname.replace(/\/+$/, '') || '/';
+      document.querySelectorAll('.navbar a.nav-link').forEach(a => {
+        const href = a.getAttribute('href').replace(/\/+$/, '') || '/';
+        if (href === here || (here === '/' && href.startsWith('/#'))) {
+          a.classList.add('active'); a.setAttribute('aria-current', 'page');
+        } else { a.classList.remove('active'); a.removeAttribute('aria-current'); }
+      });
+    })();
+  </script>
+
   <main class="container wrap">
     <header class="text-center mb-4">
       <div class="badge text-bg-info">Adcox.ai Utility</div>
@@ -218,10 +195,8 @@
     </div>
   </main>
 
-  <!-- QR library -->
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
-
   <script>
+    // DOM refs
     const qrText = document.getElementById('qrText');
     const darkColor = document.getElementById('darkColor');
     const logoFile = document.getElementById('logoFile');
@@ -237,6 +212,7 @@
     logoScale.addEventListener('input', () => logoScaleVal.textContent = logoScale.value);
     qrSize.addEventListener('input', () => qrSizeVal.textContent = qrSize.value);
 
+    // Optional center logo
     let logoImage = null;
     logoFile.addEventListener('change', (e) => {
       const f = e.target.files?.[0];
@@ -254,7 +230,6 @@
       const text = qrText.value.trim();
       const size = parseInt(qrSize.value, 10);
       const dark = darkColor.value;
-
       if (!text) { alert('Please enter a URL or text.'); return; }
 
       canvas.width = canvas.height = size;
@@ -266,6 +241,7 @@
         color: { dark: dark, light: '#FFFFFF' }
       });
 
+      // Draw logo with a small white pad for readability
       if (logoImage) {
         const scale = Number(logoScale.value) / 100;
         const w = Math.floor(size * scale);
@@ -296,8 +272,17 @@
       link.click();
     });
 
-    // Initial render
-    renderQR();
+    // Initial render (wait for QR library)
+    (function waitForQRCode(){
+      if (window.__qrReady && window.QRCode) { renderQR(); }
+      else { setTimeout(waitForQRCode, 50); }
+    })();
   </script>
+
+  <!-- Bootstrap JS (for navbar toggler) -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
 </body>
 </html>
