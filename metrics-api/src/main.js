@@ -3,7 +3,7 @@
 // Use res.json(body, statusCode, headers) — no res.setHeader().
 export default async ({ req, res, log }) => {
   const cors = {
-    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Origin': 'https://www.adcox.ai',
     'Access-Control-Allow-Headers': 'Content-Type, Authorization, Origin, Accept',
     'Access-Control-Allow-Methods': 'GET,POST,OPTIONS',
   };
