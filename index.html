@@ -219,6 +219,20 @@
 	  letter-spacing:.01em;
 	}
   </style>
+  <style>
+/* Normalize navbar links to the muted palette site-wide */
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba(255,255,255,.55);
+}
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus {
+  color: rgba(255,255,255,.75);
+}
+.navbar-dark .navbar-nav .nav-link.active,
+.navbar-dark .navbar-nav .show > .nav-link {
+  color: #fff;
+}
+</style>
 </head>
 <body>
   <!-- Navbar -->
