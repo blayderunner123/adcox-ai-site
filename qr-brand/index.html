@@ -27,9 +27,9 @@
   </style>
 
   <!-- ✅ Load QRCode safely and guarantee global reference -->
-  <!-- https://unpkg.com/qrcode@1.5.1/build/qrcode.tosjis.js -->
+  <!-- https://cdn.jsdelivr.net/npm/qrcode@1.5.3/lib/browser.min.js -->
   <script type="module">
-    import * as QRCodeModule from "https://unpkg.com/qrcode@1.5.1/build/qrcode.tosjis.js";
+    import * as QRCodeModule from "https://cdn.jsdelivr.net/npm/qrcode@1.5.3/lib/browser.min.js";
     window.QRCode = QRCodeModule.default || QRCodeModule;
   </script>
 </head>
