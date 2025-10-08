@@ -13,25 +13,21 @@
   />
 
   <!-- Theme colors -->
-  <style>
-    body {
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(125,211,252,.06), transparent 10%),
-                  linear-gradient(180deg, #071028 0%, #0f1724 100%);
-      color:#e6eef8;
-    }
-    .cardish {background: rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.18);border-radius:12px;}
-    .form-label {color:#cfe0ff;}
-    .navbar-dark .navbar-nav .nav-link {color:rgba(255,255,255,.55);}
-    .navbar-dark .navbar-nav .nav-link:hover {color:rgba(255,255,255,.75);}
-    .navbar-dark .navbar-nav .nav-link.active {color:#fff;}
-  </style>
+	<style>
+	  body {
+		background: radial-gradient(1200px 600px at 10% 10%, rgba(125,211,252,.06), transparent 10%),
+					linear-gradient(180deg, #071028 0%, #0f1724 100%);
+		color:#e6eef8;
+	  }
+	  .cardish {background: rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.18);border-radius:12px;}
+	  .form-label {color:#cfe0ff;}
+	  .navbar-dark .navbar-nav .nav-link {color:rgba(255,255,255,.55);}
+	  .navbar-dark .navbar-nav .nav-link:hover {color:rgba(255,255,255,.75);}
+	  .navbar-dark .navbar-nav .nav-link.active {color:#fff;}
+	</style>
 
-  <!-- ✅ Load QRCode safely and guarantee global reference -->
-  <!-- https://cdn.jsdelivr.net/npm/qrcode@1.5.3/lib/browser.min.js -->
-  <script type="module">
-    import * as QRCodeModule from "https://cdn.jsdelivr.net/npm/qrcode@1.5.3/lib/browser.min.js";
-    window.QRCode = QRCodeModule.default || QRCodeModule;
-  </script>
+	<!-- ✅ Load QRCode safely -->
+	<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/lib/browser.min.js"></script>
 </head>
 
 <body>
