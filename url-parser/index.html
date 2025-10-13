@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Adcox.AI — URL Parser & Decoder</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="icon" type="image/x-icon" href="/favicon/favicon.ico"/>
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/>
+  <link rel="manifest" href="/favicon/manifest.json"/>
+  <meta name="theme-color" content="#0a0a0a"/>
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Adcox.AI — URL Parser & Decoder"/>
+  <meta property="og:site_name" content="Adcox.AI"/>
+  <meta property="og:url" content="https://www.adcox.ai/tools/url-parser/"/>
+  <meta property="og:description" content="Parse, validate, decode, and analyze URLs with an interactive breakdown of protocol, host, path, query, and fragments. 100% client-side."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="https://www.adcox.ai/favicon/og-preview.png"/>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://www.adcox.ai/tools/url-parser",
+    "name": "Adcox.AI — URL Parser & Decoder",
+    "publisher": {
+      "@type": "Person",
+      "name": "Jonathan R. Adcox",
+      "url": "https://www.adcox.ai",
+      "sameAs": [
+        "https://linkedin.com/in/blayderunner123",
+        "https://github.com/blayderunner123"
+      ]
+    }
+  }
+  </script>
+
+  <!-- Theme -->
+  <style>
+    :root{
+      --bg:#0f1724;
+      --muted:#9aa7bf;
+      --primary:#0d6efd;
+      --success:#198754;
+      --warning:#ffc107;
+      --danger:#dc3545;
+    }
+    body{
+      background:
+        radial-gradient(1200px 600px at 10% 10%, rgba(125,211,252,.06), transparent 10%),
+        linear-gradient(180deg,#071028 0%,var(--bg) 100%);
+      color:#e6eef8;
+    }
+    .card,
+    .cardish{
+      background:rgba(255,255,255,0.06);
+      border:1px solid rgba(255,255,255,0.15);
+      border-radius:12px;
+    }
+    pre{white-space:pre-wrap;color:#cde6ff;}
+    code,kbd{color:#cde6ff;}
+    .mono{font-family:ui-monospace,Menlo,Consolas,"Liberation Mono",monospace;}
+  </style>
+  <style>
+    /* Normalize navbar links site-wide */
+    .navbar-dark .navbar-nav .nav-link{color:rgba(255,255,255,.55);}
+    .navbar-dark .navbar-nav .nav-link:hover,
+    .navbar-dark .navbar-nav .nav-link:focus{color:rgba(255,255,255,.75);}
+    .navbar-dark .navbar-nav .nav-link.active,
+    .navbar-dark .navbar-nav .show>.nav-link{color:#fff;}
+  </style>
+</head>
+<body>
+
+  <!-- Navbar (same structure/behavior as your QR page) -->
+  <nav class="navbar navbar-expand-md navbar-dark" style="background:rgba(0,0,0,.25)">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/">
+        <img src="/favicon/favicon-32x32.png" width="28" height="28" class="d-inline-block align-text-top" alt="">
+        ADCOX.AI
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#about">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#resume">Résumé</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#work">Adventures</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#weekly">Weekly</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="/ask-ai/">Ask AI</a></li>
+          <li class="nav-item"><a class="nav-link" href="/qr-brand/">QR Maker</a></li>
+          <li class="nav-item"><a class="nav-link" href="/metrics-api/">Metrics</a></li>
+          <li class="nav-item"><a class="nav-link active" href="/tools/url-parser/">URL Parser</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Active link highlighter (same pattern as your QR page) -->
+  <script>
+    (() => {
+      const here = location.pathname.replace(/\/+$/, '') || '/';
+      document.querySelectorAll('.navbar a.nav-link').forEach(a => {
+        const href = a.getAttribute('href').replace(/\/+$/, '') || '/';
+        if (href === here || (here === '/' && href.startsWith('/#'))) {
+          a.classList.add('active'); a.setAttribute('aria-current','page');
+        } else { a.classList.remove('active'); a.removeAttribute('aria-current'); }
+      });
+    })();
+  </script>
+
+  <main class="container my-4" style="max-width:1200px;">
+    <header class="text-center mb-4">
+      <div class="badge text-bg-info">Adcox.ai Utility</div>
+      <h1 class="mt-2">URL Parser & Decoder</h1>
+      <p class="text-secondary mb-0">Parse, validate, decode, and edit URLs with a clean breakdown of protocol, host, path, query, and fragments. 100% client-side.</p>
+    </header>
+
+    <div class="row g-4">
+      <!-- Left: Input & actions -->
+      <div class="col-lg-6">
+        <section class="p-3 p-md-4 cardish">
+          <div class="mb-3">
+            <label class="form-label" for="inputUrl">Input URL</label>
+            <textarea id="inputUrl" class="form-control mono" rows="5" spellcheck="false" placeholder="https://example.com:8443/foo/bar?alpha=1&beta=two#frag"></textarea>
+            <div class="form-text">Paste any URL. You can also load a .txt file with a single URL.</div>
+          </div>
+
+          <div class="d-flex flex-wrap gap-2">
+            <button id="btnParse"   class="btn btn-sm btn-outline-light">Parse URL</button>
+            <button id="btnValidate"class="btn btn-sm btn-outline-light">Validate</button>
+            <button id="btnDecode"  class="btn btn-sm btn-outline-light">Decode URL</button>
+            <button id="btnClear"   class="btn btn-sm btn-fade">Clear</button>
+
+            <input id="fileInput" type="file" accept=".txt,text/plain" class="d-none">
+            <button id="btnUpload"  class="btn btn-sm btn-fade">Upload .txt</button>
+            <button id="btnSample"  class="btn btn-sm btn-fade">Sample</button>
+          </div>
+
+          <hr class="border-secondary-subtle my-3">
+
+          <div class="d-flex flex-wrap gap-2">
+            <button id="btnCopyJson"     class="btn btn-sm btn-outline-light" disabled>Copy JSON</button>
+            <button id="btnDownloadJson" class="btn btn-sm btn-outline-light" disabled>Download JSON</button>
+          </div>
+
+          <div id="alertBox" class="mt-3"></div>
+        </section>
+      </div>
+
+      <!-- Right: Parsed components -->
+      <div class="col-lg-6">
+        <section class="p-3 p-md-4 cardish">
+          <h5 class="mb-3">Parsed Components</h5>
+
+          <div class="table-responsive">
+            <table class="table table-dark table-sm align-middle mb-3">
+              <tbody id="kvTable">
+                <!-- rows injected -->
+              </tbody>
+            </table>
+          </div>
+
+          <h6 class="mt-4">Query Parameters</h6>
+          <div class="table-responsive">
+            <table class="table table-dark table-sm align-middle">
+              <thead><tr><th style="width:30%">Key</th><th>Value</th></tr></thead>
+              <tbody id="qpTable">
+                <tr class="text-secondary"><td colspan="2">No query parameters.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <section class="mt-4 p-3 p-md-4 cardish">
+      <h5 class="mb-2">How it works</h5>
+      <p class="muted mb-0">We use the browser’s native <code>URL</code> parser for correctness and speed, then render a breakdown of the parts. “Validate” adds safety checks (bad schemes, spaces, mixed encodings) and “Decode” reveals human-readable text for percent-encoded parts.</p>
+    </section>
+  </main>
+
+  <footer class="py-4">
+    <div class="container text-center muted small">
+      © <strong>Jonathan R. Adcox</strong>. Built with Bootstrap, caffeine, and curiosity.
+    </div>
+  </footer>
+
+  <!-- App logic -->
+  <script>
+    // keep console quiet from noisy extension promise errors
+    window.addEventListener('unhandledrejection', (e) => {
+      const msg = String(e.reason || '');
+      if (msg.includes('Could not establish connection') && msg.includes('Receiving end does not exist')) {
+        e.preventDefault(); console.debug('[note] Ignored extension error:', msg);
+      }
+    });
+
+    // element refs
+    const inputUrl   = document.getElementById('inputUrl');
+    const btnParse   = document.getElementById('btnParse');
+    const btnValidate= document.getElementById('btnValidate');
+    const btnDecode  = document.getElementById('btnDecode');
+    const btnClear   = document.getElementById('btnClear');
+    const btnUpload  = document.getElementById('btnUpload');
+    const btnSample  = document.getElementById('btnSample');
+    const fileInput  = document.getElementById('fileInput');
+    const btnCopyJson= document.getElementById('btnCopyJson');
+    const btnDownload= document.getElementById('btnDownloadJson');
+    const kvTable    = document.getElementById('kvTable');
+    const qpTable    = document.getElementById('qpTable');
+    const alertBox   = document.getElementById('alertBox');
+
+    function setAlert(kind, html){
+      alertBox.innerHTML =
+        `<div class="alert alert-${kind} alert-dismissible fade show" role="alert">
+           ${html}
+           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+         </div>`;
+    }
+
+    function clearAlert(){ alertBox.innerHTML = ''; }
+
+    function safeDecode(str){
+      try{ return decodeURIComponent(str); } catch{ return str; }
+    }
+
+    function toRows(obj){
+      kvTable.innerHTML = '';
+      const add = (k, v) => {
+        const val = (v === '' || v === null || typeof v === 'undefined') ? '<span class="text-secondary">—</span>' : `<span class="mono">${v}</span>`;
+        kvTable.insertAdjacentHTML('beforeend', `<tr><th style="width:30%">${k}</th><td>${val}</td></tr>`);
+      };
+      add('href', obj.href);
+      add('origin', obj.origin);
+      add('protocol', obj.protocol);
+      add('username', obj.username);
+      add('password', obj.password ? '••••••' : '');
+      add('host', obj.host);
+      add('hostname', obj.hostname);
+      add('port', obj.port);
+      add('pathname', obj.pathname);
+      add('search', obj.search);
+      add('hash', obj.hash);
+    }
+
+    function renderParams(searchParams){
+      qpTable.innerHTML = '';
+      if (![...searchParams.keys()].length){
+        qpTable.innerHTML = '<tr class="text-secondary"><td colspan="2">No query parameters.</td></tr>';
+        return;
+      }
+      for (const [k, v] of searchParams.entries()){
+        qpTable.insertAdjacentHTML('beforeend',
+          `<tr><td class="mono">${k}</td><td class="mono">${v}</td></tr>`);
+      }
+    }
+
+    function parseUrl(raw){
+      const text = (raw || '').trim();
+      if (!text) throw new Error('No URL provided.');
+      // If user pasted a schemeless domain, try adding https:// for parsing UX.
+      const maybe = /^[\w.-]+\.[a-z]{2,}([/:?#].*)?$/i.test(text) ? `https://${text}` : text;
+      const u = new URL(maybe);
+      // normalize: if we added https for parsing but the user had an explicit scheme, keep original
+      return u;
+    }
+
+    function validateUrl(u){
+      const issues = [];
+      // 1) scheme
+      const badSchemes = ['javascript:', 'vbscript:', 'data:'];
+      if (badSchemes.includes(u.protocol)) issues.push(`Blocked scheme: <code>${u.protocol}</code>`);
+      // 2) spaces (should be encoded)
+      if (decodeURIComponent(u.href).includes(' ')) issues.push('Unencoded spaces detected.');
+      // 3) multiple encodings like %252F
+      if (/%25[0-9a-fA-F]{2}/.test(u.href)) issues.push('Double-encoding detected (e.g., <code>%252F</code>).');
+      // 4) suspicious @ in path (basic phishing smell test)
+      if (u.pathname.includes('@')) issues.push('Suspicious <code>@</code> in path.');
+      return issues;
+    }
+
+    function decodeView(u){
+      return {
+        href: safeDecode(u.href),
+        origin: safeDecode(u.origin),
+        protocol: u.protocol,
+        username: safeDecode(u.username),
+        password: u.password ? '••••••' : '',
+        host: u.host,
+        hostname: u.hostname,
+        port: u.port,
+        pathname: safeDecode(u.pathname),
+        search: safeDecode(u.search),
+        hash: safeDecode(u.hash),
+        params: Object.fromEntries([...u.searchParams.entries()].map(([k,v])=>[safeDecode(k), safeDecode(v)])),
+      };
+    }
+
+    let lastJson = null;
+
+    function doParse(){
+      clearAlert();
+      try{
+        const u = parseUrl(inputUrl.value);
+        toRows(u);
+        renderParams(u.searchParams);
+        lastJson = {
+          href: u.href, origin: u.origin, protocol: u.protocol,
+          username: u.username, password: u.password, host: u.host,
+          hostname: u.hostname, port: u.port, pathname: u.pathname,
+          search: u.search, hash: u.hash,
+          params: Object.fromEntries(u.searchParams.entries())
+        };
+        btnCopyJson.disabled = btnDownload.disabled = false;
+        setAlert('success', 'Parsed successfully.');
+      }catch(err){
+        btnCopyJson.disabled = btnDownload.disabled = true;
+        setAlert('danger', `Parse failed: <code class="mono">${(err && err.message) || err}</code>`);
+        kvTable.innerHTML = ''; qpTable.innerHTML = '<tr class="text-secondary"><td colspan="2">No query parameters.</td></tr>';
+        lastJson = null;
+      }
+    }
+
+    function doValidate(){
+      clearAlert();
+      try{
+        const u = parseUrl(inputUrl.value);
+        const issues = validateUrl(u);
+        if (issues.length) setAlert('warning', `<strong>Validation issues:</strong><ul class="mb-0">${issues.map(i=>`<li>${i}</li>`).join('')}</ul>`);
+        else setAlert('success', 'Looks good. No validation issues detected.');
+      }catch(err){
+        setAlert('danger', `Validation failed (not a URL): <code class="mono">${(err && err.message) || err}</code>`);
+      }
+    }
+
+    function doDecode(){
+      clearAlert();
+      try{
+        const u = parseUrl(inputUrl.value);
+        const dec = decodeView(u);
+        // display decoded values but keep params table as decoded too
+        toRows(dec);
+        qpTable.innerHTML = '';
+        const entries = Object.entries(dec.params || {});
+        if (!entries.length){
+          qpTable.innerHTML = '<tr class="text-secondary"><td colspan="2">No query parameters.</td></tr>';
+        }else{
+          for (const [k,v] of entries){
+            qpTable.insertAdjacentHTML('beforeend', `<tr><td class="mono">${k}</td><td class="mono">${v}</td></tr>`);
+          }
+        }
+        lastJson = dec;
+        btnCopyJson.disabled = btnDownload.disabled = false;
+        setAlert('info', 'Showing decoded view.');
+      }catch(err){
+        setAlert('danger', `Decode failed: <code class="mono">${(err && err.message) || err}</code>`);
+      }
+    }
+
+    function doClear(){
+      clearAlert();
+      inputUrl.value = '';
+      kvTable.innerHTML = '';
+      qpTable.innerHTML = '<tr class="text-secondary"><td colspan="2">No query parameters.</td></tr>';
+      btnCopyJson.disabled = btnDownload.disabled = true;
+      lastJson = null;
+    }
+
+    // buttons
+    btnParse.addEventListener('click', doParse);
+    btnValidate.addEventListener('click', doValidate);
+    btnDecode.addEventListener('click', doDecode);
+    btnClear.addEventListener('click', doClear);
+
+    // upload/sample
+    btnUpload.addEventListener('click', ()=>fileInput.click());
+    fileInput.addEventListener('change', async (e)=>{
+      const f = e.target.files?.[0]; if (!f) return;
+      try{
+        const text = await f.text();
+        inputUrl.value = (text || '').trim();
+        doParse();
+      }catch(err){
+        setAlert('danger', 'Could not read file.');
+      }finally{ fileInput.value=''; }
+    });
+
+    btnSample.addEventListener('click', ()=>{
+      inputUrl.value = 'https://adcox.ai/tools/url-parser?utm_source=demo&utm_medium=link&user=jon%2Badcox%40centralhealth.net#section-1';
+      doParse();
+    });
+
+    // copy/download JSON
+    btnCopyJson.addEventListener('click', async ()=>{
+      try{
+        await navigator.clipboard.writeText(JSON.stringify(lastJson, null, 2));
+        setAlert('success', 'JSON copied to clipboard.');
+      }catch{ setAlert('danger', 'Copy failed.'); }
+    });
+
+    btnDownload.addEventListener('click', ()=>{
+      try{
+        const blob = new Blob([JSON.stringify(lastJson, null, 2)], {type:'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'url-components.json'; a.click();
+        URL.revokeObjectURL(url);
+      }catch{ setAlert('danger', 'Download failed.'); }
+    });
+  </script>
+
+  <!-- Bootstrap JS (bundle) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
