@@ -619,37 +619,43 @@ ${hint}`;
     crossorigin="anonymous">
   </script>
   <!-- Weekly data: edit this JSON each Friday -->
-<script type="application/json" id="weekly-data" data-ver="2025-10-01-2">
+<script type="application/json" id="weekly-data" data-ver="2025-10-13-1">
 {
   "top": [
     {
-      "title": "Cloud Design Review Board",
-      "desc": "Driving enterprise alignment: adding the Application Layer, FinOps balance, and keeping architecture honest.",
+      "title": "Identity & SSO Modernization",
+      "desc": "Verified Entra configuration, completed Cisco Webex SSO integration, and aligned Everbridge SSO certificate rollover across enterprise apps.",
       "badge": "Enterprise"
     },
     {
-      "title": "Active Directory Redesign",
-      "desc": "Modern OU structure, RBAC clarity, PingCastle remediation, and the groundwork for secure automation.",
-      "badge": "v2.0"
+      "title": "Metrics API Console",
+      "desc": "Stabilized Bootstrap and mobile navigation, added URL Parser, and standardized theme consistency across all Adcox.AI tools.",
+      "badge": "Adcox.AI"
     }
   ],
   "thisWeek": [
-    "<b>RightFax</b>: after-hours triage (6+ hrs), next-steps doc (problem ticket + post-mortem), and v17.6.3 → v17.6.4 production update with pagination batching and template cleanup.",
-    "<b>gMSA service accounts</b>: white paper + how-to for AD Modernization (why gMSA over standard service accounts).",
-    "<b>Power BI Data Gateway</b>: Cloud vs Domain account comparison (M365 account with MFA vs on-prem AD); operational guidance for service identity.",
-    "<b>Praisidio → Power BI</b>: connection approach for HR Ops, dependencies and steps captured for exec-ready overview.",
-    "<b>Cloud Design Review Board</b>: added Application Layer guidance (platform, integrations, business purpose, criticality).",
-    "<b>Account segregation</b>: executive justification for separate user/admin accounts with audit/compliance receipts.",
-    "<b>SolarWinds</b>: ITIL-aligned triaging template with SLA-style response targets and APA-formatted references.",
-    "<b>Productivity enablement</b>: 52 Microsoft-centric daily tips (Outlook/Teams/Power Apps, etc.)."
+    "<b>Entra ID</b>: confirmed Managed/Hybrid posture, prepped Cloud Design Review Board summary for modernization planning.",
+    "<b>Cisco Webex SSO</b>: configured in Entra Enterprise Apps with full SAML validation and sign-on testing.",
+    "<b>Everbridge SSO</b>: published technical summary for November 5 certificate rollover and automatic refresh procedure.",
+    "<b>AuthN vs AuthZ</b>: delivered concise internal documentation to improve authentication literacy.",
+    "<b>YubiKey MFA</b>: created executive summary highlighting phishing resistance and user simplicity.",
+    "<b>Dynamic Groups</b>: audited and corrected logic to exclude service/non-human accounts and fix malformed UPN entries.",
+    "<b>File Security</b>: documented verified NTFS and SMB lockdown steps for sensitive retention areas.",
+    "<b>Metrics API Test Console</b>: updated meta tags, added Bootstrap JS bundle, fixed mobile navbar behavior.",
+    "<b>URL Parser</b>: integrated new navigation item and validated pathing without tools folder dependency.",
+    "<b>QR Generator</b>: stabilized QRCode.js loading with fallback check, improved logo scaling and render timing.",
+    "<b>Appwrite Functions</b>: validated qr-service and metrics-api executions (create/PATCH) via CLI telemetry.",
+    "<b>WordPress (Tombstone Masons)</b>: removed deprecated theme files and diagnosed Terms module activation bug.",
+    "<b>Creative Project</b>: finalized ring dedication letter with print layout and cursive typeface."
   ],
   "ongoing": [
-    "<b>PingCastle remediation</b>: STIG-style checklists and fixes marching toward greener scores.",
-    "<b>RightFax ops</b>: pagination/batching refinements, deletion reporting, and steadier nightly runs.",
-    "<b>SharePoint logging</b>: pipeline for RightFax Outbox audit CSVs and durable storage in CH-JointTech.",
-    "<b>Power BI dashboards</b>: compliance visuals and exec-friendly summaries."
+    "<b>RightFax Logic App</b>: continuing pagination batching refinements and deletion confirmation email updates.",
+    "<b>PingCastle remediation</b>: STIG-style checklist tracking ongoing AD hardening progress.",
+    "<b>SharePoint audit logging</b>: pipeline for RightFax Outbox CSV uploads to CH-JointTech site.",
+    "<b>Power BI dashboards</b>: compliance and governance visuals for executive review.",
+    "<b>Adcox.AI site</b>: theming alignment and accessibility refinements across pages."
   ],
-  "tldr": "TL;DR: RightFax leveled up, service identities got clearer, monitoring matured, and governance earned new teeth."
+  "tldr": "TL;DR: Cisco SSO completed, Entra identity posture verified, YubiKey MFA promoted, and Adcox.AI gained polish and reliability."
 }
 </script>
 
