@@ -1,4 +1,4 @@
-# Adcox.AI Joke Resume Site (Bootstrap 5)
+# Adcox.AI Resume Site (Bootstrap 5)
 
 A static landing page for [Adcox.AI](https://adcox.ai), styled with Bootstrap 5 from public CDN.
 
