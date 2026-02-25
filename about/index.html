@@ -203,30 +203,33 @@
 <body class="bg-dark text-light">
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary">
+<nav class="navbar navbar-expand-md navbar-dark" style="background:rgba(0,0,0,.25)">
   <div class="container">
-    <a class="navbar-brand fw-semibold" href="/">Adcox.AI</a>
+    <a class="navbar-brand fw-bold" href="/">
+      <img src="/favicon/favicon-32x32.png" alt="" width="28" height="28" class="d-inline-block align-text-top">
+      ADCOX.AI
+    </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
       <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse" id="nav">
+    <div id="nav" class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/#resume">Résumé</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/#work">Adventures</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/#weekly">Weekly</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/#contact">Contact</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/about/">About</a>
-        </li>
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+
+        <!-- On the About page, About is active and is a real path -->
+        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/about/">About</a></li>
+
+        <!-- All single-page sections should point back to home with anchors -->
+        <li class="nav-item"><a class="nav-link" href="/#resume">Résumé</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#work">Adventures</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#weekly">Weekly</a></li>
+        <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+
+        <!-- Tools remain absolute -->
+        <li class="nav-item"><a class="nav-link" href="/ask-ai/">Ask AI</a></li>
+        <li class="nav-item"><a class="nav-link" href="/qr-brand/">QR Maker</a></li>
+        <li class="nav-item"><a class="nav-link" href="/metrics-api/">Metrics</a></li>
+        <li class="nav-item"><a class="nav-link" href="/url-parser/">URL Parser</a></li>
       </ul>
     </div>
   </div>
