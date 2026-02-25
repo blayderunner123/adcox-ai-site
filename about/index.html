@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="description" content="About Jonathan R. Adcox — Web & Cloud Systems Engineer. Full stack web systems, REST integrations, Azure and Google Cloud infrastructure, automation, and AI integration."/>
+
+  <title>About — Jonathan R. Adcox | Adcox.AI</title>
+
+  <!-- Bootstrap 5 CSS -->
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+    crossorigin="anonymous">
+
+  <link rel="icon" href="/favicon/favicon.ico">
+</head>
+
+<body class="bg-dark text-light">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark border-bottom border-secondary">
+  <div class="container">
+    <a class="navbar-brand fw-semibold" href="/">Adcox.AI</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="nav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/#resume">Résumé</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/#work">Adventures</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/#weekly">Weekly</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/#contact">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/about/">About</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="py-5">
+  <div class="container">
+    <div class="p-4 p-lg-5 rounded-4 bg-secondary bg-opacity-10 border border-secondary">
+      <h1 class="display-6 fw-bold mb-3">About</h1>
+      <p class="lead mb-3">
+        Web & Cloud Systems Engineer building secure, scalable systems from infrastructure to interface.
+      </p>
+      <div class="small text-secondary">
+        JavaScript • AJAX • REST APIs • WordPress • Joomla • Azure • Google Cloud • Automation • AI Integration
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Main Content -->
+<section class="pb-5">
+  <div class="container">
+    <div class="row g-5">
+
+      <!-- Left Column -->
+      <div class="col-lg-7">
+
+        <h2 class="h4 fw-bold mb-3">What I Build</h2>
+        <p class="text-secondary">
+          I design and engineer full stack web systems backed by secure cloud infrastructure.
+          My experience includes RESTful integrations using AJAX and client context patterns,
+          JSON parsing, dynamic rendering, and modular CMS customization.
+        </p>
+
+        <p class="text-secondary">
+          I have deployed and stabilized production workloads across Azure and Google Cloud,
+          including Nginx configuration, PHP-FPM tuning, SSL enforcement, caching remediation,
+          and OAuth token lifecycle management.
+        </p>
+
+        <p class="text-secondary">
+          My work also includes enterprise automation through Microsoft Graph integrations,
+          Azure Logic Apps, and production PowerShell frameworks with structured logging,
+          defensive validation, and governance-first design.
+        </p>
+
+        <h2 class="h4 fw-bold mt-5 mb-3">AI & Modernization</h2>
+        <p class="text-secondary">
+          I build AI-enabled systems with controlled model routing, structured output,
+          and observable backend logging. AI is powerful, but it remains an engineered subsystem
+          requiring security, guardrails, and documentation.
+        </p>
+
+        <h2 class="h4 fw-bold mt-5 mb-3">Professional Experience Snapshot</h2>
+        <ul class="text-secondary">
+          <li>Enterprise application integration and automation engineering</li>
+          <li>REST API integrations including identity-adjacent workflows</li>
+          <li>WordPress and Joomla engineering with upgrade-safe patterns</li>
+          <li>Cloud infrastructure deployment and server hardening</li>
+          <li>Structured documentation and modernization planning</li>
+        </ul>
+
+      </div>
+
+      <!-- Right Column -->
+      <div class="col-lg-5">
+
+        <div class="p-4 rounded-4 bg-secondary bg-opacity-10 border border-secondary mb-4">
+          <h3 class="h5 fw-bold mb-3">Selected Work</h3>
+
+          <div class="d-grid gap-2">
+            <a class="btn btn-outline-light" href="https://adcox.ai" target="_blank">Adcox.AI</a>
+            <a class="btn btn-outline-light" href="https://tombstonemasons.com" target="_blank">TombstoneMasons.com</a>
+            <a class="btn btn-outline-light" href="https://soldierupdesign.com" target="_blank">SoldierUpDesign.com</a>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-4 bg-secondary bg-opacity-10 border border-secondary">
+          <h3 class="h5 fw-bold mb-3">Statement of Service</h3>
+          <p class="text-secondary mb-0">
+            As a Master Mason, I believe in contributing my professional abilities
+            where they may strengthen the Craft. Whether in a formal capacity or as an act of service,
+            I stand ready to help safeguard and modernize the digital presence of the Brotherhood.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="border-top border-secondary py-4">
+  <div class="container text-center small text-secondary">
+    © <span id="year"></span> Jonathan R. Adcox • Adcox.ai
+  </div>
+</footer>
+
+<!-- Bootstrap JS bundle -->
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+  crossorigin="anonymous">
+</script>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
