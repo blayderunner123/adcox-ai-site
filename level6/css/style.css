@@ -112,7 +112,7 @@ nav {
   align-items: center;
   justify-content: center;
   gap: 26px;
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 800;
   letter-spacing: 0.7px;
   text-transform: uppercase;
@@ -761,6 +761,78 @@ footer {
   max-width: 100%;
   height: auto;
   margin-bottom: 16px;
+}
+
+/*==============================================================================
+    Desktop typography refinement
+    Increases readability without changing the global body scale.
+==============================================================================*/
+
+@media (min-width: 761px) {
+  nav {
+    font-size: 15px;
+  }
+
+  .nav-cta {
+    font-size: 13px;
+  }
+
+  .btn {
+    font-size: 14px;
+  }
+
+  .eyebrow {
+    font-size: 13px;
+  }
+
+  .hero-card p,
+  .quiet-card p {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+
+  .card-kicker {
+    font-size: 12px;
+  }
+
+  .microcopy {
+    font-size: 13px;
+  }
+
+  .assessment-copy > p:not(.eyebrow, .microcopy) {
+    font-size: 18px;
+    line-height: 1.75;
+  }
+
+  .reflection-card li {
+    font-size: 17px;
+    line-height: 1.7;
+  }
+
+  .philosophy-path article span {
+    font-size: 14px;
+  }
+
+  .philosophy-path p {
+    font-size: 13px;
+    line-height: 1.55;
+  }
+
+  .invitation-action p {
+    font-size: 14px;
+  }
+
+  .footer-brand p {
+    font-size: 14px;
+  }
+
+  .footer-links a {
+    font-size: 13px;
+  }
+
+  .footer-meta {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 1080px) {
