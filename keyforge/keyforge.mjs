@@ -349,3 +349,14 @@ if (typeof document !== "undefined") {
     initializeInterface();
   }
 }
+
+
+const navbarToggle = document.querySelector(".navbar-toggler");
+const navbarMenu = document.querySelector("#nav");
+
+if (navbarToggle && navbarMenu) {
+  navbarToggle.addEventListener("click", () => {
+    const isOpen = navbarMenu.classList.toggle("show");
+    navbarToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+}
