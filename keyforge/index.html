@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KeyForge | Adcox.ai</title>
+  <meta name="description" content="A private, deterministic password generator powered entirely by local browser cryptography.">
+  <meta name="theme-color" content="#06101b">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self'">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./keyforge.mjs"></script>
+</head>
+<body>
+  <main class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="Adcox.ai home">
+        <img src="/favicon/favicon-32x32.png" alt="" width="28" height="28">
+        <span>Adcox.ai</span>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <strong>KeyForge</strong>
+      </a>
+      <div class="local-badge">
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M12 2.5 20 6v5.6c0 5.2-3.3 8.4-8 10.1-4.7-1.7-8-4.9-8-10.1V6l8-3.5Z"></path>
+          <path d="m8.6 12.1 2.2 2.2 4.8-5"></path>
+        </svg>
+        <span>Local-only cryptography</span>
+      </div>
+    </header>
+
+    <div class="background-matrix" aria-hidden="true">
+      <span>SHA-256</span>
+      <span>HMAC-SHA256</span>
+      <span>PBKDF2</span>
+    </div>
+
+    <section class="workspace" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Deterministic password utility</p>
+        <h1 id="page-title">Strong passwords.<br>Reproducible by design.</h1>
+        <span class="accent-rule" aria-hidden="true"></span>
+        <p class="hero-description">
+          Generate policy-compliant passwords from a private master key,
+          account context, and rotation version. Nothing leaves your browser.
+        </p>
+        <div class="algorithm-row" aria-label="Cryptographic design">
+          <span>PBKDF2-SHA-256</span>
+          <span>HMAC-SHA-256</span>
+          <span>NO STORAGE</span>
+        </div>
+      </div>
+
+      <form class="generator-card" id="generator-form" novalidate>
+        <div class="field-group">
+          <div class="label-line">
+            <label for="master-key">Master key</label>
+            <div class="master-actions">
+              <span class="field-note">16+ characters</span>
+              <button class="key-generator-button" id="create-master-key" type="button">
+                Generate 256-bit key
+              </button>
+            </div>
+          </div>
+          <div class="input-wrap">
+            <input
+              id="master-key"
+              type="password"
+              placeholder="Enter your private master key"
+              autocomplete="new-password"
+              spellcheck="false"
+              aria-describedby="master-key-error"
+            >
+            <button class="icon-button" id="toggle-master-key" type="button" aria-label="Show master key" title="Show master key">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M2.5 12s3.4-5.5 9.5-5.5 9.5 5.5 9.5 5.5-3.4 5.5-9.5 5.5S2.5 12 2.5 12Z"></path>
+                <circle cx="12" cy="12" r="2.5"></circle>
+              </svg>
+            </button>
+          </div>
+          <p class="field-error" id="master-key-error" hidden></p>
+        </div>
+
+        <div class="field-group">
+          <label for="context">Account or system context</label>
+          <input
+            id="context"
+            type="text"
+            placeholder="e.g., github.com, prod-db, finance-app"
+            autocomplete="off"
+            spellcheck="false"
+            aria-describedby="context-error"
+          >
+          <p class="field-error" id="context-error" hidden></p>
+        </div>
+
+        <div class="field-row">
+          <div class="field-group">
+            <label for="rotation-version">Rotation version</label>
+            <input
+              id="rotation-version"
+              type="number"
+              min="1"
+              step="1"
+              inputmode="numeric"
+              value="1"
+              aria-describedby="rotation-version-error"
+            >
+            <p class="field-error" id="rotation-version-error" hidden></p>
+          </div>
+
+          <div class="field-group">
+            <label for="password-length">Length</label>
+            <select id="password-length">
+              <option value="16" selected>16 characters</option>
+              <option value="20">20 characters</option>
+              <option value="24">24 characters</option>
+              <option value="32">32 characters</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="generate-button" id="generate-password" type="submit">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="m12 2 1.5 5.1L18 4l-3.1 4.5L20 10l-5.1 1.5L18 16l-4.5-3.1L12 18l-1.5-5.1L6 16l3.1-4.5L4 10l5.1-1.5L6 4l4.5 3.1L12 2Z"></path>
+          </svg>
+          <span>Generate password</span>
+        </button>
+
+        <div class="result-section">
+          <div class="label-line">
+            <label for="generated-password">Generated password</label>
+            <span class="field-note" id="result-length">Awaiting input</span>
+          </div>
+          <div class="result-row">
+            <input
+              id="generated-password"
+              class="password-output"
+              type="text"
+              placeholder="••••••••••••••••"
+              readonly
+              spellcheck="false"
+              aria-describedby="generator-status"
+            >
+            <button class="copy-button" id="copy-password" type="button" disabled>
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="8" y="8" width="11" height="11" rx="1.5"></rect>
+                <path d="M16 8V5.5A1.5 1.5 0 0 0 14.5 4h-10A1.5 1.5 0 0 0 3 5.5v10A1.5 1.5 0 0 0 4.5 17H8"></path>
+              </svg>
+              <span>Copy</span>
+            </button>
+          </div>
+
+          <div class="policy-grid" aria-label="Password policy checks">
+            <div class="policy-check" data-policy="uppercase"><span class="checkmark" aria-hidden="true">·</span><span>Uppercase</span></div>
+            <div class="policy-check" data-policy="lowercase"><span class="checkmark" aria-hidden="true">·</span><span>Lowercase</span></div>
+            <div class="policy-check" data-policy="number"><span class="checkmark" aria-hidden="true">·</span><span>Number</span></div>
+            <div class="policy-check" data-policy="symbol"><span class="checkmark" aria-hidden="true">·</span><span>Symbol</span></div>
+          </div>
+        </div>
+
+        <div class="assurance-panel">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 2.5 20 6v5.6c0 5.2-3.3 8.4-8 10.1-4.7-1.7-8-4.9-8-10.1V6l8-3.5Z"></path>
+            <path d="m8.6 12.1 2.2 2.2 4.8-5"></path>
+          </svg>
+          <div>
+            <strong>All processing is performed locally in your browser.</strong>
+            <p>No data is sent anywhere. Your secrets stay with you.</p>
+          </div>
+        </div>
+
+        <p id="generator-status" class="status-line" aria-live="polite">
+          <span aria-hidden="true"></span>
+          <span id="status-message">Ready for local derivation.</span>
+        </p>
+      </form>
+    </section>
+
+    <section class="how-it-works" aria-labelledby="how-it-works-title">
+      <div>
+        <p class="eyebrow">The operating model</p>
+        <h2 id="how-it-works-title">A key, a context, and a version.</h2>
+      </div>
+      <ol>
+        <li><span>01</span><div><strong>Derive the private key</strong><p>PBKDF2 strengthens your master key using the account context.</p></div></li>
+        <li><span>02</span><div><strong>Generate deterministic bytes</strong><p>HMAC-SHA-256 combines the key, context, policy, and version.</p></div></li>
+        <li><span>03</span><div><strong>Encode the policy</strong><p>The result is shuffled into a compliant password with no storage.</p></div></li>
+      </ol>
+    </section>
+
+    <footer>
+      <span>Adcox.ai / KeyForge</span>
+      <span>Built for repeatability. Designed for zero receipts.</span>
+    </footer>
+  </main>
+</body>
+</html>
