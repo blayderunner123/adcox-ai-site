@@ -13,14 +13,40 @@
   <script type="module" src="./keyforge.mjs"></script>
 </head>
 <body>
+  <nav class="navbar navbar-expand-md navbar-dark" aria-label="Primary navigation">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="/">
+        <img src="/favicon/favicon-32x32.png" alt="" width="28" height="28" class="d-inline-block align-text-top">
+        ADCOX.AI
+      </a>
+      <button class="navbar-toggler" type="button" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#resume">Résumé</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#work">Adventures</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#weekly">Weekly</a></li>
+          <li class="nav-item"><a class="nav-link" href="/#contact">Contact</a></li>
+          <li class="nav-item"><a class="nav-link" href="/ask-ai/">Ask AI</a></li>
+          <li class="nav-item"><a class="nav-link" href="/qr-brand/">QR Maker</a></li>
+          <li class="nav-item"><a class="nav-link" href="/metrics-api/">Metrics</a></li>
+          <li class="nav-item"><a class="nav-link" href="/url-parser/">URL Parser</a></li>
+          <li class="nav-item"><a class="nav-link active" aria-current="page" href="/keyforge/">KeyForge</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
   <main class="site-shell">
-    <header class="site-header">
-      <a class="brand" href="/" aria-label="Adcox.ai home">
-        <img src="/favicon/favicon-32x32.png" alt="" width="28" height="28">
+    <header class="site-header keyforge-context">
+      <div class="brand">
         <span>Adcox.ai</span>
         <span class="brand-divider" aria-hidden="true"></span>
         <strong>KeyForge</strong>
-      </a>
+      </div>
       <div class="local-badge">
         <svg viewBox="0 0 24 24" aria-hidden="true">
           <path d="M12 2.5 20 6v5.6c0 5.2-3.3 8.4-8 10.1-4.7-1.7-8-4.9-8-10.1V6l8-3.5Z"></path>
