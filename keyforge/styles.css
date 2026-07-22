@@ -768,3 +768,66 @@ footer.main-footer .container {
 footer.main-footer strong {
   color: var(--foreground);
 }
+
+
+/* Mobile containment: keep long labels and controls inside the viewport. */
+.workspace > *,
+.generator-card,
+.result-section,
+.label-line,
+.master-actions {
+  min-width: 0;
+}
+
+.hero-copy h1 {
+  overflow-wrap: anywhere;
+}
+
+.generator-card,
+input,
+select,
+.generate-button,
+.result-row,
+.policy-grid {
+  max-width: 100%;
+}
+
+@media (max-width: 760px) {
+  .label-line {
+    flex-wrap: wrap;
+  }
+
+  .master-actions {
+    max-width: 100%;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .policy-check {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+}
+
+@media (max-width: 460px) {
+  .hero-copy h1 {
+    font-size: clamp(2rem, 11vw, 2.7rem);
+  }
+
+  .generator-card > .field-group:first-child .label-line {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .generator-card > .field-group:first-child .master-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .key-generator-button {
+    max-width: 100%;
+    white-space: normal;
+    text-align: left;
+  }
+}
