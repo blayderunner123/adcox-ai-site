@@ -4,7 +4,7 @@ A static landing page for [Adcox.AI](https://adcox.ai), styled with Bootstrap 5 
 
 Features
 - Animated **F5-Friendly** banner that types, spins, and tracks uptime
-- “Hire Me” button to [soldierupdesign.com](https://soldierupdesign.com)
+- “Hire Me” button to send email to preferred email address
 - No build step, pure HTML/CSS/JS
 
 Deploy
