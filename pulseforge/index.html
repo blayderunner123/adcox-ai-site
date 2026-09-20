@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PulseForge | Adcox.ai</title>
+  <meta name="description" content="A private, browser-only monthly check-in that can be printed or saved as a PDF.">
+  <link rel="canonical" href="https://www.adcox.ai/pulseforge/">
+
+  <meta property="og:title" content="PulseForge | Adcox.ai">
+  <meta property="og:description" content="A private monthly check-in. Nothing is submitted, stored, or transmitted.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.adcox.ai/pulseforge/">
+  <meta property="og:site_name" content="Adcox.ai">
+  <meta property="og:image" content="https://www.adcox.ai/favicon/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#06101b">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; frame-ancestors 'none'">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+  <link rel="stylesheet" href="./styles.css">
+  <script type="module" src="./pulseforge.mjs"></script>
+</head>
+<body>
+  <nav class="navbar" aria-label="Primary navigation">
+    <div class="container">
+      <a class="navbar-brand" href="/">
+        <img src="/favicon/favicon-32x32.png" alt="" width="28" height="28">
+        ADCOX.AI
+      </a>
+      <button class="navbar-toggler" type="button" aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="nav" class="navbar-collapse">
+        <ul class="navbar-nav">
+          <li><a class="nav-link" href="/">Home</a></li>
+          <li><a class="nav-link" href="/about/">About</a></li>
+          <li><a class="nav-link" href="/#resume">Résumé</a></li>
+          <li><a class="nav-link" href="/#work">Adventures</a></li>
+          <li><a class="nav-link" href="/#weekly">Weekly</a></li>
+          <li><a class="nav-link" href="/#contact">Contact</a></li>
+          <li><a class="nav-link" href="/ask-ai/">Ask AI</a></li>
+          <li><a class="nav-link" href="/qr-brand/">QR Maker</a></li>
+          <li><a class="nav-link" href="/metrics-api/">Metrics</a></li>
+          <li><a class="nav-link" href="/url-parser/">URL Parser</a></li>
+          <li><a class="nav-link" href="/keyforge/">KeyForge</a></li>
+          <li><a class="nav-link active" aria-current="page" href="/pulseforge/">PulseForge</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="site-shell">
+    <div class="background-grid" aria-hidden="true"></div>
+
+    <section class="workspace" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="eyebrow">Private monthly reflection</p>
+        <h1 id="page-title">Check in.<br>Tell the truth.<br>Keep the receipts.</h1>
+        <span class="accent-rule" aria-hidden="true"></span>
+        <p class="hero-description">
+          Rate the month, add whatever context matters, then print your check-in or save it as a PDF.
+          Nothing is submitted, stored, or transmitted.
+        </p>
+        <div class="privacy-tags" role="group" aria-label="Privacy characteristics">
+          <span>LOCAL ONLY</span>
+          <span>NO STORAGE</span>
+          <span>PRINT READY</span>
+        </div>
+      </div>
+
+      <section class="pulse-card" id="pulse-form">
+        <div class="form-screen">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow">Monthly pulse</p>
+              <h2>How was your month?</h2>
+            </div>
+            <span class="anonymous-badge">Anonymous by design</span>
+          </div>
+
+          <div class="field-group month-field">
+            <label for="check-in-month">Month</label>
+            <input id="check-in-month" name="month" type="month" required>
+          </div>
+
+          <fieldset class="rating-fieldset">
+            <legend>Choose the number that best describes the month</legend>
+            <div class="rating-scale">
+              <label class="rating-option">
+                <input type="radio" name="rating" value="1" data-label="Worst month ever">
+                <span class="rating-number">1</span>
+                <span class="rating-label">Worst month ever</span>
+              </label>
+              <label class="rating-option">
+                <input type="radio" name="rating" value="2" data-label="Very difficult month">
+                <span class="rating-number">2</span>
+                <span class="rating-label">Very difficult</span>
+              </label>
+              <label class="rating-option">
+                <input type="radio" name="rating" value="3" data-label="More difficult than good">
+                <span class="rating-number">3</span>
+                <span class="rating-label">More difficult than good</span>
+              </label>
+              <label class="rating-option">
+                <input type="radio" name="rating" value="4" data-label="More good than difficult">
+                <span class="rating-number">4</span>
+                <span class="rating-label">More good than difficult</span>
+              </label>
+              <label class="rating-option">
+                <input type="radio" name="rating" value="5" data-label="Great month">
+                <span class="rating-number">5</span>
+                <span class="rating-label">Great month</span>
+              </label>
+              <label class="rating-option">
+                <input type="radio" name="rating" value="6" data-label="Best month ever">
+                <span class="rating-number">6</span>
+                <span class="rating-label">Best month ever</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="field-group">
+            <div class="label-line">
+              <label for="additional-comments">Additional comments</label>
+              <span id="character-count">0 / 2,000</span>
+            </div>
+            <textarea
+              id="additional-comments"
+              name="comments"
+              maxlength="2000"
+              rows="6"
+              placeholder="What shaped this month? Add as much or as little context as you want."
+            ></textarea>
+          </div>
+
+          <div class="actions">
+            <button class="print-button" id="print-check-in" type="button">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 9V3h10v6"></path>
+                <path d="M7 17H5a2 2 0 0 1-2-2v-4a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"></path>
+                <path d="M7 14h10v7H7z"></path>
+              </svg>
+              <span>Print or save PDF</span>
+            </button>
+            <button class="reset-button" id="reset-check-in" type="button">Reset</button>
+          </div>
+
+          <div class="assurance-panel">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 2.5 20 6v5.6c0 5.2-3.3 8.4-8 10.1-4.7-1.7-8-4.9-8-10.1V6l8-3.5Z"></path>
+              <path d="m8.6 12.1 2.2 2.2 4.8-5"></path>
+            </svg>
+            <div>
+              <strong>Your check-in never leaves this browser.</strong>
+              <p>There is no submit button, account, database, cookie, analytics service, or hidden transmission.</p>
+            </div>
+          </div>
+
+          <p class="status-line" aria-live="polite">
+            <span aria-hidden="true"></span>
+            <span id="status-message">Ready for an honest assessment.</span>
+          </p>
+        </div>
+
+        <article class="print-record" aria-label="Printable monthly check-in">
+          <header class="print-header">
+            <div>
+              <p class="print-brand">ADCOX.AI / PULSEFORGE</p>
+              <h2>Monthly Check-In</h2>
+            </div>
+            <p class="print-private">PRIVATE REFLECTION</p>
+          </header>
+
+          <section class="print-month">
+            <span>Month</span>
+            <strong id="print-month">Not selected</strong>
+          </section>
+
+          <section class="print-rating">
+            <div class="print-score" id="print-score">—</div>
+            <div>
+              <p>Overall rating</p>
+              <h3 id="print-rating-label">Not selected</h3>
+              <span id="print-rating-range">Scale: 1 to 6</span>
+            </div>
+          </section>
+
+          <section class="print-comments">
+            <p>Additional comments</p>
+            <div id="print-comments">No additional comments.</div>
+          </section>
+
+          <footer class="print-footer">
+            <p>Completed privately in PulseForge. No response was submitted, stored, or transmitted.</p>
+            <p id="print-generated"></p>
+          </footer>
+        </article>
+      </section>
+    </section>
+
+    <footer class="main-footer">
+      © <strong>Jonathan R. Adcox</strong>, private reflection without the surveillance garnish.
+    </footer>
+  </main>
+</body>
+</html>
