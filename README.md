@@ -1,4 +1,4 @@
-# Adcox.AI Resume Site (Bootstrap 5)
+# Adcox.AI (Bootstrap 5)
 
 A static landing page for [Adcox.AI](https://adcox.ai), styled with Bootstrap 5 from public CDN.
 
@@ -7,7 +7,10 @@ Features
 - “Hire Me” button to send email to preferred email address
 - No build step, pure HTML/CSS/JS
 
-Deploy
-1. Push to GitHub
-2. Enable GitHub Pages (Settings → Pages → Source: `main`)
-3. Optional: add a `CNAME` file with `adcox.ai`
+## Deployment
+
+The public site is deployed from the `main` branch through Appwrite Sites as a static Vanilla JS site. Pushing to `main` triggers the connected Appwrite deployment.
+
+Appwrite build settings should use the repository root as the output directory. Do not configure `index.html` as an SPA fallback: this is a multi-page static site, and an SPA fallback turns missing URLs into homepage soft 404s. After changing the fallback setting, redeploy and verify that an unknown URL returns HTTP 404.
+
+The root-level `robots.txt`, `sitemap.xml`, and `404.html` files must remain in the deployed output.
