@@ -4,6 +4,8 @@
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Adcox.AI — Ask AI</title>
+  <meta name="description" content="Try an OpenAI-powered AI without an account or saved conversation history. Ask anything; the browser keeps your secrets.">
+  <link rel="canonical" href="https://www.adcox.ai/ask-ai/">
 
   <!-- Bootstrap 5 (CSS) -->
   <link
@@ -31,7 +33,7 @@
   <meta property="og:title" content="Adcox.AI — Ask AI"/>
   <meta property="og:site_name" content="Adcox.AI"/>
   <meta property="og:url" content="https://www.adcox.ai/ask-ai/"/>
-  <meta property="og:description" content="Ask a question. The function does the talking; the browser keeps your secrets."/>
+  <meta property="og:description" content="Try AI without an account or saved conversation history. Ask anything; the browser keeps your secrets."/>
   <meta property="og:type" content="website"/>
   <meta property="og:image" content="https://www.adcox.ai/favicon/og-preview.png"/>
   <meta property="og:image:width" content="1200"/>
@@ -125,8 +127,12 @@
   color: #fff;
 }
 </style>
+  <link rel="stylesheet" href="/assets/site.css">
+  <link rel="stylesheet" href="/assets/shell.css">
+  <link rel="stylesheet" href="/assets/shell-home-match.css">
+  <script src="/assets/site.js" defer></script>
 </head>
-<body>
+<body class="adcox-site">
   <!-- Navbar -->
   <nav class="navbar navbar-expand-md navbar-dark" style="background:rgba(0,0,0,.25)">
     <div class="container">
@@ -173,7 +179,8 @@
 	</script>
   <main class="container py-4">
     <h1>Ask Adcox AI</h1>
-    <p class="tagline">Ask anything — your browser keeps your secrets.</p>
+    <p class="tagline">Ask anything. The browser keeps your secrets.</p>
+    <div class="callout mb-4"><strong>AI without the anxiety.</strong> This OpenAI-powered experience gives you a simple place to experiment without creating an account or building a lasting conversation history. When you close the browser, the conversation is gone.</div>
 
     <form id="ask-form" class="toolbar d-flex gap-2 align-items-center flex-wrap">
       <input id="q" name="q" class="form-control" placeholder="Ask something..." style="max-width: 42ch;" />

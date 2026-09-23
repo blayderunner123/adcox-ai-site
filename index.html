@@ -1,750 +1,520 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Adcox.AI — Jonathan R. Adcox | Application Architect</title>
-  <meta name="description" content="Jonathan R. Adcox is an Application Architect focused on enterprise applications, identity, integration, automation, cloud platforms, and architecture governance."/>
-  <link rel="canonical" href="https://www.adcox.ai/" />
-
-  <!-- Bootstrap 5 (CSS) via public CDN -->
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-    crossorigin="anonymous"
-  />
-
-  <!-- Favicons (put these files under /favicon/ on your site) -->
-      <!-- IE / Legacy Favicon -->
-    <link itemprop="logo" rel="shortcut icon" type="image/x-icon" href="favicon/favicon.ico" />
-
-    <!-- Default Favicon -->
-    <link itemprop="logo" rel="icon" type="image/png" href="favicon/favicon.png" />
-
-    <!-- Apple Touch Icons -->
-    <link rel="apple-touch-icon" sizes="57x57" href="favicon/apple-icon-57x57.png" />
-    <link rel="apple-touch-icon" sizes="60x60" href="favicon/apple-icon-60x60.png" />
-    <link rel="apple-touch-icon" sizes="72x72" href="favicon/apple-icon-72x72.png" />
-    <link rel="apple-touch-icon" sizes="76x76" href="favicon/apple-icon-76x76.png" />
-    <link rel="apple-touch-icon" sizes="114x114" href="favicon/apple-icon-114x114.png" />
-    <link rel="apple-touch-icon" sizes="120x120" href="favicon/apple-icon-120x120.png" />
-    <link rel="apple-touch-icon" sizes="144x144" href="favicon/apple-icon-144x144.png" />
-    <link rel="apple-touch-icon" sizes="152x152" href="favicon/apple-icon-152x152.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-icon-180x180.png" />
-
-    <!-- Android + Modern Browsers -->
-    <link rel="icon" type="image/png" sizes="192x192" href="favicon/android-icon-192x192.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png" />
-
-  <link rel="manifest" href="/favicon/manifest.json" />
-  <meta name="msapplication-TileColor" content="#0a0a0a" />
-  <meta name="msapplication-TileImage" content="/favicon/ms-icon-144x144.png" />
-  <meta name="theme-color" content="#0a0a0a" />
-
-  <!-- Open Graph / preview -->
-  <meta property="og:title" content="Adcox.AI | Jonathan R. Adcox" />
-  <meta property="og:site_name" content="Adcox.AI" />
-  <meta property="og:url" content="https://www.adcox.ai/" />
-  <meta property="og:description" content="Application Architect specializing in enterprise applications, identity strategy, architecture governance, automation, integration, and evidence-driven fault isolation." />
-  <meta property="og:type" content="website" />
-  <!-- Custom Open Graph / Teams/Slack preview image -->
-  <meta property="og:image" content="https://www.adcox.ai/favicon/og-preview.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Adcox.AI | Jonathan R. Adcox" />
-  <meta name="twitter:description" content="Application Architect specializing in enterprise applications, identity, integration, automation, cloud platforms, and architecture governance." />
-  <meta name="twitter:image" content="https://www.adcox.ai/favicon/og-preview.png" />
-  <meta name="twitter:image:alt" content="Adcox.AI — Jonathan R. Adcox" />
-
-  <!-- Structured Data: Person + WebSite -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Person",
-        "@id": "https://www.adcox.ai/#jr-adcox",
-        "name": "Jonathan R. Adcox",
-        "alternateName": ["Jonathan Adcox", "blayderunner123"],
-        "givenName": "Jonathan",
-        "familyName": "Adcox",
-        "url": "https://www.adcox.ai/",
-        "mainEntityOfPage": { "@id": "https://www.adcox.ai/about/#profile-page" },
-        "image": "https://www.adcox.ai/favicon/android-icon-192x192.png",
-        "jobTitle": "Application Architect",
-        "description": "Application Architect focused on enterprise applications, identity, integration, automation, cloud platforms, and architecture governance.",
-        "email": "mailto:jonathan.r.adcox@gmail.com",
-        "knowsAbout": [
-          "Application Architecture","Architecture Governance","PowerShell","Azure Logic Apps",
-          "Microsoft Graph","Microsoft 365","SharePoint","Power BI","Snowflake","ServiceNow",
-          "Entra ID","Active Directory","Entra Connect","SAML","OIDC","OAuth","RBAC","IGA","PIM",
-          "REST APIs","Process Automation","Systems Integration","C#","ASP.NET","SQL Server","T-SQL",
-          "HTML5","CSS3","JavaScript","jQuery","Node.js","WordPress","Joomla","Drupal","SFTP",
-          "RightFax","UKG","Webex","Concur","Multiview","Lean Six Sigma","Knowledge Management"
-        ],
-        "sameAs": [
-          "https://github.com/blayderunner123",
-          "https://www.linkedin.com/in/blayderunner123",
-          "https://stackoverflow.com/users/4014161/blayderunner123"
-        ]
-      },
-      {
-        "@type": "WebSite",
-        "@id": "https://www.adcox.ai/#website",
-        "url": "https://www.adcox.ai/",
-        "name": "Adcox.AI",
-        "inLanguage": "en",
-        "publisher": { "@id": "https://www.adcox.ai/#jr-adcox" }
-      },
-      {
-        "@type": "WebPage",
-        "@id": "https://www.adcox.ai/#webpage",
-        "url": "https://www.adcox.ai/",
-        "name": "Adcox.AI — Jonathan R. Adcox | Application Architect",
-        "isPartOf": { "@id": "https://www.adcox.ai/#website" },
-        "about": { "@id": "https://www.adcox.ai/#jr-adcox" },
-        "inLanguage": "en"
-      }
-    ]
-  }
-  </script>
-
+  <meta name="description" content="Jonathan R. Adcox is an Application Architect focused on enterprise applications, Microsoft 365, Azure, identity, integration, automation, and governance.">
+  <link rel="canonical" href="https://www.adcox.ai/">
+  <link rel="icon" href="/favicon/favicon.ico">
+  <meta property="og:type" content="website"><meta property="og:url" content="https://www.adcox.ai/"><meta property="og:title" content="Jonathan R. Adcox | Application Architect"><meta property="og:description" content="Application architecture across identity, integration, automation, data, security, and governance."><meta property="og:image" content="https://www.adcox.ai/favicon/og-preview.png">
+  <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Jonathan R. Adcox | Application Architect"><meta name="twitter:description" content="Application architecture across identity, integration, automation, data, security, and governance."><meta name="twitter:image" content="https://www.adcox.ai/favicon/og-preview.png">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Person","@id":"https://www.adcox.ai/#jonathan-r-adcox","name":"Jonathan R. Adcox","alternateName":["Jonathan Adcox","blayderunner123"],"url":"https://www.adcox.ai/","jobTitle":"Application Architect","description":"Application architect focused on enterprise applications, Microsoft 365, Azure, identity, integration, automation, and governance.","sameAs":["https://github.com/blayderunner123","https://www.linkedin.com/in/blayderunner123","https://stackoverflow.com/users/4014161/blayderunner123"]},{"@type":"WebSite","@id":"https://www.adcox.ai/#website","url":"https://www.adcox.ai/","name":"Adcox.AI","publisher":{"@id":"https://www.adcox.ai/#jonathan-r-adcox"}},{"@type":"WebPage","@id":"https://www.adcox.ai/#webpage","url":"https://www.adcox.ai/","name":"Jonathan R. Adcox | Application Architect","isPartOf":{"@id":"https://www.adcox.ai/#website"},"about":{"@id":"https://www.adcox.ai/#jonathan-r-adcox"}}]}</script>
   <style>
-    :root{
-      --bg: #0f1724; --card: #0b1220; --muted: #9aa7bf; --accent: #7dd3fc; --teal:#14b8a6;
+    :root {
+      --ink: #071118;
+      --ink-2: #0b1921;
+      --ink-3: #10232d;
+      --paper: #f2ede2;
+      --paper-2: #ded7c9;
+      --text: #f3eee4;
+      --muted: #9bb0b8;
+      --cyan: #62d5e7;
+      --orange: #ff8b3d;
+      --line: rgba(151, 205, 216, .22);
+      --line-strong: rgba(151, 205, 216, .42);
+      --max: 1480px;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "IBM Plex Mono", "Cascadia Code", Consolas, monospace;
     }
-    body{
-      background: radial-gradient(1200px 600px at 10% 10%, rgba(125,211,252,.06), transparent 10%),
-                  linear-gradient(180deg, #071028 0%, var(--bg) 100%);
-      color: #e6eef8;
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        linear-gradient(rgba(68, 139, 153, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(68, 139, 153, .045) 1px, transparent 1px),
+        radial-gradient(circle at 75% 7%, rgba(35, 139, 157, .12), transparent 28rem),
+        var(--ink);
+      background-size: 42px 42px, 42px 42px, auto, auto;
+      font-family: var(--sans);
+      line-height: 1.55;
     }
-    .hero-card{
-      background: rgba(255,255,255,0.04);
-      backdrop-filter: blur(4px);
-      border: 1px solid rgba(255,255,255,0.06);
+
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    .shell { width: min(calc(100% - 48px), var(--max)); margin-inline: auto; }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(7, 17, 24, .9);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--line);
     }
-    .muted{ color: var(--muted); }
 
-    /* F5 banner */
-    .f5{
-      font-family: ui-monospace, Menlo, Consolas, "Liberation Mono", monospace;
-      background: linear-gradient(90deg,#071330,#0b2436);
-      color: var(--accent);
-      border-radius: .6rem;
-      padding: .9rem 1rem;
-      box-shadow: inset 0 0 0 1px rgba(125,211,252,0.25), 0 0 30px rgba(125,211,252,0.12);
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 28px;
     }
-    .okdot{
-      display:inline-block; width:8px; height:8px; border-radius:50%;
-      background: radial-gradient(circle, #7dd3fc 0%, #3366cc 60%, #0a2742 100%);
-      margin-right:6px;
+
+    .brand { display: inline-flex; align-items: center; gap: 13px; text-decoration: none; }
+    .brand-mark {
+      width: 42px;
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      color: var(--ink);
+      background: var(--orange);
+      font: 900 18px/1 var(--mono);
+      box-shadow: 0 0 0 1px rgba(255,255,255,.16), 0 0 30px rgba(255,139,61,.14);
     }
-    a.btn-hire{ font-weight:700; }
-    .link-pill{
-      display:inline-block; padding:.4rem .7rem; border-radius:50rem;
-      background: rgba(255,255,255,.06); color: var(--muted); text-decoration:none;
-      margin-right:.4rem; margin-bottom:.4rem;
+    .brand-copy strong { display: block; letter-spacing: .025em; font-size: 1.08rem; }
+    .brand-copy span { display: block; color: var(--muted); font: 500 .61rem/1.3 var(--mono); letter-spacing: .15em; text-transform: uppercase; }
+
+    .nav-links { display: flex; align-items: center; gap: 28px; }
+    .nav-links a { color: #c9d5d8; text-decoration: none; font-size: .92rem; }
+    .nav-links a:hover, .nav-links a[aria-current="page"] { color: var(--text); }
+    .nav-links a::after {
+      content: "";
+      display: block;
+      height: 2px;
+      margin-top: 7px;
+      background: var(--orange);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .28s ease;
     }
-    .btn-teal { background: var(--teal); color:#052e2b; border:0; }
-    .btn-teal:hover { filter:brightness(0.9); color:#03201e; }
+    .nav-links a:hover::after, .nav-links a:focus-visible::after, .nav-links a[aria-current="page"]::after { transform: scaleX(1); }
+    .nav-dropdown { position: relative; }
+    .nav-dropdown > button { position: relative; padding: 0 0 7px; border: 0; color: #c9d5d8; background: transparent; font: inherit; cursor: pointer; }
+    .nav-dropdown > button::after { content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: var(--orange); transform: scaleX(0); transform-origin: left; transition: transform .28s ease; }
+    .nav-dropdown:hover > button::after, .nav-dropdown:focus-within > button::after { transform: scaleX(1); }
+    .nav-dropdown-menu { position: absolute; top: 100%; left: -18px; width: 250px; display: grid; padding: 12px; background: var(--ink); border: 1px solid var(--line-strong); box-shadow: 0 22px 60px rgba(0,0,0,.35); opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .2s ease, transform .2s ease, visibility .2s; }
+    .nav-dropdown:hover .nav-dropdown-menu, .nav-dropdown:focus-within .nav-dropdown-menu, .nav-dropdown.open .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .nav-dropdown-menu a { padding: 10px 12px; }
+    .nav-dropdown-menu small { display: block; color: var(--muted); font: 600 .58rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+    .menu-button { display: none; border: 1px solid var(--line-strong); color: var(--text); background: transparent; padding: 9px 12px; border-radius: 4px; font: 600 .8rem var(--mono); }
 
-    .resume-list li{ margin-bottom:.4rem; }
-    .skill-chip{
-      display:inline-flex; align-items:center; gap:.35rem;
-      border:1px solid rgba(255,255,255,.12); border-radius:.5rem;
-      padding:.35rem .55rem; color:#cfe3ff; margin:.25rem .25rem 0 0;
-      background: rgba(255,255,255,.03);
-      font-size:.925rem;
+    .status-strip {
+      border-bottom: 1px solid var(--line);
+      color: var(--cyan);
+      font: 600 .66rem/1 var(--mono);
+      letter-spacing: .12em;
+      text-transform: uppercase;
     }
-    .skill-chip small{ color:var(--muted); font-size:.8em; }
-    .section-title{ letter-spacing:.02em; }
-    .timeline-dot{ width:.6rem; height:.6rem; border-radius:50%; background:var(--teal); margin-top:.45rem; }
-    .timeline-line{ width:2px; background:rgba(255,255,255,.15); flex:1; margin:0 .6rem; }
-	/* ===== Adcox.AI high-contrast tweaks ===== */
-	:root{
-	  /* slightly brighter neutrals on deep navy */
-	  --bg: #0f1724;
-	  --card: #0b1220;
-	  --muted: #c5d3ea;         /* was #9aa7bf */
-	  --accent: #7dd3fc;
-	  --teal: #1dd4c7;          /* a smidge brighter */
-	}
+    .status-strip .shell { min-height: 34px; display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+    .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 14px rgba(255,139,61,.8); }
 
-	/* Card glass: a touch more lift + border contrast */
-	.hero-card{
-	  background: rgba(255,255,255,0.06);                 /* was .04 */
-	  border: 1px solid rgba(255,255,255,0.18);           /* was .06 */
-	}
+    .hero {
+      min-height: 660px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(480px, .95fr);
+      align-items: center;
+      gap: clamp(40px, 7vw, 110px);
+      padding-block: 78px 72px;
+    }
 
-	/* Body copy + “muted” text read better on dark */
-	.muted{ color: #d9e5ff; }                              /* was var(--muted) */
-	.text-secondary{ color:#bcd1ff !important; }           /* rescue bullets/notes */
+    .eyebrow, .section-kicker {
+      color: var(--muted);
+      font: 600 .67rem/1.3 var(--mono);
+      letter-spacing: .17em;
+      text-transform: uppercase;
+    }
+    .eyebrow { display: flex; align-items: center; gap: 18px; }
+    .eyebrow::after { content: ""; height: 1px; flex: 1; max-width: 310px; background: var(--line-strong); }
+    h1 { margin: 28px 0 0; font-size: clamp(3.3rem, 6.25vw, 6.9rem); line-height: .91; letter-spacing: -.065em; }
+    .role { display: block; margin-top: 20px; font-size: clamp(1.9rem, 3.2vw, 3.55rem); line-height: 1; font-weight: 420; letter-spacing: -.035em; color: var(--paper-2); }
+    .hero-lead { max-width: 760px; margin: 32px 0 0; color: #d5dfe1; font-size: clamp(1.1rem, 1.35vw, 1.42rem); line-height: 1.55; }
+    .hero-actions { display: flex; gap: 16px; align-items: center; margin-top: 36px; }
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 13px;
+      min-height: 48px;
+      padding: 0 22px;
+      text-decoration: none;
+      font-weight: 750;
+      border-radius: 3px;
+      border: 1px solid transparent;
+      background-repeat: no-repeat;
+      background-position: left center;
+      background-size: 0 100%;
+      transition: color .25s ease, background-size .34s ease;
+    }
+    .button-primary { color: #1b120c; background-color: var(--orange); background-image: linear-gradient(#ffc08e, #ffc08e); }
+    .button-primary:hover, .button-primary:focus-visible { background-size: 100% 100%; }
+    .button-secondary {
+      position: relative;
+      color: var(--paper);
+      padding-inline: 5px;
+    }
+    .button-secondary::after {
+      content: "";
+      position: absolute;
+      left: 5px;
+      right: 5px;
+      bottom: 0;
+      height: 1px;
+      background: var(--orange);
+      transform: scaleX(.42);
+      transform-origin: left;
+      transition: transform .3s ease;
+    }
+    .button-secondary:hover::after, .button-secondary:focus-visible::after { transform: scaleX(1); }
+    .hero-note { margin-top: 34px; padding-top: 18px; display: flex; align-items: center; gap: 18px; border-top: 1px solid var(--line); color: var(--muted); font: 600 .66rem/1.5 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .hero-note i { color: var(--paper-2); font-family: Georgia, serif; font-weight: 400; letter-spacing: .04em; text-transform: none; }
 
-	/* Section titles pop */
-	.section-title{ color:#eaf1ff; }
+    .architecture { position: relative; min-height: 550px; margin-bottom: 18px; isolation: isolate; }
+    .architecture::before { content: ""; position: absolute; inset: 6% 2%; border: 1px solid var(--line); background: rgba(4,17,23,.32); z-index: -2; }
+    .architecture::after { content: ""; position: absolute; inset: 14%; border-radius: 50%; border: 1px dashed rgba(98,213,231,.25); z-index: -1; animation: rotate 45s linear infinite; }
+    @keyframes rotate { to { transform: rotate(360deg); } }
+    .architecture svg { width: 100%; height: 520px; overflow: visible; }
+    .architecture .orbit { fill: none; stroke: rgba(98,213,231,.26); stroke-width: 1.2; }
+    .architecture .connector { stroke: rgba(173,220,228,.47); stroke-width: 1; }
+    .architecture .node circle { fill: #091923; stroke: rgba(143,222,235,.85); stroke-width: 1.2; }
+    .architecture .node text { fill: var(--text); font: 600 13px var(--sans); text-anchor: middle; }
+    .architecture .node .glyph { fill: none; stroke: var(--cyan); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .architecture .core circle { fill: var(--orange); stroke: rgba(255,255,255,.3); }
+    .architecture .core text { fill: var(--ink); font: 900 17px var(--mono); }
+    .diagram-note { position: absolute; color: var(--cyan); font: 600 .61rem/1.5 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .diagram-note.one { left: 5%; top: 11%; max-width: 10rem; padding-left: 4px; }
+    .diagram-note.two { right: 5%; top: 11%; max-width: 10rem; text-align: right; }
+    .diagram-note.three { right: 4%; bottom: 0; padding: 0; text-align: right; color: var(--muted); background: transparent; }
 
-	/* Links on dark should be true-light */
-	a.link-light, .navbar-dark .navbar-nav .nav-link{
-	  color:#eaf1ff;
-	}
-	a.link-light:hover, .navbar-dark .navbar-nav .nav-link:hover{
-	  color:#ffffff;
-	}
+    .section { border-top: 1px solid var(--line); padding-block: 66px; }
+    .section-head { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px; margin-bottom: 32px; }
+    .section-head h2 { margin: 0; font-size: clamp(1.35rem, 2vw, 2rem); letter-spacing: .11em; text-transform: uppercase; }
+    .section-head .rule { height: 1px; background: var(--line-strong); }
+    .section-head p { margin: 0; color: var(--muted); font: 600 .63rem/1.4 var(--mono); letter-spacing: .12em; text-transform: uppercase; }
 
-	/* Skill chips: brighter text, clearer outline, gentle hover */
-	.skill-chip{
-	  color:#eaf1ff;
-	  border-color: rgba(255,255,255,.28);
-	  background: rgba(255,255,255,.08);
-	}
-	.skill-chip small{ color:#cfe0ff; }
-	.skill-chip:hover{ background: rgba(255,255,255,.12); }
+    .work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; }
+    .case-study { border: 1px solid var(--line-strong); background: rgba(5,18,24,.76); }
+    .case-top { min-height: 130px; padding: 28px; display: grid; grid-template-columns: 50px 1fr; gap: 18px; align-items: start; }
+    .case-icon { width: 46px; height: 46px; display: grid; place-items: center; color: var(--orange); border: 1px solid rgba(255,139,61,.7); border-radius: 50%; font: 700 1.2rem var(--mono); }
+    .case-top h3 { margin: 0 0 7px; font-size: 1.25rem; line-height: 1.15; }
+    .case-top p { margin: 0; color: var(--muted); }
+    .case-body { padding: 16px 28px 20px; color: #1c2426; background: var(--paper); }
+    .case-row { display: grid; grid-template-columns: 86px 1fr; gap: 18px; padding: 13px 0; border-bottom: 1px solid rgba(20,30,32,.14); }
+    .case-row:last-child { border-bottom: 0; }
+    .case-row strong { position: relative; padding-left: 12px; font-size: .85rem; }
+    .case-row strong::before { content: ""; position: absolute; left: 0; top: .28em; width: 3px; height: 1em; background: var(--orange); }
+    .case-row span { font-size: .85rem; color: #38464a; }
+    .case-link {
+      display: flex;
+      justify-content: flex-end;
+      padding: 14px 28px;
+      color: #dce8ea;
+      text-decoration: none;
+      border-top: 1px solid var(--line);
+      font-size: .82rem;
+      background-image: linear-gradient(90deg, rgba(255,139,61,.14), rgba(255,139,61,.04));
+      background-repeat: no-repeat;
+      background-position: left;
+      background-size: 0 100%;
+      transition: color .25s ease, background-size .36s ease;
+    }
+    .case-link:hover, .case-link:focus-visible { color: var(--orange); background-size: 100% 100%; }
 
-	/* F5 banner keeps glow but ups readability */
-	.f5{
-	  color: #aee7ff;
-	  box-shadow:
-		inset 0 0 0 1px rgba(125,211,252,0.35),
-		0 0 34px rgba(125,211,252,0.18);
-	}
+    .method-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .method {
+      padding: 34px;
+      color: var(--text);
+      text-decoration: none;
+      background-color: var(--ink-2);
+      background-image: linear-gradient(90deg, rgba(98,213,231,.08), rgba(98,213,231,.015));
+      background-repeat: no-repeat;
+      background-position: left;
+      background-size: 0 100%;
+      transition: background-size .38s ease;
+    }
+    .method:hover { background-size: 100% 100%; }
+    .method-number { color: var(--orange); font: 700 .72rem var(--mono); }
+    .method h3 { margin: 35px 0 12px; font-size: 1.23rem; }
+    .method p { margin: 0; color: var(--muted); }
+    .ai-feature { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(320px, .85fr); border: 1px solid var(--line-strong); background: rgba(5,18,24,.82); }
+    .ai-feature-copy { padding: clamp(30px, 5vw, 70px); }
+    .ai-feature-copy h2 { max-width: 800px; margin: 18px 0; font-size: clamp(2.4rem, 5vw, 5.2rem); line-height: .95; letter-spacing: -.055em; }
+    .ai-feature-copy p { max-width: 700px; color: #cbd9dc; font-size: 1.08rem; }
+    .ai-feature-panel { padding: 34px; display: grid; align-content: center; gap: 1px; border-left: 1px solid var(--line); background: rgba(98,213,231,.025); }
+    .ai-signal { padding: 18px 20px; border: 1px solid var(--line); background-image: linear-gradient(90deg, rgba(98,213,231,.1), transparent); background-repeat: no-repeat; background-size: 0 100%; transition: background-size .35s ease; }
+    .ai-signal:hover { background-size: 100% 100%; }
+    .ai-signal strong { display: block; color: var(--cyan); font: 700 .65rem var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .ai-signal span { display: block; margin-top: 6px; color: var(--muted); }
 
-	/* Badges/buttons: a little punchier */
-	.btn-outline-light{ color:#eaf1ff; border-color:#cfe0ff; }
-	.btn-outline-light:hover{ background:#cfe0ff; color:#0b1220; }
-	.btn-info.btn-hire{ filter: saturate(1.1) brightness(1.05); }
-	.badge.text-bg-info{ color:#0b1220; }
+    .footprint {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, 1fr);
+      align-items: stretch;
+      border: 1px solid var(--line);
+      background: rgba(6,19,25,.72);
+    }
+    .footprint-title { padding: 28px; }
+    .footprint-title h2 { margin: 0 0 7px; font-size: 1rem; letter-spacing: .13em; text-transform: uppercase; }
+    .footprint-title span { color: var(--muted); font: 600 .6rem var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+    .profile-link {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 24px;
+      border-left: 1px solid var(--line);
+      text-decoration: none;
+      background-image: linear-gradient(90deg, rgba(98,213,231,.11), rgba(98,213,231,.025));
+      background-repeat: no-repeat;
+      background-position: left;
+      background-size: 0 100%;
+      transition: color .25s ease, background-size .36s ease;
+    }
+    .profile-link:hover, .profile-link:focus-visible { color: var(--orange); background-size: 100% 100%; }
+    .profile-icon { width: 34px; height: 34px; display: grid; place-items: center; border: 1px solid var(--line-strong); border-radius: 50%; color: var(--cyan); font: 700 .72rem var(--mono); }
+    .profile-link strong { display: block; font-size: .88rem; }
+    .profile-link small { display: block; color: var(--muted); }
 
-	/* Timeline chrome: clearer dots/line on dark */
-	.timeline-dot{ background: var(--teal); box-shadow: 0 0 0 2px rgba(29,212,199,.2); }
-	.timeline-line{ background: rgba(255,255,255,.22); }
+    .site-footer { padding: 42px 0; border-top: 1px solid var(--line); margin-top: 70px; }
+    .footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 40px; align-items: start; }
+    .footer-statement { max-width: 520px; color: var(--muted); }
+    .footer-heading { color: var(--paper); font: 650 .65rem var(--mono); letter-spacing: .13em; text-transform: uppercase; }
+    .footer-links { display: grid; gap: 8px; margin-top: 14px; }
+    .footer-links a {
+      width: fit-content;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: .86rem;
+      background-image: linear-gradient(var(--orange), var(--orange));
+      background-repeat: no-repeat;
+      background-position: left bottom;
+      background-size: 0 1px;
+      transition: color .25s ease, background-size .3s ease;
+    }
+    .footer-links a:hover, .footer-links a:focus-visible { color: var(--orange); background-size: 100% 1px; }
+    .copyright { margin-top: 38px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; gap: 20px; color: #738990; font: 600 .61rem var(--mono); letter-spacing: .09em; text-transform: uppercase; }
 
-	/* Horizontal rules not too faint */
-	hr{ border-color: rgba(255,255,255,.22); opacity: 1; }
-	/* Role titles inside Experience — make them bright and readable */
-	.role-title{
-	  color:#eaf1ff;           /* bright headline on dark */
-	  font-weight:600;
-	  letter-spacing:.01em;
-	}
+    @media (max-width: 1040px) {
+      .hero { grid-template-columns: 1fr; }
+      .architecture { min-height: 480px; }
+      .architecture svg { height: 450px; }
+      .work-grid, .method-grid { grid-template-columns: 1fr; }
+      .footprint { grid-template-columns: 1fr; }
+      .profile-link { border-left: 0; border-top: 1px solid var(--line); }
+    }
+
+    @media (max-width: 790px) {
+      .shell { width: min(calc(100% - 28px), var(--max)); }
+      .brand-copy span { display: none; }
+      .menu-button { display: block; }
+      .nav-links { display: none; position: absolute; left: 14px; right: 14px; top: 70px; padding: 18px; flex-direction: column; align-items: stretch; gap: 0; background: #0a1820; border: 1px solid var(--line-strong); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px; }
+      .nav-links a[aria-current="page"]::after { display: none; }
+      .nav-dropdown { width: 100%; }
+      .nav-dropdown > button { width: 100%; padding: 12px; text-align: left; }
+      .nav-dropdown-menu { position: static; display: none; width: 100%; margin-top: 4px; opacity: 1; visibility: visible; transform: none; box-shadow: none; }
+      .nav-dropdown.open .nav-dropdown-menu { display: grid; }
+      .status-strip .shell { justify-content: center; }
+      .hero { min-height: auto; padding-block: 58px 42px; }
+      h1 { font-size: clamp(3rem, 15vw, 5.1rem); }
+      .hero-actions { align-items: stretch; flex-direction: column; }
+      .architecture { min-height: 390px; }
+      .architecture svg { height: 360px; }
+      .diagram-note { display: none; }
+      .section-head { grid-template-columns: 1fr; gap: 10px; }
+      .section-head .rule { display: none; }
+      .case-row { grid-template-columns: 1fr; gap: 6px; }
+      .ai-feature { grid-template-columns: 1fr; }
+      .ai-feature-panel { border-left: 0; border-top: 1px solid var(--line); }
+      .footer-grid { grid-template-columns: 1fr; }
+      .copyright { flex-direction: column; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .architecture::after { animation: none; }
+      .nav-links a::after,
+      .button,
+      .button-secondary::after,
+      .case-link,
+      .method,
+      .profile-link,
+      .footer-links a { transition: none; }
+    }
   </style>
-  <style>
-/* Normalize navbar links to the muted palette site-wide */
-.navbar-dark .navbar-nav .nav-link {
-  color: rgba(255,255,255,.55);
-}
-.navbar-dark .navbar-nav .nav-link:hover,
-.navbar-dark .navbar-nav .nav-link:focus {
-  color: rgba(255,255,255,.75);
-}
-.navbar-dark .navbar-nav .nav-link.active,
-.navbar-dark .navbar-nav .show > .nav-link {
-  color: #fff;
-}
-</style>
 </head>
 <body>
-  <!-- Navbar -->
-  <nav class="navbar navbar-expand-md navbar-dark" style="background:rgba(0,0,0,.25)">
-    <div class="container">
-      <a class="navbar-brand fw-bold" href="/">
-		<img src="/favicon/favicon-32x32.png" alt="" width="28" height="28" class="d-inline-block align-text-top">
-		ADCOX.AI
-	  </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div id="nav" class="collapse navbar-collapse">
-        <ul class="navbar-nav ms-auto">
-			<li class="nav-item"><a class="nav-link active" aria-current="page" href="/">Home</a></li>
-			<li class="nav-item"><a class="nav-link" href="/about/">About</a></li>
-			<li class="nav-item"><a class="nav-link" href="#resume">Résumé</a></li>
-			<li class="nav-item"><a class="nav-link" href="#work">Adventures</a></li>
-			<li class="nav-item"><a class="nav-link" href="#weekly">Weekly</a></li>
-			<li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-			<li class="nav-item"><a class="nav-link" href="/ask-ai/">Ask AI</a></li>
-			<li class="nav-item"><a class="nav-link" href="/qr-brand/">QR Maker</a></li>
-			<li class="nav-item"><a class="nav-link" href="/metrics-api/">Metrics</a></li>
-			<li class="nav-item"><a class="nav-link" href="/url-parser/">URL Parser</a></li>
-			<li class="nav-item"><a class="nav-link" href="/keyforge/">KeyForge</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-	<script>
-		(() => {
-		  const here = location.pathname.replace(/\/+$/, '') || '/';
-		  document.querySelectorAll('.navbar a.nav-link').forEach(a => {
-			const href = a.getAttribute('href').replace(/\/+$/, '') || '/';
-			// exact match or section anchor on the home page
-			if (href === here || (here === '/' && href.startsWith('/#'))) {
-			  a.classList.add('active');
-			  a.setAttribute('aria-current', 'page');
-			} else {
-			  a.classList.remove('active');
-			  a.removeAttribute('aria-current');
-			}
-		  });
-		})();
-	</script>
-  <!-- Hero -->
-  <header class="py-5">
-    <div class="container">
-      <div class="row g-4 align-items-stretch">
-        <div class="col-lg-5">
-          <div class="card hero-card h-100">
-            <div class="card-body">
-              <h1 class="h3 mb-2 role-title">Jonathan R. Adcox</h1>
-              <p class="muted mb-3">Application Architect, enterprise systems builder, mild Viking energy</p>
-
-              <!-- Animated F5 Banner -->
-              <div class="f5" id="f5-banner" aria-live="polite" aria-label="F5 status banner">
-                <pre id="f5-frame" class="mb-0" style="white-space:pre-wrap"></pre>
-              </div>
-
-              <div class="mt-3">
-                <!-- quick badges for top-of-page scan -->
-                <span class="link-pill">PowerShell</span>
-                <span class="link-pill">Logic Apps</span>
-                <span class="link-pill">Microsoft Graph</span>
-                <span class="link-pill">SharePoint</span>
-                <span class="link-pill">Power BI</span>
-              </div>
-
-              <div class="d-grid d-sm-inline-flex gap-2 mt-4">
-                <a class="btn btn-info btn-hire" href="mailto:jonathan.r.adcox@gmail.com">
-                  Hire Me
-                </a>
-                <a class="btn btn-outline-light" href="#work">See Work</a>
-				<a class="btn btn-primary" href="/ask-ai/">Ask AI</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-7">
-          <div class="card hero-card h-100">
-            <div class="card-body">
-              <p class="muted mb-2">Adcox.AI is a resume-shaped landing page for architecture, automation, systems integration, and the occasional tool built because repetitive work offended me personally.</p>
-              <ul class="mb-0 role-title">
-                <li>Architecture that connects applications, identity, infrastructure, security, and operations before they wander into separate meetings.</li>
-                <li>Automation with validation, structured logging, and receipts, because future-me should not need a séance.</li>
-                <li>Evidence-first diagnosis that isolates the real failure boundary before anyone starts sacrificing servers.</li>
-              </ul>
-              <hr class="border-secondary opacity-50">
-              <div class="row">
-                <div class="col-sm-6">
-                  <h2 id="about" class="h5">About</h2>
-                  <p class="muted mb-0">I make ambiguous enterprise problems confess, then turn the answer into supportable architecture, automation, and operational outcomes.</p>
-					<a class="btn btn-outline-light mt-2" href="/about/">Read full About</a>
-                </div>
-                <div class="col-sm-6">
-                  <h2 id="contact" class="h5">Contact</h2>
-                  <p class="mb-1"><span class="muted">Email</span><br><a class="link-light" href="mailto:jonathan.r.adcox@gmail.com">jonathan.r.adcox@gmail.com</a></p>
-                  <p class="mb-0"><span class="muted">Site</span><br><a class="link-light" href="/">adcox.ai</a></p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>        
-      </div>
+  <header class="site-header">
+    <div class="shell nav">
+      <a class="brand" href="#top" aria-label="Adcox.AI homepage">
+        <span class="brand-mark">A</span>
+        <span class="brand-copy"><strong>Adcox.AI</strong><span>Systems for what’s next</span></span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav class="nav-links" id="site-nav" aria-label="Primary navigation">
+        <a href="#top" aria-current="page">Home</a>
+        <a href="/about/">About</a>
+        <a href="#work">Work</a>
+        <a href="#writing">Writing</a>
+        <span class="nav-dropdown"><button type="button" aria-expanded="false">Tools ▾</button><span class="nav-dropdown-menu"><a href="/ask-ai/"><strong>Ask Adcox AI</strong><small>Ask anything · no saved history</small></a><a href="/keyforge/">KeyForge<small>Password derivation</small></a><a href="/url-parser/">URL Parser<small>Inspect and decode</small></a><a href="/qr-brand/">QR Maker<small>Branded QR exports</small></a><a href="/metrics-api/">Metrics Console<small>API observability</small></a></span></span>
+        <a href="/ask-ai/">Ask AI</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </div>
   </header>
 
-  <!-- Résumé -->
-  <section class="pb-5" id="resume">
-    <div class="container">
-      <div class="row g-4">
-        <!-- Experience -->
-        <div class="col-lg-8">
-          <div class="card hero-card">
-            <div class="card-body">
-              <h3 class="h5 section-title mb-3">Experience</h3>
-
-              <!-- Role 1 -->
-              <div class="mb-4">
-                <div class="d-flex align-items-start">
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-line"></div>
-                  <div class="flex-grow-1">
-                    <!-- Role 1 -->
-					<div class="d-flex justify-content-between align-items-baseline flex-wrap">
-					  <span class="role-title">Application Architecture & Enterprise Platforms</span>
-					  <small class="text-secondary">2022 — Present</small>
-					</div>
-                    <ul class="resume-list text-secondary small mt-2 mb-0">
-                      <li>Serve as the sole Application Domain participant on an enterprise architecture review board, making sure application concerns do not vanish between “infrastructure” and “someone else’s problem.”</li>
-                      <li>Lead hybrid identity strategy spanning lifecycle management, human and non-human identities, RBAC/IGA, privileged access, admin consent, SSO, federation, and application access governance.</li>
-                      <li>Designed an HR-to-identity orchestration pipeline across Active Directory, Entra Connect, and Entra ID that improved dynamic-rule evaluation by approximately 45% while reducing Microsoft Graph consumption by 40–60%.</li>
-                      <li>Establish repeatable architecture, security-review, integration, and fault-isolation practices across Microsoft 365, SharePoint, Power BI, Snowflake, ServiceNow, RightFax, and other platforms, because one-time heroics are a terrible operating model.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Role 2 -->
-              <div class="mb-4">
-                <div class="d-flex align-items-start">
-                  <div class="timeline-dot"></div>
-                  <div class="timeline-line"></div>
-                  <div class="flex-grow-1">
-                    <div class="d-flex justify-content-between align-items-baseline flex-wrap">
-					  <span class="role-title">Software Engineering, Process Transformation & Mission Leadership</span>
-					  <small class="text-secondary">2006 — 2022</small>
-					</div>
-                    <ul class="resume-list text-secondary small mt-2 mb-0">
-                      <li>Built and modernized defense and government systems using C#, .NET MVC, Web Forms, SQL Server, REST integrations, SharePoint, PowerShell, and cloud-orchestration technologies.</li>
-                      <li>Applied Lean Six Sigma to modernize five joint battle-staff processes, including a contingency-operations workflow that reduced a seven-day resource-mobilization cycle to 18 hours, proving process improvement can do more than produce colorful swim lanes.</li>
-                      <li>Led Soldiers in combat and garrison environments across Iraq and Afghanistan while supporting battle-staff operations, knowledge management, logistics, training, and executive-level briefings, where the consequences were considerably less theoretical.</li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Education & Certs -->
-              <div class="mt-4">
-                <h4 class="h6 text-uppercase text-secondary">Education & Certifications</h4>
-				<ul class="resume-list text-secondary small mb-0">
-				  <li>A.S. Web Design & Development</li>
-				  <li>Microsoft Certified Solutions Developer (MCSD): App Builder</li>
-				  <li>CompTIA Security+ CE</li>
-				  <li>ITIL Foundation</li>
-				  <li>Lean Six Sigma Green Belt</li>
-				</ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Skills -->
-        <div class="col-lg-4">
-          <div class="card hero-card">
-            <div class="card-body">
-              <h3 class="h5 section-title mb-3">Skills</h3>
-
-              <h6 class="text-secondary text-uppercase mt-1 mb-2">Core</h6>
-              <div>
-                <span class="skill-chip">Application Architecture</span>
-                <span class="skill-chip">PowerShell</span>
-                <span class="skill-chip">Azure Logic Apps</span>
-                <span class="skill-chip">Microsoft Graph</span>
-                <span class="skill-chip">Microsoft 365</span>
-                <span class="skill-chip">SharePoint</span>
-                <span class="skill-chip">Power BI</span>
-                <span class="skill-chip">REST APIs</span>
-              </div>
-
-              <h6 class="text-secondary text-uppercase mt-3 mb-2">Languages / Web</h6>
-              <div>
-                <span class="skill-chip">HTML5</span>
-                <span class="skill-chip">CSS3</span>
-                <span class="skill-chip">JavaScript</span>
-                <span class="skill-chip">jQuery</span>
-                <span class="skill-chip">Node.js</span>
-                <span class="skill-chip">AJAX</span>
-                <span class="skill-chip">JSON</span>
-              </div>
-
-              <h6 class="text-secondary text-uppercase mt-3 mb-2">.NET / Data</h6>
-              <div>
-                <span class="skill-chip">C#</span>
-                <span class="skill-chip">.NET MVC</span>
-                <span class="skill-chip">ASP.NET Web Forms</span>
-                <span class="skill-chip">SQL Server</span>
-                <span class="skill-chip">T-SQL</span>
-                <span class="skill-chip">Snowflake</span>
-              </div>
-
-              <h6 class="text-secondary text-uppercase mt-3 mb-2">CMS</h6>
-              <div>
-                <span class="skill-chip">WordPress</span>
-                <span class="skill-chip">Joomla</span>
-                <span class="skill-chip">Drupal</span>
-              </div>
-
-              <h6 class="text-secondary text-uppercase mt-3 mb-2">Security / Process</h6>
-              <div>
-                <span class="skill-chip">Entra ID</span>
-                <span class="skill-chip">Active Directory</span>
-                <span class="skill-chip">Entra Connect</span>
-                <span class="skill-chip">SAML / OIDC / OAuth</span>
-                <span class="skill-chip">RBAC / IGA / PIM</span>
-                <span class="skill-chip">Architecture Governance</span>
-                <span class="skill-chip">Lean Six Sigma</span>
-              </div>
-
-              <h6 class="text-secondary text-uppercase mt-3 mb-2">Integrations</h6>
-              <div>
-                <span class="skill-chip">RightFax</span>
-                <span class="skill-chip">ServiceNow</span>
-                <span class="skill-chip">SFTP</span>
-                <span class="skill-chip">UKG</span>
-                <span class="skill-chip">Webex</span>
-                <span class="skill-chip">Concur</span>
-                <span class="skill-chip">Multiview</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>      
-    </div>
-  </section>
-
-  <!-- Work / Adventures -->
-<section class="pb-5" id="work">
-  <div class="container">
-    <div id="top-cards" class="row g-4">
-      <!-- Card 1 (fallback content kept; JS will overwrite text only) -->
-      <div class="col-md-6">
-        <div class="card hero-card h-100">
-          <div class="card-body">
-            <h3 class="h5 role-title" id="top-1-title">Enterprise Identity Architecture</h3>
-            <p class="muted mb-2" id="top-1-desc">Designed and operationalized a governed identity pipeline spanning HR data, orchestration, Active Directory, Entra Connect, and Entra ID classification. Humans, non-humans, dynamic groups, and access rules now have fewer opportunities to impersonate chaos.</p>
-            <span class="badge text-bg-info" id="top-1-badge">Architecture</span>
-          </div>
-        </div>
-      </div>
-      <!-- Card 2 -->
-      <div class="col-md-6">
-        <div class="card hero-card h-100">
-          <div class="card-body">
-            <h3 class="h5 role-title" id="top-2-title">Fabric &amp; Snowflake Fault Isolation</h3>
-            <p class="muted mb-0" id="top-2-desc">Produced a 43-page engineering investigation that validated Entra OAuth and JWT issuance, confirmed Snowflake token acceptance, isolated the remaining failure boundary, and delivered Microsoft Engineering a handoff supported by evidence instead of interpretive dance.</p>
-            <span class="badge text-bg-info" id="top-2-badge">Engineering</span>
-          </div>
-        </div>
-      </div>
-    </div>
+  <div class="status-strip">
+    <div class="shell"><span class="status-dot"></span> Systems connected · Evidence verified</div>
   </div>
-</section>
 
-<!-- Weekly Activity Highlights -->
-<section class="pb-5" id="weekly">
-  <div class="container">
-    <div class="card hero-card">
-      <div class="card-body">
-        <h3 class="h5 section-title mb-3">Weekly Activity Highlights</h3>
-
-        <div class="row g-3">
-          <!-- This Week -->
-          <div class="col-md-6">
-            <div class="p-3 border rounded-3 border-opacity-25">
-              <div class="small text-secondary">This week</div>
-              <ul class="resume-list text-secondary small mb-0" id="this-week-list">
-                <!-- Fallback (will be replaced by JS) -->
-                <li><b>Epic Secure Web MFA</b>: Isolated the failure affecting SMS-primary users, documented Microsoft’s passkey-registration redirect chain, and identified the missing URL required by the application allow list.</li>
-                <li><b>Entra Authentication Analysis</b>: Distinguished Microsoft’s registration campaign from an Authenticator-only mandate and prepared a clean report of users whose primary method remains SMS.</li>
-                <li><b>UKG → Active Directory Sync</b>: Validated the scheduled synchronization workflow through a controlled manual run while connected to the production path.</li>
-                <li><b>Power BI Gateway</b>: Defined the correct connector approach for shared-drive data sources and separated file-system gateway requirements from SharePoint and web connectors.</li>
-                <li><b>Butterfly Network Monitoring</b>: Refined the SolarWinds status monitor so operational states map cleanly to healthy, warning, or critical instead of treating every API mood swing like the apocalypse.</li>
-                <li><b>Webex Troubleshooting</b>: Compared executable versions, signatures, installation paths, and observed behavior across desktop and mobile calling.</li>
-                <li><b>Microsoft Viva Access</b>: Traced the current administration path after Microsoft moved the controls and left the old directions behind as a small historical prank.</li>
-                <li><b>Azure AI Foundry Discovery</b>: Began documenting the capabilities, architecture boundaries, governance questions, and organizational decisions required around the newly deployed platform.</li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Ongoing -->
-          <div class="col-md-6">
-            <div class="p-3 border rounded-3 border-opacity-25">
-              <div class="small text-secondary">Ongoing</div>
-              <ul class="resume-list text-secondary small mb-0" id="ongoing-list">
-                <!-- Fallback (will be replaced by JS) -->
-                <li><b>Purview / Fortified Reporting</b>: Building the remaining evidence sections while validating large DLP, DSPM, audit, lifecycle, and information-protection datasets.</li>
-                <li><b>CHAP Progress Tracker</b>: Building a Power Apps form that connects to REDCap through an API connector, replacing manual tracking with a governed workflow and considerably less swivel-chair aerobics.</li>
-                <li><b>Adobe Identity Consolidation</b>: Finalizing documentation and support ownership for federation, SCIM provisioning, and organizational trusts.</li>
-                <li><b>Disabled-Account Automation</b>: Preparing the completed identity-remediation script and employee-identifier synchronization workflow for repeatable scheduled operation.</li>
-                <li><b>Azure AI Foundry Governance</b>: Converting an already-deployed platform into an understood enterprise capability before “it exists” quietly becomes “apparently we support everything.”</li>
-              </ul>
-            </div>
-          </div>
+  <main id="top">
+    <section class="shell hero" id="about">
+      <div>
+        <div class="eyebrow">People + systems + a more capable tomorrow</div>
+        <h1>Jonathan R. Adcox<span class="role">Application Architect</span></h1>
+        <p class="hero-lead">I design supportable systems across applications, identity, integration, automation, and governance.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#work">Explore my work <span aria-hidden="true">→</span></a>
+          <a class="button button-secondary" href="#method">How I work</a>
         </div>
+        <div class="hero-note"><span>Architecture builds opportunity</span><i>“Better systems. Brighter people.”</i></div>
+      </div>
 
-        <div class="text-secondary small mt-3" id="weekly-tldr">
-          TL;DR: Microsoft moved the authentication furniture, Epic blocked the hallway, Purview produced several million receipts, and architecture once again arrived carrying a flashlight.
+      <div class="architecture" aria-label="Applications, identity, data, security, and operations connected through architecture">
+        <span class="diagram-note one">People<br>Processes<br>Applications<br>Data<br>Trust<br>Outcomes</span>
+        <span class="diagram-note two">Modular<br>Interoperable<br>Scalable<br>Supportable</span>
+        <span class="diagram-note three">Architecture turns intent into impact.</span>
+        <svg viewBox="0 0 620 520" role="img" aria-labelledby="diagram-title diagram-desc">
+          <title id="diagram-title">Enterprise architecture system map</title>
+          <desc id="diagram-desc">Architecture connects applications, identity, data, security, and operations.</desc>
+          <circle class="orbit" cx="330" cy="270" r="190"/>
+          <circle class="orbit" cx="330" cy="270" r="128"/>
+          <line class="connector" x1="330" y1="270" x2="330" y2="86"/>
+          <line class="connector" x1="330" y1="270" x2="507" y2="208"/>
+          <line class="connector" x1="330" y1="270" x2="439" y2="421"/>
+          <line class="connector" x1="330" y1="270" x2="215" y2="421"/>
+          <line class="connector" x1="330" y1="270" x2="151" y2="208"/>
+          <g class="node" transform="translate(330 86)"><circle r="61"/><path class="glyph" d="M-12 -8h24v18h-24zM-7 -14h14M0 -14v6"/><text y="34">Applications</text></g>
+          <g class="node" transform="translate(507 208)"><circle r="61"/><path class="glyph" d="M-12 -12c0-5 24-5 24 0v24c0 5-24 5-24 0zm0 0c0 5 24 5 24 0m-24 12c0 5 24 5 24 0"/><text y="34">Data</text></g>
+          <g class="node" transform="translate(439 421)"><circle r="61"/><path class="glyph" d="M0-14l5 5 7-1 1 7 5 5-5 5-1 7-7-1-5 5-5-5-7 1-1-7-5-5 5-5 1-7 7 1zm0 8a8 8 0 100 16 8 8 0 000-16"/><text y="34">Operations</text></g>
+          <g class="node" transform="translate(215 421)"><circle r="61"/><path class="glyph" d="M0-15l15 6v10c0 11-7 18-15 22-8-4-15-11-15-22V-9zm-6 15l5 5 9-11"/><text y="34">Security</text></g>
+          <g class="node" transform="translate(151 208)"><circle r="61"/><path class="glyph" d="M-14 10c0-8 6-12 14-12s14 4 14 12M0-8a8 8 0 100-16 8 8 0 000 16M-20-4a6 6 0 10-6-11M20-4a6 6 0 106-11"/><text y="34">Identity</text></g>
+          <g class="node core" transform="translate(330 270)"><circle r="45"/><text y="6">A</text></g>
+        </svg>
+      </div>
+    </section>
+
+    <section class="section" id="ai">
+      <div class="shell ai-feature">
+        <div class="ai-feature-copy">
+          <div class="section-kicker">An approachable AI experience coded by Jonathan R. Adcox</div>
+          <h2>Curious about AI? Ask it anything.</h2>
+          <p>Try an AI powered by an OpenAI model without creating an account or leaving a conversation behind. Ask a practical question, test an idea, request an explanation, or simply see what AI can do. The experience lives only for the browser session.</p>
+          <div class="hero-actions"><a class="button button-primary" href="/ask-ai/">Try Ask Adcox AI <span aria-hidden="true">→</span></a><a class="button button-secondary" href="/ask-ai/">The browser keeps your secrets</a></div>
+        </div>
+        <div class="ai-feature-panel" aria-label="Ask Adcox AI capabilities">
+          <div class="ai-signal"><strong>Ask anything</strong><span>Questions, ideas, explanations, brainstorming, code, or simple curiosity.</span></div>
+          <div class="ai-signal"><strong>No lasting history</strong><span>No account and no saved transcript. Close the browser and the conversation is gone.</span></div>
+          <div class="ai-signal"><strong>Powered by OpenAI</strong><span>A real model behind a simple experience designed to make trying AI feel less intimidating.</span></div>
         </div>
       </div>
-    </div>
-  </div>
-</section>
+    </section>
 
+    <section class="section" id="work">
+      <div class="shell">
+        <div class="section-head"><h2>Selected Work</h2><span class="rule"></span><p>Real problems · thoughtful systems · measurable outcomes</p></div>
+        <div class="work-grid">
+          <article class="case-study">
+            <div class="case-top"><span class="case-icon">ID</span><div><h3>Identity and Access Modernization</h3><p>From fragmented access to a unified, governed identity foundation.</p></div></div>
+            <div class="case-body">
+              <div class="case-row"><strong>Problem</strong><span>Multiple identity stores and inconsistent provisioning created risk and operational friction.</span></div>
+              <div class="case-row"><strong>Decision</strong><span>Designed a unified architecture with governance, automated provisioning, and standardized access controls.</span></div>
+              <div class="case-row"><strong>Outcome</strong><span>Stronger security, simpler operations, and a scalable foundation for future growth.</span></div>
+            </div>
+            <a class="case-link" href="/about/">Explore the architecture approach &nbsp;→</a>
+          </article>
+          <article class="case-study">
+            <div class="case-top"><span class="case-icon">API</span><div><h3>Integration for Operational Efficiency</h3><p>Connecting systems to eliminate manual work and improve data flow.</p></div></div>
+            <div class="case-body">
+              <div class="case-row"><strong>Problem</strong><span>Critical business data was siloed across applications, creating manual effort and delays.</span></div>
+              <div class="case-row"><strong>Decision</strong><span>Implemented an integration architecture using standardized APIs, event-driven patterns, and monitoring.</span></div>
+              <div class="case-row"><strong>Outcome</strong><span>Reliable automated data flow, reduced manual work, and more timely information across teams.</span></div>
+            </div>
+            <a class="case-link" href="/about/">Explore the architecture approach &nbsp;→</a>
+          </article>
+        </div>
+      </div>
+    </section>
 
-  <footer class="py-4">
-    <div class="container text-center muted small">
-      © <strong>Jonathan R. Adcox</strong>, traces of humor included, commas preferred.
+    <section class="section" id="method">
+      <div class="shell">
+        <div class="section-head"><h2>How I Work</h2><span class="rule"></span><p>Principles → practice → lasting value</p></div>
+        <div class="method-grid">
+          <article class="method"><span class="method-number">01 / EVIDENCE</span><h3>Evidence First</h3><p>I ground decisions in facts, context, and measurable results—not assumptions.</p></article>
+          <article class="method"><span class="method-number">02 / OPERATIONS</span><h3>Design for Operations</h3><p>I architect with the people who run and support the systems, ensuring solutions are practical, observable, and sustainable.</p></article>
+          <article class="method"><span class="method-number">03 / GOVERNANCE</span><h3>Govern the System</h3><p>I build with guardrails—balancing agility with appropriate governance, risk management, and maintainability.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="tools">
+      <div class="shell">
+        <div class="section-head"><h2>Tools</h2><span class="rule"></span><p>Small utilities · clear purpose · local-first where possible</p></div>
+        <div class="method-grid">
+          <a class="method" href="/keyforge/"><span class="method-number">01 / SECURITY</span><h3>KeyForge</h3><p>Derive strong, reproducible passwords locally from a master key and context.</p></a>
+          <a class="method" href="/url-parser/"><span class="method-number">02 / WEB</span><h3>URL Parser</h3><p>Inspect, validate, decode, and export the parts of a URL.</p></a>
+          <a class="method" href="/qr-brand/"><span class="method-number">03 / BRAND</span><h3>QR Maker</h3><p>Create branded QR codes with local image processing and export.</p></a>
+          <a class="method" href="/metrics-api/"><span class="method-number">04 / OBSERVABILITY</span><h3>Metrics Console</h3><p>Exercise the site metrics endpoint and inspect representative visualizations.</p></a>
+          <a class="method" href="/ask-ai/"><span class="method-number">05 / AI</span><h3>Ask Adcox AI</h3><p>Ask an OpenAI-powered model anything in a temporary browser-session experience.</p></a>
+          <a class="method" href="/about/"><span class="method-number">06 / IDENTITY</span><h3>About Jonathan</h3><p>Read the crawlable, human-readable professional identity behind Adcox.AI.</p></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="writing">
+      <div class="shell footprint">
+        <div class="footprint-title"><h2>Public Technical Footprint</h2><span>Ideas · implementation · conversation</span></div>
+        <a class="profile-link" href="https://github.com/blayderunner123" rel="me noopener" target="_blank"><span class="profile-icon">GH</span><span><strong>GitHub</strong><small>Code, tools, and experiments</small></span></a>
+        <a class="profile-link" href="https://www.linkedin.com/in/blayderunner123" rel="me noopener" target="_blank"><span class="profile-icon">IN</span><span><strong>LinkedIn</strong><small>Professional writing and updates</small></span></a>
+        <a class="profile-link" href="https://stackoverflow.com/users/4014161/blayderunner123" rel="me noopener" target="_blank"><span class="profile-icon">SO</span><span><strong>Stack Overflow</strong><small>Technical discussion and support</small></span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="contact">
+    <div class="shell">
+      <div class="footer-grid">
+        <div><a class="brand" href="#top"><span class="brand-mark">A</span><span class="brand-copy"><strong>Adcox.AI</strong><span>Systems for what’s next</span></span></a><p class="footer-statement">Architecture that connects people, applications, identity, data, security, and operations—then leaves the system more understandable than it found it.</p></div>
+        <div><div class="footer-heading">Explore</div><div class="footer-links"><a href="/about/">About</a><a href="#work">Selected Work</a><a href="#writing">Writing</a><a href="#tools">Tools</a></div></div>
+        <div><div class="footer-heading">Connect</div><div class="footer-links"><a href="mailto:jonathan.r.adcox@gmail.com">Email Jonathan</a><a href="https://github.com/blayderunner123" rel="me noopener" target="_blank">GitHub</a><a href="https://www.linkedin.com/in/blayderunner123" rel="me noopener" target="_blank">LinkedIn</a><a href="/ask-ai/">Ask AI</a></div></div>
+      </div>
+      <div class="copyright"><span>© 2026 Jonathan R. Adcox</span><span>Systems connected · Evidence verified</span></div>
     </div>
   </footer>
 
-  <!-- Animated F5 Banner Script -->
   <script>
-  (function(){
-    const el = document.getElementById('f5-frame');
-    const start = Date.now();
-    if(!el) return;
-
-    const runId = Math.random().toString(36).slice(2,8).toUpperCase();
-    const steps = ["Initializing","Loading modules","Validating environment","Connecting to Graph","Doing the thing","Tidying logs","Complete"];
-    let tick = 0, step = 0, bar = 0, typed = "";
-    const title = "ADCOX • F5-FRIENDLY EXECUTION";
-    const barWidth = 22;
-
-    function uptime(){
-      const t = Math.floor((Date.now()-start)/1000);
-      const h = String(Math.floor(t/3600)).padStart(2,"0");
-      const m = String(Math.floor((t%3600)/60)).padStart(2,"0");
-      const s = String(t%60).padStart(2,"0");
-      return `${h}:${m}:${s}`;
-    }
-    function barFrame(){
-      bar = (bar + 1) % (barWidth+1);
-      return `[${"█".repeat(bar)}${"░".repeat(barWidth-bar)}]`;
-    }
-    function spinner(){
-      return ["⠋","⠙","⠹","⠸","⠼","⠴","⠦","⠧","⠇","⠏"][tick % 10];
-    }
-
-    function render(){
-      if(typed.length < title.length){
-        typed = title.slice(0, typed.length + 1);
-        setTimeout(render, 24 + Math.floor(Math.random()*18));
-        el.textContent =
-`┌──────────────────────────────────────────┐
-│ ${typed.padEnd(42," ")} │
-└──────────────────────────────────────────┘`;
-        return;
+    const menuButton = document.querySelector('.menu-button');
+    const nav = document.querySelector('.nav-links');
+    const toolsMenu = document.querySelector('.nav-dropdown');
+    const toolsButton = toolsMenu.querySelector('button');
+    toolsButton.addEventListener('click', () => {
+      const open = toolsMenu.classList.toggle('open');
+      toolsButton.setAttribute('aria-expanded', String(open));
+    });
+    menuButton.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(open));
+    });
+    nav.addEventListener('click', event => {
+      if (event.target.matches('a')) {
+        nav.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
       }
-
-      tick++;
-      if(tick % 10 === 0){ step = Math.min(steps.length-1, step + (Math.random()<0.4?1:0)); }
-
-      const lineA = `Run: ${runId}   Uptime: ${uptime()}   ${spinner()} `;
-      const lineB = `Stage: ${steps[step]}   Progress ${barFrame()}`;
-      const hints = [
-        "Tip: scripts that install modules love you back.",
-        "Log everything. Future-you is an archaeologist with coffee.",
-        "Only delete what the API returns, nothing more.",
-        "Format sizes in MB, be kind to reports."
-      ];
-      const hint = hints[Math.floor(tick/30)%hints.length];
-
-      el.innerHTML =
-`<span class="okdot"></span> ${title}
-${lineA}
-${lineB}
-${hint}`;
-      setTimeout(render, 100);
-    }
-    render();
-  })();
+    });
   </script>
-
-  <!-- Bootstrap 5 (JS) via public CDN -->
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous">
-  </script>
-<!-- Weekly data: edit this JSON each Friday -->
-<script type="application/json" id="weekly-data" data-ver="2026-09-18-review">
-{
-  "top": [
-    {
-      "title": "Enterprise Identity Architecture",
-      "desc": "Designed and operationalized a governed identity pipeline spanning HR data, orchestration, Active Directory, Entra Connect, and Entra ID classification. Humans, non-humans, dynamic groups, and access rules now have fewer opportunities to impersonate chaos.",
-      "badge": "Architecture"
-    },
-    {
-      "title": "Fabric & Snowflake Fault Isolation",
-      "desc": "Produced a 43-page engineering investigation that validated Entra OAuth and JWT issuance, confirmed Snowflake token acceptance, isolated the remaining failure boundary, and delivered Microsoft Engineering a handoff supported by evidence instead of interpretive dance.",
-      "badge": "Engineering"
-    }
-  ],
-  "thisWeek": [
-    "<b>Epic Secure Web MFA</b>: Isolated the failure affecting SMS-primary users, documented Microsoft’s passkey-registration redirect chain, and identified the missing URL required by the application allow list.",
-    "<b>Entra Authentication Analysis</b>: Distinguished Microsoft’s registration campaign from an Authenticator-only mandate and prepared a clean report of users whose primary method remains SMS.",
-    "<b>UKG → Active Directory Sync</b>: Validated the scheduled synchronization workflow through a controlled manual run while connected to the production path.",
-    "<b>Power BI Gateway</b>: Defined the correct connector approach for shared-drive data sources and separated file-system gateway requirements from SharePoint and web connectors.",
-    "<b>Butterfly Network Monitoring</b>: Refined the SolarWinds status monitor so operational states map cleanly to healthy, warning, or critical instead of treating every API mood swing like the apocalypse.",
-    "<b>Webex Troubleshooting</b>: Compared executable versions, signatures, installation paths, and observed behavior across desktop and mobile calling.",
-    "<b>Microsoft Viva Access</b>: Traced the current administration path after Microsoft moved the controls and left the old directions behind as a small historical prank.",
-    "<b>Azure AI Foundry Discovery</b>: Began documenting the capabilities, architecture boundaries, governance questions, and organizational decisions required around the newly deployed platform."
-  ],
-  "ongoing": [
-    "<b>Purview / Fortified Reporting</b>: Building the remaining evidence sections while validating large DLP, DSPM, audit, lifecycle, and information-protection datasets.",
-    "<b>CHAP Progress Tracker</b>: Building a Power Apps form that connects to REDCap through an API connector, replacing manual tracking with a governed workflow and considerably less swivel-chair aerobics.",
-    "<b>Adobe Identity Consolidation</b>: Finalizing documentation and support ownership for federation, SCIM provisioning, and organizational trusts.",
-    "<b>Disabled-Account Automation</b>: Preparing the completed identity-remediation script and employee-identifier synchronization workflow for repeatable scheduled operation.",
-    "<b>Azure AI Foundry Governance</b>: Converting an already-deployed platform into an understood enterprise capability before ‘it exists’ quietly becomes ‘apparently we support everything.’"
-  ],
-  "tldr": "TL;DR: Microsoft moved the authentication furniture, Epic blocked the hallway, Purview produced several million receipts, and architecture once again arrived carrying a flashlight."
-}
-</script>
-
-
-<!-- Tiny renderer (no deps) -->
-<script>
-(function(){
-  const el = id => document.getElementById(id);
-  const dataTag = el('weekly-data');
-  if(!dataTag) return;
-
-  let data;
-  try { data = JSON.parse(dataTag.textContent.trim()); } catch(e){ return; }
-
-  // --- Top cards (keep original structure/classes; just swap text)
-  const top = Array.isArray(data.top) ? data.top.slice(0,2) : [];
-  const slots = [1,2];
-  slots.forEach((n, i) => {
-    const item = top[i];
-    if(!item) return;
-    const t = el(`top-${n}-title`);
-    const d = el(`top-${n}-desc` );
-    const b = el(`top-${n}-badge`);
-    if(t && item.title) t.textContent = item.title;
-    if(d && item.desc ) d.textContent = item.desc;
-    if(b){
-      if(item.badge && item.badge.trim()){
-        b.textContent = item.badge;
-        b.classList.remove('d-none');
-      } else {
-        b.classList.add('d-none');
-      }
-    }
-  });
-
-  // --- Lists
-  function renderList(containerId, items){
-    const ul = el(containerId);
-    if(!ul || !Array.isArray(items)) return;
-    ul.innerHTML = items.map(x => `<li>${x}</li>`).join('');
-  }
-  renderList('this-week-list', data.thisWeek);
-  renderList('ongoing-list',    data.ongoing);
-
-  // --- TL;DR
-  const tldr = el('weekly-tldr');
-  if(tldr && data.tldr){
-    tldr.innerHTML = data.tldr;
-  }
-})();
-</script>
-<script type="module">
-  import { Client, Locale } from 'https://esm.run/appwrite';
-
-  const client = new Client()
-    .setEndpoint('https://nyc.cloud.appwrite.io/v1') // unified Cloud endpoint
-    .setProject('68dc4969001a1ce12c8a');             // your Project ID
-
-  try {
-    const locale = new Locale(client);
-    const res = await locale.listCountries();
-    console.log('✅ Appwrite connected (countries):', res.total);
-  } catch (err) {
-    console.error('❌ Appwrite connection failed:', err);
-  }
-</script>
 </body>
 </html>
