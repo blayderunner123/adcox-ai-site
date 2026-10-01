@@ -12,4 +12,44 @@ document.addEventListener('DOMContentLoaded',()=>{
   const toolMenu=document.querySelector('.adx-dropdown');const toolButton=toolMenu?.querySelector('button');toolButton?.addEventListener('click',()=>{const open=toolMenu.classList.toggle('open');toolButton.setAttribute('aria-expanded',String(open))});
   button?.addEventListener('click',()=>{const open=links?.classList.toggle('open');button.setAttribute('aria-expanded',String(Boolean(open)))});
   links?.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{links.classList.remove('open');button?.setAttribute('aria-expanded','false')}));
+
+  const lightboxImages=[...document.querySelectorAll('.project-sidebar-preview img,.project-gallery img')];
+  if(lightboxImages.length){
+    document.body.insertAdjacentHTML('beforeend',`<dialog class="image-lightbox" aria-label="Image preview"><div class="image-lightbox-toolbar"><span class="image-lightbox-label"></span><div><button type="button" data-lightbox-action="out" aria-label="Zoom out">−</button><button type="button" data-lightbox-action="reset" aria-label="Reset zoom">100%</button><button type="button" data-lightbox-action="in" aria-label="Zoom in">+</button><button type="button" data-lightbox-action="close" aria-label="Close image preview">×</button></div></div><div class="image-lightbox-stage"><img alt=""></div></dialog>`);
+    const dialog=document.querySelector('.image-lightbox');
+    const stage=dialog.querySelector('.image-lightbox-stage');
+    const preview=stage.querySelector('img');
+    const label=dialog.querySelector('.image-lightbox-label');
+    const resetButton=dialog.querySelector('[data-lightbox-action="reset"]');
+    let scale=1;
+    let trigger=null;
+    const applyScale=()=>{preview.style.transform=`scale(${scale})`;resetButton.textContent=`${Math.round(scale*100)}%`};
+    const reset=()=>{scale=1;applyScale();stage.scrollTo(0,0)};
+    const close=()=>dialog.close();
+    lightboxImages.forEach(img=>{
+      img.tabIndex=0;
+      img.setAttribute('role','button');
+      img.setAttribute('aria-haspopup','dialog');
+      img.setAttribute('aria-label',`Enlarge image: ${img.alt}`);
+      const open=()=>{trigger=img;preview.src=img.currentSrc||img.src;preview.alt=img.alt;label.textContent=img.alt;reset();dialog.showModal();dialog.querySelector('[data-lightbox-action="close"]').focus()};
+      img.addEventListener('click',open);
+      img.addEventListener('keydown',event=>{if(event.key==='Enter'||event.key===' '){event.preventDefault();open()}});
+    });
+    dialog.addEventListener('click',event=>{if(event.target===dialog)close()});
+    stage.addEventListener('click',event=>{if(event.target===stage)close()});
+    dialog.addEventListener('close',()=>{preview.removeAttribute('src');trigger?.focus()});
+    dialog.querySelector('.image-lightbox-toolbar').addEventListener('click',event=>{
+      const action=event.target.closest('button')?.dataset.lightboxAction;
+      if(action==='close')close();
+      if(action==='reset')reset();
+      if(action==='in'){scale=Math.min(3,scale+.25);applyScale()}
+      if(action==='out'){scale=Math.max(.5,scale-.25);applyScale()}
+    });
+    stage.addEventListener('wheel',event=>{
+      if(!event.ctrlKey)return;
+      event.preventDefault();
+      scale=Math.max(.5,Math.min(3,scale+(event.deltaY<0?.1:-.1)));
+      applyScale();
+    },{passive:false});
+  }
 });

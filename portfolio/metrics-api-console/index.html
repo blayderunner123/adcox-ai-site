@@ -1,1 +1,119 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Metrics API Console | Adcox.AI Portfolio</title><meta name="description" content="A working console for exercising and visualizing the Adcox.AI metrics endpoint."><link rel="canonical" href="https://www.adcox.ai/portfolio/metrics-api-console/"><meta property="og:title" content="Metrics API Console | Adcox.AI"><meta property="og:description" content="Exercise a metrics endpoint and inspect representative response visualizations."><meta property="og:type" content="article"><meta property="og:url" content="https://www.adcox.ai/portfolio/metrics-api-console/"><meta property="og:image" content="https://www.adcox.ai/favicon/og-preview.png"><link rel="icon" href="/favicon/favicon.ico"><link rel="stylesheet" href="/assets/site.css"><link rel="stylesheet" href="/assets/shell.css"><link rel="stylesheet" href="/assets/portfolio.css"><script src="/assets/site.js" defer></script><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Metrics API Console","applicationCategory":"DeveloperApplication","operatingSystem":"Any modern browser","url":"https://www.adcox.ai/metrics-api/","author":{"@id":"https://www.adcox.ai/#jonathan-r-adcox"}}</script></head><body class="adcox-site"><main class="project-main"><div class="site-shell"><nav class="project-breadcrumb"><a href="/portfolio/">Portfolio</a><span>/</span><span>Metrics API Console</span></nav><section class="project-hero"><div><div class="kicker">APIs &amp; Integrations</div><h1>Metrics API Console</h1><p class="project-lead">A working interface for exercising the site's metrics endpoint and inspecting representative response data and visualizations.</p></div><div class="project-facts"><div class="project-fact"><strong>Type</strong><span>API test console</span></div><div class="project-fact"><strong>Service</strong><span>Appwrite function</span></div><div class="project-fact"><strong>Status</strong><span>Live</span></div></div></section><div class="project-layout"><article><section class="project-section"><h2>Problem and solution</h2><p>An API is easier to reason about when its requests, responses, and failure states are visible. The console creates a direct inspection surface for the metrics function rather than hiding it behind the site experience.</p></section><section class="project-section"><h2>Architecture</h2><div class="architecture-flow"><div class="architecture-node"><strong>Browser</strong><span>Request controls</span></div><div class="architecture-node"><strong>Endpoint</strong><span>Appwrite function</span></div><div class="architecture-node"><strong>Response</strong><span>Structured metric data</span></div><div class="architecture-node"><strong>View</strong><span>Representative visualization</span></div></div></section><section class="project-section"><h2>Engineering decisions</h2><ul><li>Keep the testing surface separate from the primary site experience.</li><li>Expose both machine-readable behavior and human-readable interpretation.</li><li>Use the same shared shell so the utility remains part of the Adcox.AI system.</li></ul></section></article><aside class="project-sidebar"><div class="sidebar-panel"><h2>Technology</h2><div class="tech-list"><span class="tech-badge">JavaScript</span><span class="tech-badge">REST API</span><span class="tech-badge">Appwrite</span><span class="tech-badge">Observability</span></div></div><div class="sidebar-panel"><h2>Action</h2><div class="sidebar-links"><a href="/metrics-api/">Launch Console <span>→</span></a></div></div></aside></div><a class="back-portfolio" href="/portfolio/">← Back to Portfolio</a></div></main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Metrics API Console | Adcox.AI Portfolio</title>
+<meta name="description" content="A working console for exercising and visualizing the Adcox.AI metrics endpoint.">
+<link rel="canonical" href="https://www.adcox.ai/portfolio/metrics-api-console/">
+<meta property="og:title" content="Metrics API Console | Adcox.AI">
+<meta property="og:description" content="Exercise a metrics endpoint and inspect representative response visualizations.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.adcox.ai/portfolio/metrics-api-console/">
+<meta property="og:image" content="https://www.adcox.ai/favicon/og-preview.png">
+<link rel="icon" href="/favicon/favicon.ico">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/shell.css">
+<link rel="stylesheet" href="/assets/portfolio.css">
+<script src="/assets/site.js" defer>
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Metrics API Console","applicationCategory":"DeveloperApplication","operatingSystem":"Any modern browser","url":"https://www.adcox.ai/metrics-api/","author":{"@id":"https://www.adcox.ai/#jonathan-r-adcox"}}</script>
+</head>
+<body class="adcox-site">
+<main class="project-main">
+<div class="site-shell">
+<nav class="project-breadcrumb">
+<a href="/portfolio/">Portfolio</a>
+<span>/</span>
+<span>Metrics API Console</span>
+</nav>
+<section class="project-hero has-visual" style="--project-hero-image:url('/assets/portfolio/metrics-api-console.jpg')">
+<div>
+<div class="kicker">APIs &amp; Integrations</div>
+<h1>Metrics API Console</h1>
+<p class="project-lead">A working interface for exercising the site's metrics endpoint and inspecting representative response data and visualizations.</p>
+<div class="project-hero-actions"><a class="project-hero-action primary" href="/metrics-api/">Launch Console <span>→</span></a><a class="project-hero-action" href="#architecture">View API flow</a></div>
+</div>
+<div class="project-facts">
+<div class="project-fact">
+<strong>Type</strong>
+<span>API test console</span>
+</div>
+<div class="project-fact">
+<strong>Service</strong>
+<span>Appwrite function</span>
+</div>
+<div class="project-fact">
+<strong>Status</strong>
+<span>Live</span>
+</div>
+</div>
+</section>
+<div class="project-layout">
+<article>
+<section class="project-section">
+<h2>Problem and solution</h2>
+<p>An API is easier to reason about when its requests, responses, and failure states are visible. The console creates a direct inspection surface for the metrics function rather than hiding it behind the site experience.</p>
+<div class="project-value-grid" aria-label="Project value summary"><div><strong>Challenge</strong><span>Make a small serverless endpoint observable without requiring a separate API client.</span></div><div><strong>Solution</strong><span>Expose GET health checks, POST event tests, raw responses, and representative charts in one console.</span></div><div><strong>Result</strong><span>A visible integration surface for validating contracts, CORS behavior, and failure handling.</span></div></div>
+</section>
+<section class="project-section" id="architecture">
+<h2>Architecture</h2>
+<div class="architecture-flow">
+<div class="architecture-node">
+<strong>Browser</strong>
+<span>Request controls</span>
+</div>
+<div class="architecture-node">
+<strong>Endpoint</strong>
+<span>Appwrite function</span>
+</div>
+<div class="architecture-node">
+<strong>Response</strong>
+<span>Structured metric data</span>
+</div>
+<div class="architecture-node">
+<strong>View</strong>
+<span>Representative visualization</span>
+</div>
+</div>
+</section>
+<section class="project-section"><h2>API contract</h2><div class="api-contract"><div><strong>Runtime</strong><span>Appwrite Function on Node.js 20/22</span></div><div><strong>Methods</strong><span>GET health response, POST event receipt, and OPTIONS preflight</span></div><div><strong>Payload</strong><span>JSON event name, numeric value, and optional contextual fields</span></div><div><strong>Responses</strong><span>Structured JSON with explicit 200, 204, 405, and 500 behavior</span></div><div><strong>CORS</strong><span>Restricted to https://www.adcox.ai</span></div></div><div class="project-code-proof"><div><strong>Request example</strong><span>A minimal event sent from the console.</span></div><pre><code>POST /metrics\nContent-Type: application/json\n\n{\n  &quot;event&quot;: &quot;pageview&quot;,\n  &quot;value&quot;: 1\n}</code></pre></div></section>
+<section class="project-section">
+<h2>Engineering decisions</h2>
+<ul>
+<li>Keep the testing surface separate from the primary site experience.</li>
+<li>Expose both machine-readable behavior and human-readable interpretation.</li>
+<li>Use the same shared shell so the utility remains part of the Adcox.AI system.</li>
+</ul>
+</section>
+<section class="project-section"><h2>What this project demonstrates</h2><ul><li>Designing and documenting a small REST-style serverless contract.</li><li>Making success, failure, and preflight behavior visible to an operator.</li><li>Separating representative visualization data from live endpoint behavior.</li><li>Using CORS boundaries and explicit status handling rather than permissive defaults.</li></ul></section>
+</article>
+<aside class="project-sidebar">
+<figure class="sidebar-panel project-sidebar-preview">
+<h2>Interface</h2>
+<img src="/assets/portfolio/metrics-api-console.jpg" alt="Metrics API Console showing request controls and charts" width="1200" height="630" loading="lazy">
+<figcaption>Request controls and representative visualizations.</figcaption>
+</figure>
+<div class="sidebar-panel">
+<h2>Technology</h2>
+<div class="tech-list">
+<span class="tech-badge">JavaScript</span>
+<span class="tech-badge">REST API</span>
+<span class="tech-badge">Appwrite</span>
+<span class="tech-badge">Observability</span>
+</div>
+</div>
+<div class="sidebar-panel">
+<h2>Action</h2>
+<div class="sidebar-links">
+<a href="/metrics-api/">Launch Console <span>→</span>
+</a>
+</div>
+</div>
+</aside>
+</div>
+<a class="back-portfolio" href="/portfolio/">← Back to Portfolio</a>
+</div>
+</main>
+</body>
+</html>

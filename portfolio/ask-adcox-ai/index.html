@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Ask Adcox AI | Adcox.AI Portfolio</title>
+<meta name="description" content="A lightweight, no-account AI interface with selectable response styles and sanitized Markdown rendering.">
+<link rel="canonical" href="https://www.adcox.ai/portfolio/ask-adcox-ai/">
+<meta property="og:title" content="Ask Adcox AI | Adcox.AI">
+<meta property="og:description" content="An approachable AI interface backed by an Appwrite function and OpenAI.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.adcox.ai/portfolio/ask-adcox-ai/">
+<meta property="og:image" content="https://www.adcox.ai/assets/portfolio/ask-adcox-ai.jpg">
+<link rel="icon" href="/favicon/favicon.ico">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/shell.css">
+<link rel="stylesheet" href="/assets/portfolio.css">
+<script src="/assets/site.js" defer>
+</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Ask Adcox AI","applicationCategory":"WebApplication","operatingSystem":"Any modern browser","url":"https://www.adcox.ai/ask-ai/","author":{"@id":"https://www.adcox.ai/#jonathan-r-adcox"}}</script>
+</head>
+<body class="adcox-site">
+<main class="project-main">
+<div class="site-shell">
+<nav class="project-breadcrumb" aria-label="Breadcrumb">
+<a href="/portfolio/">Portfolio</a>
+<span>/</span>
+<span>Ask Adcox AI</span>
+</nav>
+<section class="project-hero has-visual" style="--project-hero-image:url('/assets/portfolio/ask-adcox-ai.jpg')">
+<div>
+<div class="kicker">Applications / AI</div>
+<h1>Ask Adcox AI</h1>
+<p class="project-lead">A focused AI interface for asking technical questions without creating an account or retaining a lasting browser conversation history.</p>
+<div class="project-hero-actions">
+<a class="project-hero-action primary" href="/ask-ai/">Launch live application <span>→</span>
+</a>
+<a class="project-hero-action" href="#architecture">View architecture</a>
+</div>
+</div>
+<div class="project-facts">
+<div class="project-fact">
+<strong>Interface</strong>
+<span>Selectable answer styles</span>
+</div>
+<div class="project-fact">
+<strong>Service</strong>
+<span>Appwrite function</span>
+</div>
+<div class="project-fact">
+<strong>Rendering</strong>
+<span>Sanitized Markdown and code</span>
+</div>
+<div class="project-fact">
+<strong>Status</strong>
+<span>Live</span>
+</div>
+</div>
+</section>
+<div class="project-layout">
+<article>
+<section class="project-section">
+<h2>Overview</h2>
+<p>The application provides concise, step-by-step, and detailed-with-code response modes through a small browser interface. Requests are sent to an Appwrite function, while responses are rendered as readable Markdown with syntax highlighting.</p>
+<div class="evidence-callout">
+<strong>Privacy boundary:</strong> the interface does not require an account and does not build a persistent conversation history in the browser. Prompts are still sent to the configured AI service to generate a response.</div>
+<div class="project-value-grid" aria-label="Project value summary">
+<div>
+<strong>Challenge</strong>
+<span>Make an AI utility approachable without accounts, persistent chat history, or a heavy application shell.</span>
+</div>
+<div>
+<strong>Solution</strong>
+<span>Combine explicit response modes with a serverless API boundary and defensive Markdown rendering.</span>
+</div>
+<div>
+<strong>Result</strong>
+<span>A focused, responsive tool demonstrating product thinking, integration design, and secure frontend delivery.</span>
+</div>
+</div>
+</section>
+<section class="project-section">
+<h2>Configuration and API contract</h2>
+<p>The browser client is deliberately configuration-light. A version selector maps each answer style to the Appwrite function endpoint, allowing the presentation layer to change response behavior without exposing credentials or embedding provider logic in the page.</p>
+<div class="project-spec-grid">
+<div class="project-spec">
+<strong>Concise mode</strong>
+<span>Short, direct answers for quick questions.</span>
+</div>
+<div class="project-spec">
+<strong>Step-by-step mode</strong>
+<span>Structured explanations for guided troubleshooting.</span>
+</div>
+<div class="project-spec">
+<strong>Detailed mode</strong>
+<span>Expanded technical responses with rendered code.</span>
+</div>
+<div class="project-spec">
+<strong>Session model</strong>
+<span>No account and no persistent browser conversation history.</span>
+</div>
+</div>
+<div class="api-contract">
+<div>
+<strong>Transport</strong>
+<span>HTTPS POST to an Appwrite function</span>
+</div>
+<div>
+<strong>Request</strong>
+<span>JSON payload containing the prompt and selected response version</span>
+</div>
+<div>
+<strong>Accept</strong>
+<span>text/markdown</span>
+</div>
+<div>
+<strong>Response</strong>
+<span>Markdown body plus optional x-model response metadata</span>
+</div>
+<div>
+<strong>Rendering</strong>
+<span>Marked conversion, DOMPurify sanitization, and Prism syntax highlighting</span>
+</div>
+<div>
+<strong>Feedback</strong>
+<span>Loading state, HTTP error handling, elapsed time, version, and model display</span>
+</div>
+</div>
+<div class="project-code-proof">
+<div>
+<strong>Sanitized request example</strong>
+<span>No credentials or provider secrets are sent by the browser.</span>
+</div>
+<pre>
+<code>POST /v1/functions/{response-mode}/executions
+Accept: text/markdown
+Content-Type: application/json
+
+{
+  &quot;prompt&quot;: &quot;Explain a PowerShell function&quot;,
+  &quot;version&quot;: &quot;detailed-with-code&quot;
+}</code>
+</pre>
+</div>
+</section>
+<section class="project-section" id="architecture">
+<h2>Architecture</h2>
+<div class="architecture-flow">
+<div class="architecture-node">
+<strong>Prompt</strong>
+<span>Browser form and answer-style selection</span>
+</div>
+<div class="architecture-node">
+<strong>Function</strong>
+<span>Appwrite request endpoint</span>
+</div>
+<div class="architecture-node">
+<strong>Model</strong>
+<span>OpenAI response generation</span>
+</div>
+<div class="architecture-node">
+<strong>View</strong>
+<span>Sanitized Markdown and Prism highlighting</span>
+</div>
+</div>
+</section>
+<section class="project-section">
+<h2>Request lifecycle</h2>
+<div class="architecture-flow">
+<div class="architecture-node">
+<strong>1 · Capture</strong>
+<span>Prompt + mode</span>
+</div>
+<div class="architecture-node">
+<strong>2 · Invoke</strong>
+<span>Serverless POST</span>
+</div>
+<div class="architecture-node">
+<strong>3 · Generate</strong>
+<span>Model response</span>
+</div>
+<div class="architecture-node">
+<strong>4 · Render</strong>
+<span>Sanitize + highlight</span>
+</div>
+</div>
+</section>
+<section class="project-section">
+<h2>Interface states</h2>
+<div class="project-gallery project-gallery-single">
+<figure>
+<img src="/assets/portfolio/ask-adcox-ai-response.jpg" alt="Ask Adcox AI showing its prompt controls and a completed response" width="1400" height="643" loading="lazy">
+<figcaption>A completed response with the selected answer style, latency, and model metadata visible.</figcaption>
+</figure>
+</div>
+</section>
+<section class="project-section">
+<h2>What this project demonstrates</h2>
+<ul>
+<li>Designing a small AI product around a clear user promise instead of exposing raw model complexity.</li>
+<li>Separating browser presentation, serverless orchestration, and model execution into understandable boundaries.</li>
+<li>Handling generated content defensively before inserting it into the document.</li>
+<li>Building useful operational feedback through loading, latency, model, and failure-state visibility.</li>
+<li>Maintaining a lightweight, crawlable site experience without adopting an unnecessary application framework.</li>
+</ul>
+</section>
+<section class="project-section">
+<h2>Engineering decisions</h2>
+<ul>
+<li>Keep the interaction account-free and intentionally session-oriented.</li>
+<li>Offer explicit response modes instead of hiding the output style behind one generic prompt.</li>
+<li>Sanitize generated HTML with DOMPurify before inserting it into the page.</li>
+<li>Expose latency and model metadata alongside completed responses.</li>
+</ul>
+</section>
+</article>
+<aside class="project-sidebar">
+<figure class="sidebar-panel project-sidebar-preview">
+<h2>Interface</h2>
+<img src="/assets/portfolio/ask-adcox-ai.jpg" alt="Ask Adcox AI displaying a detailed PowerShell answer with highlighted code" width="1200" height="630" loading="lazy">
+<figcaption>Detailed answer mode with rendered code.</figcaption>
+</figure>
+<div class="sidebar-panel">
+<h2>Technology</h2>
+<div class="tech-list">
+<span class="tech-badge">OpenAI</span>
+<span class="tech-badge">Appwrite</span>
+<span class="tech-badge">JavaScript</span>
+<span class="tech-badge">Marked</span>
+<span class="tech-badge">DOMPurify</span>
+<span class="tech-badge">Prism</span>
+</div>
+</div>
+<div class="sidebar-panel">
+<h2>Action</h2>
+<div class="sidebar-links">
+<a href="/ask-ai/">Launch Ask Adcox AI <span>→</span>
+</a>
+</div>
+</div>
+</aside>
+</div>
+<a class="back-portfolio" href="/portfolio/">← Back to Portfolio</a>
+</div>
+</main>
+</body>
+</html>
