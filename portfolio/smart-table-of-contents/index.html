@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Smart Table of Contents | Adcox.AI Portfolio</title>
+<meta name="description" content="Smart Table of Contents is a SharePoint Framework web part by Jonathan R. Adcox, published as a community sample in the Microsoft PnP SPFx repository.">
+<link rel="canonical" href="https://www.adcox.ai/portfolio/smart-table-of-contents/">
+<meta property="og:title" content="Smart Table of Contents | Adcox.AI">
+<meta property="og:description" content="A Microsoft PnP-published SPFx community sample for dynamic, searchable, responsive navigation across modern SharePoint pages.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://www.adcox.ai/portfolio/smart-table-of-contents/">
+<meta property="og:image" content="https://www.adcox.ai/assets/portfolio/smart-table-of-contents.jpg">
+<link rel="icon" href="/favicon/favicon.ico">
+<link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/shell.css">
+<link rel="stylesheet" href="/assets/portfolio.css">
+<script src="/assets/site.js" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareSourceCode","name":"Smart Table of Contents for SharePoint Framework","description":"A modern SharePoint Framework web part that generates searchable, responsive navigation from headings on SharePoint Online pages.","codeRepository":"https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/js-smart-table-of-contents","programmingLanguage":["TypeScript","JavaScript","SCSS"],"runtimePlatform":"SharePoint Online / SharePoint Framework 1.20","softwareVersion":"2.3.4","license":"https://opensource.org/license/mit","author":{"@id":"https://www.adcox.ai/#jonathan-r-adcox"},"url":"https://www.adcox.ai/portfolio/smart-table-of-contents/"}</script>
+</head>
+<body class="adcox-site">
+<main class="project-main">
+<div class="site-shell">
+<nav class="project-breadcrumb" aria-label="Breadcrumb"><a href="/portfolio/">Portfolio</a><span>/</span><span>Smart Table of Contents</span></nav>
+<section class="project-hero has-visual" style="--project-hero-image:url('/assets/portfolio/smart-table-of-contents.jpg')">
+<div>
+<div class="kicker">SharePoint / SPFx / Microsoft PnP</div>
+<h1>Smart Table of Contents</h1>
+<p class="project-lead">An enterprise-ready SharePoint Framework web part that turns modern-page headings into responsive, searchable navigation with active-section tracking.</p>
+<div class="project-hero-actions"><a class="project-hero-action primary" href="https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/js-smart-table-of-contents" target="_blank" rel="noopener">View Microsoft PnP sample <span>→</span></a><a class="project-hero-action" href="#interface-evidence">View interface evidence</a></div>
+</div>
+<div class="project-facts">
+<div class="project-fact"><strong>Publication</strong><span>Microsoft PnP SPFx samples</span></div>
+<div class="project-fact"><strong>Version</strong><span>2.3.4</span></div>
+<div class="project-fact"><strong>Platform</strong><span>SharePoint Online · SPFx 1.20</span></div>
+<div class="project-fact"><strong>Author</strong><span>Jonathan R. Adcox</span></div>
+</div>
+</section>
+<div class="project-layout">
+<article>
+<section class="project-section">
+<h2>Overview</h2>
+<p>Smart Table of Contents scans headings on modern SharePoint pages and builds a synchronized navigation experience around the page structure. It supports inline presentation and a floating right-side drawer, allowing long documentation and knowledge pages to remain navigable without manually maintaining anchor lists.</p>
+<div class="evidence-callout"><strong>Publication evidence:</strong> the complete sample is published in the public <code>pnp/sp-dev-fx-webparts</code> repository and names Jonathan R. Adcox as its author. Microsoft 365 &amp; Power Platform Community samples are community contributions maintained through the Microsoft PnP ecosystem.</div>
+<div class="project-value-grid" aria-label="Project value summary"><div><strong>Challenge</strong><span>Long SharePoint pages become difficult to scan, navigate, and maintain as their heading structure changes.</span></div><div><strong>Solution</strong><span>Detect the live heading hierarchy and generate searchable, ScrollSpy-aware navigation automatically.</span></div><div><strong>Result</strong><span>A reusable SPFx web part accepted into the public Microsoft PnP community samples repository.</span></div></div>
+</section>
+<section class="project-section" id="interface-evidence">
+<h2>Interface evidence</h2>
+<div class="project-gallery">
+<figure><img src="/assets/portfolio/smart-table-of-contents.jpg" alt="Smart Table of Contents floating drawer showing nested SharePoint headings, reading time, and search" width="1200" height="630" loading="lazy"><figcaption>Floating drawer mode with nested headings, active-section tracking, search, and reading metrics.</figcaption></figure>
+<figure><img class="screenshot-contain" src="/assets/portfolio/smart-table-of-contents-settings.jpg" alt="Smart Table of Contents SharePoint property pane showing heading, reading-time, search, drawer, and scroll-offset settings" width="634" height="810" loading="lazy"><figcaption>Property-pane controls for heading depth, search, reading time, drawer mode, and scroll offset.</figcaption></figure>
+</div>
+</section>
+<section class="project-section" id="architecture">
+<h2>Processing flow</h2>
+<div class="architecture-flow"><div class="architecture-node"><strong>Discover</strong><span>Scan modern-page heading markup</span></div><div class="architecture-node"><strong>Model</strong><span>Build the nested heading hierarchy</span></div><div class="architecture-node"><strong>Observe</strong><span>Track the active section while scrolling</span></div><div class="architecture-node"><strong>Navigate</strong><span>Search and smooth-scroll to content</span></div></div>
+</section>
+<section class="project-section">
+<h2>Capability contract</h2>
+<div class="api-contract"><div><strong>Headings</strong><span>Configurable detection from Heading 1 through Heading 4</span></div><div><strong>Presentation</strong><span>Inline web part or responsive floating navigation drawer</span></div><div><strong>Navigation</strong><span>ScrollSpy highlighting, nested expansion, smooth scrolling, and configurable offset</span></div><div><strong>Discovery</strong><span>Live heading search with section count and estimated reading time</span></div><div><strong>Hydration</strong><span>Automatic refresh accommodates delayed SharePoint page content</span></div><div><strong>URL behavior</strong><span>Navigation does not rewrite the browser URL hash</span></div></div>
+</section>
+<section class="project-section">
+<h2>Engineering decisions</h2>
+<ul><li>Use standard SharePoint heading markup as the source of truth rather than duplicating navigation configuration.</li><li>Support both embedded and floating experiences from one web part.</li><li>Contain drawer scrolling and layering so navigation remains usable on long pages.</li><li>Refresh after delayed modern-page hydration instead of assuming all headings exist at initial render.</li><li>Expose accessibility and usability controls through the SharePoint property pane.</li></ul>
+</section>
+<section class="project-section">
+<h2>What this project demonstrates</h2>
+<ul><li>Designing a reusable SharePoint component around real documentation and knowledge-management needs.</li><li>Working with SPFx page lifecycle behavior, dynamic content hydration, and browser observation.</li><li>Building responsive navigation with search, nested hierarchy, and active-section state.</li><li>Preparing, documenting, and publishing production-quality work through the Microsoft PnP community contribution process.</li></ul>
+</section>
+</article>
+<aside class="project-sidebar">
+<figure class="sidebar-panel project-sidebar-preview"><h2>Interface</h2><img src="/assets/portfolio/smart-table-of-contents.jpg" alt="Smart Table of Contents floating navigation drawer on a modern SharePoint page" width="1200" height="630" loading="lazy"><figcaption>Published SPFx sample running in floating drawer mode.</figcaption></figure>
+<div class="sidebar-panel"><h2>Technology</h2><div class="tech-list"><span class="tech-badge">SPFx 1.20</span><span class="tech-badge">TypeScript 4.7</span><span class="tech-badge">Fluent UI 8</span><span class="tech-badge">SharePoint Online</span><span class="tech-badge">SCSS</span></div></div>
+<div class="sidebar-panel"><h2>Publication</h2><div class="status-list"><div class="status-item">Published in pnp/sp-dev-fx-webparts</div><div class="status-item">Microsoft 365 &amp; Power Platform Community sample</div><div class="status-item">Author credited: Jonathan R. Adcox</div><div class="status-item">MIT licensed</div></div></div>
+<div class="sidebar-panel"><h2>Action</h2><div class="sidebar-links"><a href="https://github.com/pnp/sp-dev-fx-webparts/tree/main/samples/js-smart-table-of-contents" target="_blank" rel="noopener">View published sample <span>→</span></a></div></div>
+</aside>
+</div>
+<a class="back-portfolio" href="/portfolio/">← Back to Portfolio</a>
+</div>
+</main>
+</body>
+</html>
